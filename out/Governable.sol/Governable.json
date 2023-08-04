@@ -1,0 +1,732 @@
+{
+  "abi": [
+    {
+      "inputs": [],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "inputs": [],
+      "name": "gov",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_gov",
+          "type": "address"
+        }
+      ],
+      "name": "setGov",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "bytecode": {
+    "object": "0x608060405234801561001057600080fd5b50600080546001600160a01b031916331790556101b4806100326000396000f3fe608060405234801561001057600080fd5b50600436106100365760003560e01c806312d43a511461003b578063cfad57a21461006a575b600080fd5b60005461004e906001600160a01b031681565b6040516001600160a01b03909116815260200160405180910390f35b61007d61007836600461014e565b61007f565b005b6000546001600160a01b031633146100d65760405162461bcd60e51b815260206004820152601560248201527423b7bb32b93730b136329d103337b93134b23232b760591b60448201526064015b60405180910390fd5b6001600160a01b03811661012c5760405162461bcd60e51b815260206004820181905260248201527f476f7665726e61626c653a205f676f76206973207a65726f206164647265737360448201526064016100cd565b600080546001600160a01b0319166001600160a01b0392909216919091179055565b60006020828403121561016057600080fd5b81356001600160a01b038116811461017757600080fd5b939250505056fea2646970667358221220e11955668cf6b3e191782bc2b908ec0aaff4bdc03aaa2e431bc9d0518ed549cb64736f6c63430008120033",
+    "sourceMap": "58:357:23:-:0;;;109:47;;;;;;;;;-1:-1:-1;133:3:23;:16;;-1:-1:-1;;;;;;133:16:23;139:10;133:16;;;58:357;;;;;;",
+    "linkReferences": {}
+  },
+  "deployedBytecode": {
+    "object": "0x608060405234801561001057600080fd5b50600436106100365760003560e01c806312d43a511461003b578063cfad57a21461006a575b600080fd5b60005461004e906001600160a01b031681565b6040516001600160a01b03909116815260200160405180910390f35b61007d61007836600461014e565b61007f565b005b6000546001600160a01b031633146100d65760405162461bcd60e51b815260206004820152601560248201527423b7bb32b93730b136329d103337b93134b23232b760591b60448201526064015b60405180910390fd5b6001600160a01b03811661012c5760405162461bcd60e51b815260206004820181905260248201527f476f7665726e61626c653a205f676f76206973207a65726f206164647265737360448201526064016100cd565b600080546001600160a01b0319166001600160a01b0392909216919091179055565b60006020828403121561016057600080fd5b81356001600160a01b038116811461017757600080fd5b939250505056fea2646970667358221220e11955668cf6b3e191782bc2b908ec0aaff4bdc03aaa2e431bc9d0518ed549cb64736f6c63430008120033",
+    "sourceMap": "58:357:23:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;84:18;;;;;-1:-1:-1;;;;;84:18:23;;;;;;-1:-1:-1;;;;;178:32:145;;;160:51;;148:2;133:18;84::23;;;;;;;266:147;;;;;;:::i;:::-;;:::i;:::-;;;213:3;;-1:-1:-1;;;;;213:3:23;199:10;:17;191:51;;;;-1:-1:-1;;;191:51:23;;715:2:145;191:51:23;;;697:21:145;754:2;734:18;;;727:30;-1:-1:-1;;;773:18:145;;;766:51;834:18;;191:51:23;;;;;;;;;-1:-1:-1;;;;;331:18:23;::::1;323:63;;;::::0;-1:-1:-1;;;323:63:23;;1065:2:145;323:63:23::1;::::0;::::1;1047:21:145::0;;;1084:18;;;1077:30;1143:34;1123:18;;;1116:62;1195:18;;323:63:23::1;863:356:145::0;323:63:23::1;396:3;:10:::0;;-1:-1:-1;;;;;;396:10:23::1;-1:-1:-1::0;;;;;396:10:23;;;::::1;::::0;;;::::1;::::0;;266:147::o;222:286:145:-;281:6;334:2;322:9;313:7;309:23;305:32;302:52;;;350:1;347;340:12;302:52;376:23;;-1:-1:-1;;;;;428:31:145;;418:42;;408:70;;474:1;471;464:12;408:70;497:5;222:286;-1:-1:-1;;;222:286:145:o",
+    "linkReferences": {}
+  },
+  "methodIdentifiers": {
+    "gov()": "12d43a51",
+    "setGov(address)": "cfad57a2"
+  },
+  "rawMetadata": "{\"compiler\":{\"version\":\"0.8.18+commit.87f61d96\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[],\"name\":\"gov\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_gov\",\"type\":\"address\"}],\"name\":\"setGov\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"src/access/Governable.sol\":\"Governable\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[\":@chainlink/contracts/=lib/chainlink/contracts/src/v0.6/\",\":chainlink/=lib/chainlink/\",\":ds-test/=lib/forge-std/lib/ds-test/src/\",\":erc4626-tests/=lib/chainlink/contracts/foundry-lib/openzeppelin-contracts/lib/erc4626-tests/\",\":forge-std/=lib/forge-std/src/\"]},\"sources\":{\"src/access/Governable.sol\":{\"keccak256\":\"0xd8de41a8d8f0c08fb8c13adf4928dde9fc744a38ed23c316ac425212ca5b50a1\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://b9fe073e34b15f9878ff4a82ea93b24007448f5e8e03c6d3941d9058f5523815\",\"dweb:/ipfs/QmRz43VRZTSURZV5VvWBbN8Vb2UFiYYKrDQAmMuRxcfJod\"]}},\"version\":1}",
+  "metadata": {
+    "compiler": {
+      "version": "0.8.18+commit.87f61d96"
+    },
+    "language": "Solidity",
+    "output": {
+      "abi": [
+        {
+          "inputs": [],
+          "stateMutability": "nonpayable",
+          "type": "constructor"
+        },
+        {
+          "inputs": [],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "gov",
+          "outputs": [
+            {
+              "internalType": "address",
+              "name": "",
+              "type": "address"
+            }
+          ]
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "_gov",
+              "type": "address"
+            }
+          ],
+          "stateMutability": "nonpayable",
+          "type": "function",
+          "name": "setGov"
+        }
+      ],
+      "devdoc": {
+        "kind": "dev",
+        "methods": {},
+        "version": 1
+      },
+      "userdoc": {
+        "kind": "user",
+        "methods": {},
+        "version": 1
+      }
+    },
+    "settings": {
+      "remappings": [
+        "@chainlink/contracts/=lib/chainlink/contracts/src/v0.6/",
+        "chainlink/=lib/chainlink/",
+        "ds-test/=lib/forge-std/lib/ds-test/src/",
+        "erc4626-tests/=lib/chainlink/contracts/foundry-lib/openzeppelin-contracts/lib/erc4626-tests/",
+        "forge-std/=lib/forge-std/src/"
+      ],
+      "optimizer": {
+        "enabled": true,
+        "runs": 200
+      },
+      "metadata": {
+        "bytecodeHash": "ipfs"
+      },
+      "compilationTarget": {
+        "src/access/Governable.sol": "Governable"
+      },
+      "libraries": {}
+    },
+    "sources": {
+      "src/access/Governable.sol": {
+        "keccak256": "0xd8de41a8d8f0c08fb8c13adf4928dde9fc744a38ed23c316ac425212ca5b50a1",
+        "urls": [
+          "bzz-raw://b9fe073e34b15f9878ff4a82ea93b24007448f5e8e03c6d3941d9058f5523815",
+          "dweb:/ipfs/QmRz43VRZTSURZV5VvWBbN8Vb2UFiYYKrDQAmMuRxcfJod"
+        ],
+        "license": "MIT"
+      }
+    },
+    "version": 1
+  },
+  "ast": {
+    "absolutePath": "src/access/Governable.sol",
+    "id": 29987,
+    "exportedSymbols": {
+      "Governable": [
+        29986
+      ]
+    },
+    "nodeType": "SourceUnit",
+    "src": "33:383:23",
+    "nodes": [
+      {
+        "id": 29940,
+        "nodeType": "PragmaDirective",
+        "src": "33:23:23",
+        "nodes": [],
+        "literals": [
+          "solidity",
+          "0.8",
+          ".18"
+        ]
+      },
+      {
+        "id": 29986,
+        "nodeType": "ContractDefinition",
+        "src": "58:357:23",
+        "nodes": [
+          {
+            "id": 29942,
+            "nodeType": "VariableDeclaration",
+            "src": "84:18:23",
+            "nodes": [],
+            "constant": false,
+            "functionSelector": "12d43a51",
+            "mutability": "mutable",
+            "name": "gov",
+            "nameLocation": "99:3:23",
+            "scope": 29986,
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_address",
+              "typeString": "address"
+            },
+            "typeName": {
+              "id": 29941,
+              "name": "address",
+              "nodeType": "ElementaryTypeName",
+              "src": "84:7:23",
+              "stateMutability": "nonpayable",
+              "typeDescriptions": {
+                "typeIdentifier": "t_address",
+                "typeString": "address"
+              }
+            },
+            "visibility": "public"
+          },
+          {
+            "id": 29951,
+            "nodeType": "FunctionDefinition",
+            "src": "109:47:23",
+            "nodes": [],
+            "body": {
+              "id": 29950,
+              "nodeType": "Block",
+              "src": "123:33:23",
+              "nodes": [],
+              "statements": [
+                {
+                  "expression": {
+                    "id": 29948,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "id": 29945,
+                      "name": "gov",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 29942,
+                      "src": "133:3:23",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "expression": {
+                        "id": 29946,
+                        "name": "msg",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": -15,
+                        "src": "139:3:23",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_magic_message",
+                          "typeString": "msg"
+                        }
+                      },
+                      "id": 29947,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberLocation": "143:6:23",
+                      "memberName": "sender",
+                      "nodeType": "MemberAccess",
+                      "src": "139:10:23",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "src": "133:16:23",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "id": 29949,
+                  "nodeType": "ExpressionStatement",
+                  "src": "133:16:23"
+                }
+              ]
+            },
+            "implemented": true,
+            "kind": "constructor",
+            "modifiers": [],
+            "name": "",
+            "nameLocation": "-1:-1:-1",
+            "parameters": {
+              "id": 29943,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "120:2:23"
+            },
+            "returnParameters": {
+              "id": 29944,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "123:0:23"
+            },
+            "scope": 29986,
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "id": 29963,
+            "nodeType": "ModifierDefinition",
+            "src": "162:98:23",
+            "nodes": [],
+            "body": {
+              "id": 29962,
+              "nodeType": "Block",
+              "src": "181:79:23",
+              "nodes": [],
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "commonType": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        "id": 29957,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "expression": {
+                            "id": 29954,
+                            "name": "msg",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": -15,
+                            "src": "199:3:23",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_magic_message",
+                              "typeString": "msg"
+                            }
+                          },
+                          "id": 29955,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberLocation": "203:6:23",
+                          "memberName": "sender",
+                          "nodeType": "MemberAccess",
+                          "src": "199:10:23",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": "==",
+                        "rightExpression": {
+                          "id": 29956,
+                          "name": "gov",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 29942,
+                          "src": "213:3:23",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        "src": "199:17:23",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "hexValue": "476f7665726e61626c653a20666f7262696464656e",
+                        "id": 29958,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "218:23:23",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_7c373f67adcbe4f625c77b41add5bb962fe163bb1074a4b62c183ae15e01149c",
+                          "typeString": "literal_string \"Governable: forbidden\""
+                        },
+                        "value": "Governable: forbidden"
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_7c373f67adcbe4f625c77b41add5bb962fe163bb1074a4b62c183ae15e01149c",
+                          "typeString": "literal_string \"Governable: forbidden\""
+                        }
+                      ],
+                      "id": 29953,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        -18,
+                        -18
+                      ],
+                      "referencedDeclaration": -18,
+                      "src": "191:7:23",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 29959,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "191:51:23",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 29960,
+                  "nodeType": "ExpressionStatement",
+                  "src": "191:51:23"
+                },
+                {
+                  "id": 29961,
+                  "nodeType": "PlaceholderStatement",
+                  "src": "252:1:23"
+                }
+              ]
+            },
+            "name": "onlyGov",
+            "nameLocation": "171:7:23",
+            "parameters": {
+              "id": 29952,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "178:2:23"
+            },
+            "virtual": false,
+            "visibility": "internal"
+          },
+          {
+            "id": 29985,
+            "nodeType": "FunctionDefinition",
+            "src": "266:147:23",
+            "nodes": [],
+            "body": {
+              "id": 29984,
+              "nodeType": "Block",
+              "src": "313:100:23",
+              "nodes": [],
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "commonType": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        "id": 29976,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "id": 29971,
+                          "name": "_gov",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 29965,
+                          "src": "331:4:23",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": "!=",
+                        "rightExpression": {
+                          "arguments": [
+                            {
+                              "hexValue": "30",
+                              "id": 29974,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "kind": "number",
+                              "lValueRequested": false,
+                              "nodeType": "Literal",
+                              "src": "347:1:23",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_rational_0_by_1",
+                                "typeString": "int_const 0"
+                              },
+                              "value": "0"
+                            }
+                          ],
+                          "expression": {
+                            "argumentTypes": [
+                              {
+                                "typeIdentifier": "t_rational_0_by_1",
+                                "typeString": "int_const 0"
+                              }
+                            ],
+                            "id": 29973,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": true,
+                            "lValueRequested": false,
+                            "nodeType": "ElementaryTypeNameExpression",
+                            "src": "339:7:23",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_type$_t_address_$",
+                              "typeString": "type(address)"
+                            },
+                            "typeName": {
+                              "id": 29972,
+                              "name": "address",
+                              "nodeType": "ElementaryTypeName",
+                              "src": "339:7:23",
+                              "typeDescriptions": {}
+                            }
+                          },
+                          "id": 29975,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "kind": "typeConversion",
+                          "lValueRequested": false,
+                          "nameLocations": [],
+                          "names": [],
+                          "nodeType": "FunctionCall",
+                          "src": "339:10:23",
+                          "tryCall": false,
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        "src": "331:18:23",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "hexValue": "476f7665726e61626c653a205f676f76206973207a65726f2061646472657373",
+                        "id": 29977,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "351:34:23",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_35281afbc1c2e34d5222dc651e0da3f3edf21992d66dff4672940a5330aac1ed",
+                          "typeString": "literal_string \"Governable: _gov is zero address\""
+                        },
+                        "value": "Governable: _gov is zero address"
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_35281afbc1c2e34d5222dc651e0da3f3edf21992d66dff4672940a5330aac1ed",
+                          "typeString": "literal_string \"Governable: _gov is zero address\""
+                        }
+                      ],
+                      "id": 29970,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        -18,
+                        -18
+                      ],
+                      "referencedDeclaration": -18,
+                      "src": "323:7:23",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 29978,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "323:63:23",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 29979,
+                  "nodeType": "ExpressionStatement",
+                  "src": "323:63:23"
+                },
+                {
+                  "expression": {
+                    "id": 29982,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "id": 29980,
+                      "name": "gov",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 29942,
+                      "src": "396:3:23",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "id": 29981,
+                      "name": "_gov",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 29965,
+                      "src": "402:4:23",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "src": "396:10:23",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "id": 29983,
+                  "nodeType": "ExpressionStatement",
+                  "src": "396:10:23"
+                }
+              ]
+            },
+            "functionSelector": "cfad57a2",
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [
+              {
+                "id": 29968,
+                "kind": "modifierInvocation",
+                "modifierName": {
+                  "id": 29967,
+                  "name": "onlyGov",
+                  "nameLocations": [
+                    "305:7:23"
+                  ],
+                  "nodeType": "IdentifierPath",
+                  "referencedDeclaration": 29963,
+                  "src": "305:7:23"
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "305:7:23"
+              }
+            ],
+            "name": "setGov",
+            "nameLocation": "275:6:23",
+            "parameters": {
+              "id": 29966,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 29965,
+                  "mutability": "mutable",
+                  "name": "_gov",
+                  "nameLocation": "290:4:23",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 29985,
+                  "src": "282:12:23",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 29964,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "282:7:23",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "281:14:23"
+            },
+            "returnParameters": {
+              "id": 29969,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "313:0:23"
+            },
+            "scope": 29986,
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "Governable",
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "fullyImplemented": true,
+        "linearizedBaseContracts": [
+          29986
+        ],
+        "name": "Governable",
+        "nameLocation": "67:10:23",
+        "scope": 29987,
+        "usedErrors": []
+      }
+    ],
+    "license": "MIT"
+  },
+  "id": 23
+}

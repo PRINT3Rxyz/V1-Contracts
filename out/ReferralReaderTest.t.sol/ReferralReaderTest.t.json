@@ -1,0 +1,20 @@
+{
+  "abi": [],
+  "bytecode": {
+    "object": "0x",
+    "linkReferences": {}
+  },
+  "deployedBytecode": {
+    "object": "0x",
+    "linkReferences": {}
+  },
+  "ast": {
+    "absolutePath": "test/unit/referrals/ReferralReaderTest.t.sol",
+    "id": 71481,
+    "exportedSymbols": {},
+    "nodeType": "SourceUnit",
+    "src": "0:0:113",
+    "nodes": []
+  },
+  "id": 113
+}

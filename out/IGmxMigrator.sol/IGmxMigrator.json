@@ -1,0 +1,240 @@
+{
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_token",
+          "type": "address"
+        }
+      ],
+      "name": "iouTokens",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "bytecode": {
+    "object": "0x",
+    "sourceMap": "",
+    "linkReferences": {}
+  },
+  "deployedBytecode": {
+    "object": "0x",
+    "sourceMap": "",
+    "linkReferences": {}
+  },
+  "methodIdentifiers": {
+    "iouTokens(address)": "41410d4a"
+  },
+  "rawMetadata": "{\"compiler\":{\"version\":\"0.6.12+commit.27d51765\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_token\",\"type\":\"address\"}],\"name\":\"iouTokens\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"src/gmx/interfaces/IGmxMigrator.sol\":\"IGmxMigrator\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[\":@chainlink/contracts/=lib/chainlink/contracts/src/v0.6/\",\":chainlink/=lib/chainlink/\",\":ds-test/=lib/forge-std/lib/ds-test/src/\",\":erc4626-tests/=lib/chainlink/contracts/foundry-lib/openzeppelin-contracts/lib/erc4626-tests/\",\":forge-std/=lib/forge-std/src/\"]},\"sources\":{\"src/gmx/interfaces/IGmxMigrator.sol\":{\"keccak256\":\"0xd460677a70002c37e5a6d606463864c71d83ddb91c53c7727d8d5c31bf1ec509\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://9b04d487ea3eb2ba7dab700377b2bf041ede36d16caadad203280c9c1335bbe2\",\"dweb:/ipfs/QmaqU1tbcPAmh8uihwBaau7KJf26SLZyUYK7Suvzcri3iU\"]}},\"version\":1}",
+  "metadata": {
+    "compiler": {
+      "version": "0.6.12+commit.27d51765"
+    },
+    "language": "Solidity",
+    "output": {
+      "abi": [
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "_token",
+              "type": "address"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "iouTokens",
+          "outputs": [
+            {
+              "internalType": "address",
+              "name": "",
+              "type": "address"
+            }
+          ]
+        }
+      ],
+      "devdoc": {
+        "kind": "dev",
+        "methods": {},
+        "version": 1
+      },
+      "userdoc": {
+        "kind": "user",
+        "methods": {},
+        "version": 1
+      }
+    },
+    "settings": {
+      "remappings": [
+        "@chainlink/contracts/=lib/chainlink/contracts/src/v0.6/",
+        "chainlink/=lib/chainlink/",
+        "ds-test/=lib/forge-std/lib/ds-test/src/",
+        "erc4626-tests/=lib/chainlink/contracts/foundry-lib/openzeppelin-contracts/lib/erc4626-tests/",
+        "forge-std/=lib/forge-std/src/"
+      ],
+      "optimizer": {
+        "enabled": true,
+        "runs": 200
+      },
+      "metadata": {
+        "bytecodeHash": "ipfs"
+      },
+      "compilationTarget": {
+        "src/gmx/interfaces/IGmxMigrator.sol": "IGmxMigrator"
+      },
+      "libraries": {}
+    },
+    "sources": {
+      "src/gmx/interfaces/IGmxMigrator.sol": {
+        "keccak256": "0xd460677a70002c37e5a6d606463864c71d83ddb91c53c7727d8d5c31bf1ec509",
+        "urls": [
+          "bzz-raw://9b04d487ea3eb2ba7dab700377b2bf041ede36d16caadad203280c9c1335bbe2",
+          "dweb:/ipfs/QmaqU1tbcPAmh8uihwBaau7KJf26SLZyUYK7Suvzcri3iU"
+        ],
+        "license": "MIT"
+      }
+    },
+    "version": 1
+  },
+  "ast": {
+    "absolutePath": "src/gmx/interfaces/IGmxMigrator.sol",
+    "id": 52829,
+    "exportedSymbols": {
+      "IGmxMigrator": [
+        52828
+      ]
+    },
+    "nodeType": "SourceUnit",
+    "src": "33:124:64",
+    "nodes": [
+      {
+        "id": 52820,
+        "nodeType": "PragmaDirective",
+        "src": "33:23:64",
+        "nodes": [],
+        "literals": [
+          "solidity",
+          "0.6",
+          ".12"
+        ]
+      },
+      {
+        "id": 52828,
+        "nodeType": "ContractDefinition",
+        "src": "58:98:64",
+        "nodes": [
+          {
+            "id": 52827,
+            "nodeType": "FunctionDefinition",
+            "src": "87:67:64",
+            "nodes": [],
+            "documentation": null,
+            "functionSelector": "41410d4a",
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "iouTokens",
+            "overrides": null,
+            "parameters": {
+              "id": 52823,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 52822,
+                  "mutability": "mutable",
+                  "name": "_token",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 52827,
+                  "src": "106:14:64",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 52821,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "106:7:64",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "105:16:64"
+            },
+            "returnParameters": {
+              "id": 52826,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 52825,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 52827,
+                  "src": "145:7:64",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 52824,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "145:7:64",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "144:9:64"
+            },
+            "scope": 52828,
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": null,
+        "fullyImplemented": false,
+        "linearizedBaseContracts": [
+          52828
+        ],
+        "name": "IGmxMigrator",
+        "scope": 52829
+      }
+    ],
+    "license": "MIT"
+  },
+  "id": 64
+}

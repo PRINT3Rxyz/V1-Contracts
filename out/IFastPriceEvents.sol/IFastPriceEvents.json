@@ -1,0 +1,234 @@
+{
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_token",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_price",
+          "type": "uint256"
+        }
+      ],
+      "name": "emitPriceEvent",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "bytecode": {
+    "object": "0x",
+    "sourceMap": "",
+    "linkReferences": {}
+  },
+  "deployedBytecode": {
+    "object": "0x",
+    "sourceMap": "",
+    "linkReferences": {}
+  },
+  "methodIdentifiers": {
+    "emitPriceEvent(address,uint256)": "e0409c71"
+  },
+  "rawMetadata": "{\"compiler\":{\"version\":\"0.8.18+commit.87f61d96\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_token\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"_price\",\"type\":\"uint256\"}],\"name\":\"emitPriceEvent\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"src/oracle/interfaces/IFastPriceEvents.sol\":\"IFastPriceEvents\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[\":@chainlink/contracts/=lib/chainlink/contracts/src/v0.6/\",\":chainlink/=lib/chainlink/\",\":ds-test/=lib/forge-std/lib/ds-test/src/\",\":erc4626-tests/=lib/chainlink/contracts/foundry-lib/openzeppelin-contracts/lib/erc4626-tests/\",\":forge-std/=lib/forge-std/src/\"]},\"sources\":{\"src/oracle/interfaces/IFastPriceEvents.sol\":{\"keccak256\":\"0xd486db86b6065741ad6b5904b323b82000c41f5526b3871222e485344acf629e\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://8a64909ea1647b7de558bdce531c879e9a82c05f2408eb1df296a47b1c497da3\",\"dweb:/ipfs/QmdnvJdrYozRQLXzJoqJJcrQszfkL8NVMWpvc8prind73s\"]}},\"version\":1}",
+  "metadata": {
+    "compiler": {
+      "version": "0.8.18+commit.87f61d96"
+    },
+    "language": "Solidity",
+    "output": {
+      "abi": [
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "_token",
+              "type": "address"
+            },
+            {
+              "internalType": "uint256",
+              "name": "_price",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "nonpayable",
+          "type": "function",
+          "name": "emitPriceEvent"
+        }
+      ],
+      "devdoc": {
+        "kind": "dev",
+        "methods": {},
+        "version": 1
+      },
+      "userdoc": {
+        "kind": "user",
+        "methods": {},
+        "version": 1
+      }
+    },
+    "settings": {
+      "remappings": [
+        "@chainlink/contracts/=lib/chainlink/contracts/src/v0.6/",
+        "chainlink/=lib/chainlink/",
+        "ds-test/=lib/forge-std/lib/ds-test/src/",
+        "erc4626-tests/=lib/chainlink/contracts/foundry-lib/openzeppelin-contracts/lib/erc4626-tests/",
+        "forge-std/=lib/forge-std/src/"
+      ],
+      "optimizer": {
+        "enabled": true,
+        "runs": 200
+      },
+      "metadata": {
+        "bytecodeHash": "ipfs"
+      },
+      "compilationTarget": {
+        "src/oracle/interfaces/IFastPriceEvents.sol": "IFastPriceEvents"
+      },
+      "libraries": {}
+    },
+    "sources": {
+      "src/oracle/interfaces/IFastPriceEvents.sol": {
+        "keccak256": "0xd486db86b6065741ad6b5904b323b82000c41f5526b3871222e485344acf629e",
+        "urls": [
+          "bzz-raw://8a64909ea1647b7de558bdce531c879e9a82c05f2408eb1df296a47b1c497da3",
+          "dweb:/ipfs/QmdnvJdrYozRQLXzJoqJJcrQszfkL8NVMWpvc8prind73s"
+        ],
+        "license": "MIT"
+      }
+    },
+    "version": 1
+  },
+  "ast": {
+    "absolutePath": "src/oracle/interfaces/IFastPriceEvents.sol",
+    "id": 58089,
+    "exportedSymbols": {
+      "IFastPriceEvents": [
+        58088
+      ]
+    },
+    "nodeType": "SourceUnit",
+    "src": "33:126:84",
+    "nodes": [
+      {
+        "id": 58080,
+        "nodeType": "PragmaDirective",
+        "src": "33:23:84",
+        "nodes": [],
+        "literals": [
+          "solidity",
+          "0.8",
+          ".18"
+        ]
+      },
+      {
+        "id": 58088,
+        "nodeType": "ContractDefinition",
+        "src": "58:100:84",
+        "nodes": [
+          {
+            "id": 58087,
+            "nodeType": "FunctionDefinition",
+            "src": "91:65:84",
+            "nodes": [],
+            "functionSelector": "e0409c71",
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "emitPriceEvent",
+            "nameLocation": "100:14:84",
+            "parameters": {
+              "id": 58085,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 58082,
+                  "mutability": "mutable",
+                  "name": "_token",
+                  "nameLocation": "123:6:84",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 58087,
+                  "src": "115:14:84",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 58081,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "115:7:84",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 58084,
+                  "mutability": "mutable",
+                  "name": "_price",
+                  "nameLocation": "139:6:84",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 58087,
+                  "src": "131:14:84",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 58083,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "131:7:84",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "114:32:84"
+            },
+            "returnParameters": {
+              "id": 58086,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "155:0:84"
+            },
+            "scope": 58088,
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "IFastPriceEvents",
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "fullyImplemented": false,
+        "linearizedBaseContracts": [
+          58088
+        ],
+        "name": "IFastPriceEvents",
+        "nameLocation": "68:16:84",
+        "scope": 58089,
+        "usedErrors": []
+      }
+    ],
+    "license": "MIT"
+  },
+  "id": 84
+}

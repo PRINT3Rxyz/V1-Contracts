@@ -1,0 +1,20 @@
+{
+  "abi": [],
+  "bytecode": {
+    "object": "0x",
+    "linkReferences": {}
+  },
+  "deployedBytecode": {
+    "object": "0x",
+    "linkReferences": {}
+  },
+  "ast": {
+    "absolutePath": "test/unit/tokens/TokenManagerTest.t.sol",
+    "id": 75868,
+    "exportedSymbols": {},
+    "nodeType": "SourceUnit",
+    "src": "0:0:117",
+    "nodes": []
+  },
+  "id": 117
+}

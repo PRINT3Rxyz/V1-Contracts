@@ -1,0 +1,608 @@
+{
+  "abi": [
+    {
+      "inputs": [],
+      "name": "gov",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_gov",
+          "type": "address"
+        }
+      ],
+      "name": "setGov",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_rewardTracker",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "_account",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "_token",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "stakeForAccount",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "bytecode": {
+    "object": "0x608060405234801561001057600080fd5b50600080546001600160a01b031916331790556102f4806100326000396000f3fe608060405234801561001057600080fd5b50600436106100415760003560e01c806312d43a5114610046578063790b5a6c14610075578063cfad57a21461008a575b600080fd5b600054610059906001600160a01b031681565b6040516001600160a01b03909116815260200160405180910390f35b610088610083366004610251565b61009d565b005b61008861009836600461029c565b61016b565b6000546001600160a01b031633146100f45760405162461bcd60e51b815260206004820152601560248201527423b7bb32b93730b136329d103337b93134b23232b760591b60448201526064015b60405180910390fd5b604051631e42d69b60e21b81526001600160a01b0384811660048301819052602483015283811660448301526064820183905285169063790b5a6c90608401600060405180830381600087803b15801561014d57600080fd5b505af1158015610161573d6000803e3d6000fd5b5050505050505050565b6000546001600160a01b031633146101bd5760405162461bcd60e51b815260206004820152601560248201527423b7bb32b93730b136329d103337b93134b23232b760591b60448201526064016100eb565b6001600160a01b0381166102135760405162461bcd60e51b815260206004820181905260248201527f476f7665726e61626c653a205f676f76206973207a65726f206164647265737360448201526064016100eb565b600080546001600160a01b0319166001600160a01b0392909216919091179055565b80356001600160a01b038116811461024c57600080fd5b919050565b6000806000806080858703121561026757600080fd5b61027085610235565b935061027e60208601610235565b925061028c60408601610235565b9396929550929360600135925050565b6000602082840312156102ae57600080fd5b6102b782610235565b939250505056fea264697066735822122066fc2ae78d71e6155421e8fa2a36d812cf582857976235c3b49ef2f9557c35ec64736f6c63430008120033",
+    "sourceMap": "136:281:109:-:0;;;;;;;;;;;;-1:-1:-1;133:3:23;:16;;-1:-1:-1;;;;;;133:16:23;139:10;133:16;;;136:281:109;;;;;;",
+    "linkReferences": {}
+  },
+  "deployedBytecode": {
+    "object": "0x608060405234801561001057600080fd5b50600436106100415760003560e01c806312d43a5114610046578063790b5a6c14610075578063cfad57a21461008a575b600080fd5b600054610059906001600160a01b031681565b6040516001600160a01b03909116815260200160405180910390f35b610088610083366004610251565b61009d565b005b61008861009836600461029c565b61016b565b6000546001600160a01b031633146100f45760405162461bcd60e51b815260206004820152601560248201527423b7bb32b93730b136329d103337b93134b23232b760591b60448201526064015b60405180910390fd5b604051631e42d69b60e21b81526001600160a01b0384811660048301819052602483015283811660448301526064820183905285169063790b5a6c90608401600060405180830381600087803b15801561014d57600080fd5b505af1158015610161573d6000803e3d6000fd5b5050505050505050565b6000546001600160a01b031633146101bd5760405162461bcd60e51b815260206004820152601560248201527423b7bb32b93730b136329d103337b93134b23232b760591b60448201526064016100eb565b6001600160a01b0381166102135760405162461bcd60e51b815260206004820181905260248201527f476f7665726e61626c653a205f676f76206973207a65726f206164647265737360448201526064016100eb565b600080546001600160a01b0319166001600160a01b0392909216919091179055565b80356001600160a01b038116811461024c57600080fd5b919050565b6000806000806080858703121561026757600080fd5b61027085610235565b935061027e60208601610235565b925061028c60408601610235565b9396929550929360600135925050565b6000602082840312156102ae57600080fd5b6102b782610235565b939250505056fea264697066735822122066fc2ae78d71e6155421e8fa2a36d812cf582857976235c3b49ef2f9557c35ec64736f6c63430008120033",
+    "sourceMap": "136:281:109:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;84:18:23;;;;;-1:-1:-1;;;;;84:18:23;;;;;;-1:-1:-1;;;;;178:32:145;;;160:51;;148:2;133:18;84::23;;;;;;;178:237:109;;;;;;:::i;:::-;;:::i;:::-;;266:147:23;;;;;;:::i;:::-;;:::i;178:237:109:-;213:3:23;;-1:-1:-1;;;;;213:3:23;199:10;:17;191:51;;;;-1:-1:-1;;;191:51:23;;1201:2:145;191:51:23;;;1183:21:145;1240:2;1220:18;;;1213:30;-1:-1:-1;;;1259:18:145;;;1252:51;1320:18;;191:51:23;;;;;;;;;325:83:109::1;::::0;-1:-1:-1;;;325:83:109;;-1:-1:-1;;;;;1636:15:145;;;325:83:109::1;::::0;::::1;1618:34:145::0;;;1668:18;;;1661:43;1740:15;;;1720:18;;;1713:43;1772:18;;;1765:34;;;325:46:109;::::1;::::0;::::1;::::0;1552:19:145;;325:83:109::1;;;;;;;;;;;;;;;;;::::0;::::1;;;;;;;;;;;;::::0;::::1;;;;;;;;;178:237:::0;;;;:::o;266:147:23:-;213:3;;-1:-1:-1;;;;;213:3:23;199:10;:17;191:51;;;;-1:-1:-1;;;191:51:23;;1201:2:145;191:51:23;;;1183:21:145;1240:2;1220:18;;;1213:30;-1:-1:-1;;;1259:18:145;;;1252:51;1320:18;;191:51:23;999:345:145;191:51:23;-1:-1:-1;;;;;331:18:23;::::1;323:63;;;::::0;-1:-1:-1;;;323:63:23;;2012:2:145;323:63:23::1;::::0;::::1;1994:21:145::0;;;2031:18;;;2024:30;2090:34;2070:18;;;2063:62;2142:18;;323:63:23::1;1810:356:145::0;323:63:23::1;396:3;:10:::0;;-1:-1:-1;;;;;;396:10:23::1;-1:-1:-1::0;;;;;396:10:23;;;::::1;::::0;;;::::1;::::0;;266:147::o;222:173:145:-;290:20;;-1:-1:-1;;;;;339:31:145;;329:42;;319:70;;385:1;382;375:12;319:70;222:173;;;:::o;400:403::-;486:6;494;502;510;563:3;551:9;542:7;538:23;534:33;531:53;;;580:1;577;570:12;531:53;603:29;622:9;603:29;:::i;:::-;593:39;;651:38;685:2;674:9;670:18;651:38;:::i;:::-;641:48;;708:38;742:2;731:9;727:18;708:38;:::i;:::-;400:403;;;;-1:-1:-1;698:48:145;;793:2;778:18;765:32;;-1:-1:-1;;400:403:145:o;808:186::-;867:6;920:2;908:9;899:7;895:23;891:32;888:52;;;936:1;933;926:12;888:52;959:29;978:9;959:29;:::i;:::-;949:39;808:186;-1:-1:-1;;;808:186:145:o",
+    "linkReferences": {}
+  },
+  "methodIdentifiers": {
+    "gov()": "12d43a51",
+    "setGov(address)": "cfad57a2",
+    "stakeForAccount(address,address,address,uint256)": "790b5a6c"
+  },
+  "rawMetadata": "{\"compiler\":{\"version\":\"0.8.18+commit.87f61d96\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"gov\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_gov\",\"type\":\"address\"}],\"name\":\"setGov\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_rewardTracker\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_account\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_token\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"_amount\",\"type\":\"uint256\"}],\"name\":\"stakeForAccount\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"src/staking/StakeManager.sol\":\"StakeManager\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[\":@chainlink/contracts/=lib/chainlink/contracts/src/v0.6/\",\":chainlink/=lib/chainlink/\",\":ds-test/=lib/forge-std/lib/ds-test/src/\",\":erc4626-tests/=lib/chainlink/contracts/foundry-lib/openzeppelin-contracts/lib/erc4626-tests/\",\":forge-std/=lib/forge-std/src/\"]},\"sources\":{\"src/access/Governable.sol\":{\"keccak256\":\"0xd8de41a8d8f0c08fb8c13adf4928dde9fc744a38ed23c316ac425212ca5b50a1\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://b9fe073e34b15f9878ff4a82ea93b24007448f5e8e03c6d3941d9058f5523815\",\"dweb:/ipfs/QmRz43VRZTSURZV5VvWBbN8Vb2UFiYYKrDQAmMuRxcfJod\"]},\"src/staking/StakeManager.sol\":{\"keccak256\":\"0x1ff751331d82d4bd35efba1266da9768323eaff1d923e8144de019db927952e0\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://ff7455ab440570984e3557f65e1f689c0922fbc8ec110445a98f1a0f58b8d0bd\",\"dweb:/ipfs/QmUxa4B9BpYJxzQcAV1LCdZfzYbJLdp7fqN5w9iFbFYgsj\"]},\"src/staking/interfaces/IRewardTracker.sol\":{\"keccak256\":\"0xadf48563826c173a6f65ed5c62209a66f4948666e00d6574019d9af00a7537aa\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://954334c0b55ae4d5f0efd9faaeb6e24e088ab4f4f3677d22ff4806aa2cb7da48\",\"dweb:/ipfs/QmdGKpgU4u6NcHpHAuoUtQ11uyB9T1qPpYsBC8jwipu582\"]}},\"version\":1}",
+  "metadata": {
+    "compiler": {
+      "version": "0.8.18+commit.87f61d96"
+    },
+    "language": "Solidity",
+    "output": {
+      "abi": [
+        {
+          "inputs": [],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "gov",
+          "outputs": [
+            {
+              "internalType": "address",
+              "name": "",
+              "type": "address"
+            }
+          ]
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "_gov",
+              "type": "address"
+            }
+          ],
+          "stateMutability": "nonpayable",
+          "type": "function",
+          "name": "setGov"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "_rewardTracker",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "_account",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "_token",
+              "type": "address"
+            },
+            {
+              "internalType": "uint256",
+              "name": "_amount",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "nonpayable",
+          "type": "function",
+          "name": "stakeForAccount"
+        }
+      ],
+      "devdoc": {
+        "kind": "dev",
+        "methods": {},
+        "version": 1
+      },
+      "userdoc": {
+        "kind": "user",
+        "methods": {},
+        "version": 1
+      }
+    },
+    "settings": {
+      "remappings": [
+        "@chainlink/contracts/=lib/chainlink/contracts/src/v0.6/",
+        "chainlink/=lib/chainlink/",
+        "ds-test/=lib/forge-std/lib/ds-test/src/",
+        "erc4626-tests/=lib/chainlink/contracts/foundry-lib/openzeppelin-contracts/lib/erc4626-tests/",
+        "forge-std/=lib/forge-std/src/"
+      ],
+      "optimizer": {
+        "enabled": true,
+        "runs": 200
+      },
+      "metadata": {
+        "bytecodeHash": "ipfs"
+      },
+      "compilationTarget": {
+        "src/staking/StakeManager.sol": "StakeManager"
+      },
+      "libraries": {}
+    },
+    "sources": {
+      "src/access/Governable.sol": {
+        "keccak256": "0xd8de41a8d8f0c08fb8c13adf4928dde9fc744a38ed23c316ac425212ca5b50a1",
+        "urls": [
+          "bzz-raw://b9fe073e34b15f9878ff4a82ea93b24007448f5e8e03c6d3941d9058f5523815",
+          "dweb:/ipfs/QmRz43VRZTSURZV5VvWBbN8Vb2UFiYYKrDQAmMuRxcfJod"
+        ],
+        "license": "MIT"
+      },
+      "src/staking/StakeManager.sol": {
+        "keccak256": "0x1ff751331d82d4bd35efba1266da9768323eaff1d923e8144de019db927952e0",
+        "urls": [
+          "bzz-raw://ff7455ab440570984e3557f65e1f689c0922fbc8ec110445a98f1a0f58b8d0bd",
+          "dweb:/ipfs/QmUxa4B9BpYJxzQcAV1LCdZfzYbJLdp7fqN5w9iFbFYgsj"
+        ],
+        "license": "MIT"
+      },
+      "src/staking/interfaces/IRewardTracker.sol": {
+        "keccak256": "0xadf48563826c173a6f65ed5c62209a66f4948666e00d6574019d9af00a7537aa",
+        "urls": [
+          "bzz-raw://954334c0b55ae4d5f0efd9faaeb6e24e088ab4f4f3677d22ff4806aa2cb7da48",
+          "dweb:/ipfs/QmdGKpgU4u6NcHpHAuoUtQ11uyB9T1qPpYsBC8jwipu582"
+        ],
+        "license": "MIT"
+      }
+    },
+    "version": 1
+  },
+  "ast": {
+    "absolutePath": "src/staking/StakeManager.sol",
+    "id": 69442,
+    "exportedSymbols": {
+      "Governable": [
+        29986
+      ],
+      "IRewardTracker": [
+        70055
+      ],
+      "StakeManager": [
+        69441
+      ]
+    },
+    "nodeType": "SourceUnit",
+    "src": "33:385:109",
+    "nodes": [
+      {
+        "id": 69412,
+        "nodeType": "PragmaDirective",
+        "src": "33:23:109",
+        "nodes": [],
+        "literals": [
+          "solidity",
+          "0.8",
+          ".18"
+        ]
+      },
+      {
+        "id": 69413,
+        "nodeType": "ImportDirective",
+        "src": "58:41:109",
+        "nodes": [],
+        "absolutePath": "src/staking/interfaces/IRewardTracker.sol",
+        "file": "./interfaces/IRewardTracker.sol",
+        "nameLocation": "-1:-1:-1",
+        "scope": 69442,
+        "sourceUnit": 70056,
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "id": 69414,
+        "nodeType": "ImportDirective",
+        "src": "100:34:109",
+        "nodes": [],
+        "absolutePath": "src/access/Governable.sol",
+        "file": "../access/Governable.sol",
+        "nameLocation": "-1:-1:-1",
+        "scope": 69442,
+        "sourceUnit": 29987,
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "id": 69441,
+        "nodeType": "ContractDefinition",
+        "src": "136:281:109",
+        "nodes": [
+          {
+            "id": 69440,
+            "nodeType": "FunctionDefinition",
+            "src": "178:237:109",
+            "nodes": [],
+            "body": {
+              "id": 69439,
+              "nodeType": "Block",
+              "src": "315:100:109",
+              "nodes": [],
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "id": 69433,
+                        "name": "_account",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 69420,
+                        "src": "372:8:109",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "id": 69434,
+                        "name": "_account",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 69420,
+                        "src": "382:8:109",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "id": 69435,
+                        "name": "_token",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 69422,
+                        "src": "392:6:109",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "id": 69436,
+                        "name": "_amount",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 69424,
+                        "src": "400:7:109",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "expression": {
+                        "arguments": [
+                          {
+                            "id": 69430,
+                            "name": "_rewardTracker",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 69418,
+                            "src": "340:14:109",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          }
+                        ],
+                        "expression": {
+                          "argumentTypes": [
+                            {
+                              "typeIdentifier": "t_address",
+                              "typeString": "address"
+                            }
+                          ],
+                          "id": 69429,
+                          "name": "IRewardTracker",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 70055,
+                          "src": "325:14:109",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_type$_t_contract$_IRewardTracker_$70055_$",
+                            "typeString": "type(contract IRewardTracker)"
+                          }
+                        },
+                        "id": 69431,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "typeConversion",
+                        "lValueRequested": false,
+                        "nameLocations": [],
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "325:30:109",
+                        "tryCall": false,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_contract$_IRewardTracker_$70055",
+                          "typeString": "contract IRewardTracker"
+                        }
+                      },
+                      "id": 69432,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberLocation": "356:15:109",
+                      "memberName": "stakeForAccount",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 69994,
+                      "src": "325:46:109",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_external_nonpayable$_t_address_$_t_address_$_t_address_$_t_uint256_$returns$__$",
+                        "typeString": "function (address,address,address,uint256) external"
+                      }
+                    },
+                    "id": 69437,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "nameLocations": [],
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "325:83:109",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 69438,
+                  "nodeType": "ExpressionStatement",
+                  "src": "325:83:109"
+                }
+              ]
+            },
+            "functionSelector": "790b5a6c",
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [
+              {
+                "id": 69427,
+                "kind": "modifierInvocation",
+                "modifierName": {
+                  "id": 69426,
+                  "name": "onlyGov",
+                  "nameLocations": [
+                    "303:7:109"
+                  ],
+                  "nodeType": "IdentifierPath",
+                  "referencedDeclaration": 29963,
+                  "src": "303:7:109"
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "303:7:109"
+              }
+            ],
+            "name": "stakeForAccount",
+            "nameLocation": "187:15:109",
+            "parameters": {
+              "id": 69425,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 69418,
+                  "mutability": "mutable",
+                  "name": "_rewardTracker",
+                  "nameLocation": "211:14:109",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 69440,
+                  "src": "203:22:109",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 69417,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "203:7:109",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 69420,
+                  "mutability": "mutable",
+                  "name": "_account",
+                  "nameLocation": "235:8:109",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 69440,
+                  "src": "227:16:109",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 69419,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "227:7:109",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 69422,
+                  "mutability": "mutable",
+                  "name": "_token",
+                  "nameLocation": "253:6:109",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 69440,
+                  "src": "245:14:109",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 69421,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "245:7:109",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 69424,
+                  "mutability": "mutable",
+                  "name": "_amount",
+                  "nameLocation": "269:7:109",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 69440,
+                  "src": "261:15:109",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 69423,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "261:7:109",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "202:75:109"
+            },
+            "returnParameters": {
+              "id": 69428,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "315:0:109"
+            },
+            "scope": 69441,
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "abstract": false,
+        "baseContracts": [
+          {
+            "baseName": {
+              "id": 69415,
+              "name": "Governable",
+              "nameLocations": [
+                "161:10:109"
+              ],
+              "nodeType": "IdentifierPath",
+              "referencedDeclaration": 29986,
+              "src": "161:10:109"
+            },
+            "id": 69416,
+            "nodeType": "InheritanceSpecifier",
+            "src": "161:10:109"
+          }
+        ],
+        "canonicalName": "StakeManager",
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "fullyImplemented": true,
+        "linearizedBaseContracts": [
+          69441,
+          29986
+        ],
+        "name": "StakeManager",
+        "nameLocation": "145:12:109",
+        "scope": 69442,
+        "usedErrors": []
+      }
+    ],
+    "license": "MIT"
+  },
+  "id": 109
+}

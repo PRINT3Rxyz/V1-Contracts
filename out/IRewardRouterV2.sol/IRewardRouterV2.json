@@ -1,0 +1,284 @@
+{
+  "abi": [
+    {
+      "inputs": [],
+      "name": "feeGlpTracker",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "stakedGlpTracker",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "bytecode": {
+    "object": "0x",
+    "sourceMap": "",
+    "linkReferences": {}
+  },
+  "deployedBytecode": {
+    "object": "0x",
+    "sourceMap": "",
+    "linkReferences": {}
+  },
+  "methodIdentifiers": {
+    "feeGlpTracker()": "e1c363b7",
+    "stakedGlpTracker()": "af394d00"
+  },
+  "rawMetadata": "{\"compiler\":{\"version\":\"0.6.12+commit.27d51765\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"feeGlpTracker\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"stakedGlpTracker\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"src/staking/interfaces/IRewardRouterV2.sol\":\"IRewardRouterV2\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[\":@chainlink/contracts/=lib/chainlink/contracts/src/v0.6/\",\":chainlink/=lib/chainlink/\",\":ds-test/=lib/forge-std/lib/ds-test/src/\",\":erc4626-tests/=lib/chainlink/contracts/foundry-lib/openzeppelin-contracts/lib/erc4626-tests/\",\":forge-std/=lib/forge-std/src/\"]},\"sources\":{\"src/staking/interfaces/IRewardRouterV2.sol\":{\"keccak256\":\"0xeb5ca9a609bb7f7bb6195dcd98a1282e218e02d9127e97319c7ebf543da26005\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://555786eee0906b8df57245a1ccab962e6c18dedf3162dac65235b3e7cd48688d\",\"dweb:/ipfs/QmVoj9YusYgvorqXEmnXQAQR4ExqnU3PogzYCQNsqACgrC\"]}},\"version\":1}",
+  "metadata": {
+    "compiler": {
+      "version": "0.6.12+commit.27d51765"
+    },
+    "language": "Solidity",
+    "output": {
+      "abi": [
+        {
+          "inputs": [],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "feeGlpTracker",
+          "outputs": [
+            {
+              "internalType": "address",
+              "name": "",
+              "type": "address"
+            }
+          ]
+        },
+        {
+          "inputs": [],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "stakedGlpTracker",
+          "outputs": [
+            {
+              "internalType": "address",
+              "name": "",
+              "type": "address"
+            }
+          ]
+        }
+      ],
+      "devdoc": {
+        "kind": "dev",
+        "methods": {},
+        "version": 1
+      },
+      "userdoc": {
+        "kind": "user",
+        "methods": {},
+        "version": 1
+      }
+    },
+    "settings": {
+      "remappings": [
+        "@chainlink/contracts/=lib/chainlink/contracts/src/v0.6/",
+        "chainlink/=lib/chainlink/",
+        "ds-test/=lib/forge-std/lib/ds-test/src/",
+        "erc4626-tests/=lib/chainlink/contracts/foundry-lib/openzeppelin-contracts/lib/erc4626-tests/",
+        "forge-std/=lib/forge-std/src/"
+      ],
+      "optimizer": {
+        "enabled": true,
+        "runs": 200
+      },
+      "metadata": {
+        "bytecodeHash": "ipfs"
+      },
+      "compilationTarget": {
+        "src/staking/interfaces/IRewardRouterV2.sol": "IRewardRouterV2"
+      },
+      "libraries": {}
+    },
+    "sources": {
+      "src/staking/interfaces/IRewardRouterV2.sol": {
+        "keccak256": "0xeb5ca9a609bb7f7bb6195dcd98a1282e218e02d9127e97319c7ebf543da26005",
+        "urls": [
+          "bzz-raw://555786eee0906b8df57245a1ccab962e6c18dedf3162dac65235b3e7cd48688d",
+          "dweb:/ipfs/QmVoj9YusYgvorqXEmnXQAQR4ExqnU3PogzYCQNsqACgrC"
+        ],
+        "license": "MIT"
+      }
+    },
+    "version": 1
+  },
+  "ast": {
+    "absolutePath": "src/staking/interfaces/IRewardRouterV2.sol",
+    "id": 76958,
+    "exportedSymbols": {
+      "IRewardRouterV2": [
+        76957
+      ]
+    },
+    "nodeType": "SourceUnit",
+    "src": "33:182:122",
+    "nodes": [
+      {
+        "id": 76946,
+        "nodeType": "PragmaDirective",
+        "src": "33:23:122",
+        "nodes": [],
+        "literals": [
+          "solidity",
+          "0.6",
+          ".12"
+        ]
+      },
+      {
+        "id": 76957,
+        "nodeType": "ContractDefinition",
+        "src": "58:156:122",
+        "nodes": [
+          {
+            "id": 76951,
+            "nodeType": "FunctionDefinition",
+            "src": "90:57:122",
+            "nodes": [],
+            "documentation": null,
+            "functionSelector": "e1c363b7",
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "feeGlpTracker",
+            "overrides": null,
+            "parameters": {
+              "id": 76947,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "112:2:122"
+            },
+            "returnParameters": {
+              "id": 76950,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 76949,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 76951,
+                  "src": "138:7:122",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 76948,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "138:7:122",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "137:9:122"
+            },
+            "scope": 76957,
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "id": 76956,
+            "nodeType": "FunctionDefinition",
+            "src": "152:60:122",
+            "nodes": [],
+            "documentation": null,
+            "functionSelector": "af394d00",
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "stakedGlpTracker",
+            "overrides": null,
+            "parameters": {
+              "id": 76952,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "177:2:122"
+            },
+            "returnParameters": {
+              "id": 76955,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 76954,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 76956,
+                  "src": "203:7:122",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 76953,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "203:7:122",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "202:9:122"
+            },
+            "scope": 76957,
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": null,
+        "fullyImplemented": false,
+        "linearizedBaseContracts": [
+          76957
+        ],
+        "name": "IRewardRouterV2",
+        "scope": 76958
+      }
+    ],
+    "license": "MIT"
+  },
+  "id": 122
+}

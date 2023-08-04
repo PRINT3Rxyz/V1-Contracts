@@ -1,0 +1,21 @@
+{
+  "abi": [],
+  "bytecode": {
+    "object": "0x",
+    "linkReferences": {}
+  },
+  "deployedBytecode": {
+    "object": "0x",
+    "linkReferences": {}
+  },
+  "ast": {
+    "absolutePath": "test/unit/GlpManagerTest.t.sol",
+    "id": 78590,
+    "exportedSymbols": {},
+    "nodeType": "SourceUnit",
+    "src": "15916:0:136",
+    "nodes": [],
+    "license": "MIT"
+  },
+  "id": 136
+}

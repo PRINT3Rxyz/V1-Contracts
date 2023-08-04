@@ -1,0 +1,198 @@
+{
+  "abi": [
+    {
+      "inputs": [],
+      "name": "beginMigration",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "endMigration",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "bytecode": {
+    "object": "0x",
+    "sourceMap": "",
+    "linkReferences": {}
+  },
+  "deployedBytecode": {
+    "object": "0x",
+    "sourceMap": "",
+    "linkReferences": {}
+  },
+  "methodIdentifiers": {
+    "beginMigration()": "fe0194f2",
+    "endMigration()": "6c525d04"
+  },
+  "rawMetadata": "{\"compiler\":{\"version\":\"0.6.12+commit.27d51765\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"beginMigration\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"endMigration\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"src/gambit-token/interfaces/IGMT.sol\":\"IGMT\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[\":@chainlink/contracts/=lib/chainlink/contracts/src/v0.6/\",\":chainlink/=lib/chainlink/\",\":ds-test/=lib/forge-std/lib/ds-test/src/\",\":erc4626-tests/=lib/chainlink/contracts/foundry-lib/openzeppelin-contracts/lib/erc4626-tests/\",\":forge-std/=lib/forge-std/src/\"]},\"sources\":{\"src/gambit-token/interfaces/IGMT.sol\":{\"keccak256\":\"0xb09bf94d957e04223d91438702cf779482670388db29a240cf85b62a32f92656\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://d16e3818e81a38bd54b44bbcbd82886d85186039917c5d58712368a944308f3f\",\"dweb:/ipfs/QmUfGS3M7s3d5mTBEmLSAu1L9qKp1A5x5LV9ArZVLTkHSZ\"]}},\"version\":1}",
+  "metadata": {
+    "compiler": {
+      "version": "0.6.12+commit.27d51765"
+    },
+    "language": "Solidity",
+    "output": {
+      "abi": [
+        {
+          "inputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function",
+          "name": "beginMigration"
+        },
+        {
+          "inputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function",
+          "name": "endMigration"
+        }
+      ],
+      "devdoc": {
+        "kind": "dev",
+        "methods": {},
+        "version": 1
+      },
+      "userdoc": {
+        "kind": "user",
+        "methods": {},
+        "version": 1
+      }
+    },
+    "settings": {
+      "remappings": [
+        "@chainlink/contracts/=lib/chainlink/contracts/src/v0.6/",
+        "chainlink/=lib/chainlink/",
+        "ds-test/=lib/forge-std/lib/ds-test/src/",
+        "erc4626-tests/=lib/chainlink/contracts/foundry-lib/openzeppelin-contracts/lib/erc4626-tests/",
+        "forge-std/=lib/forge-std/src/"
+      ],
+      "optimizer": {
+        "enabled": true,
+        "runs": 200
+      },
+      "metadata": {
+        "bytecodeHash": "ipfs"
+      },
+      "compilationTarget": {
+        "src/gambit-token/interfaces/IGMT.sol": "IGMT"
+      },
+      "libraries": {}
+    },
+    "sources": {
+      "src/gambit-token/interfaces/IGMT.sol": {
+        "keccak256": "0xb09bf94d957e04223d91438702cf779482670388db29a240cf85b62a32f92656",
+        "urls": [
+          "bzz-raw://d16e3818e81a38bd54b44bbcbd82886d85186039917c5d58712368a944308f3f",
+          "dweb:/ipfs/QmUfGS3M7s3d5mTBEmLSAu1L9qKp1A5x5LV9ArZVLTkHSZ"
+        ],
+        "license": "MIT"
+      }
+    },
+    "version": 1
+  },
+  "ast": {
+    "absolutePath": "src/gambit-token/interfaces/IGMT.sol",
+    "id": 50636,
+    "exportedSymbols": {
+      "IGMT": [
+        50635
+      ]
+    },
+    "nodeType": "SourceUnit",
+    "src": "33:122:54",
+    "nodes": [
+      {
+        "id": 50628,
+        "nodeType": "PragmaDirective",
+        "src": "33:23:54",
+        "nodes": [],
+        "literals": [
+          "solidity",
+          "0.6",
+          ".12"
+        ]
+      },
+      {
+        "id": 50635,
+        "nodeType": "ContractDefinition",
+        "src": "58:96:54",
+        "nodes": [
+          {
+            "id": 50631,
+            "nodeType": "FunctionDefinition",
+            "src": "79:35:54",
+            "nodes": [],
+            "documentation": null,
+            "functionSelector": "fe0194f2",
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "beginMigration",
+            "overrides": null,
+            "parameters": {
+              "id": 50629,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "102:2:54"
+            },
+            "returnParameters": {
+              "id": 50630,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "113:0:54"
+            },
+            "scope": 50635,
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "id": 50634,
+            "nodeType": "FunctionDefinition",
+            "src": "119:33:54",
+            "nodes": [],
+            "documentation": null,
+            "functionSelector": "6c525d04",
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "endMigration",
+            "overrides": null,
+            "parameters": {
+              "id": 50632,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "140:2:54"
+            },
+            "returnParameters": {
+              "id": 50633,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "151:0:54"
+            },
+            "scope": 50635,
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": null,
+        "fullyImplemented": false,
+        "linearizedBaseContracts": [
+          50635
+        ],
+        "name": "IGMT",
+        "scope": 50636
+      }
+    ],
+    "license": "MIT"
+  },
+  "id": 54
+}

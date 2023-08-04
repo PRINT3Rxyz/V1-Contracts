@@ -1,0 +1,270 @@
+{
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "positionKey",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "bool",
+          "name": "isExecuted",
+          "type": "bool"
+        },
+        {
+          "internalType": "bool",
+          "name": "isIncrease",
+          "type": "bool"
+        }
+      ],
+      "name": "gmxPositionCallback",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "bytecode": {
+    "object": "0x",
+    "sourceMap": "",
+    "linkReferences": {}
+  },
+  "deployedBytecode": {
+    "object": "0x",
+    "sourceMap": "",
+    "linkReferences": {}
+  },
+  "methodIdentifiers": {
+    "gmxPositionCallback(bytes32,bool,bool)": "edf3daec"
+  },
+  "rawMetadata": "{\"compiler\":{\"version\":\"0.8.18+commit.87f61d96\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"positionKey\",\"type\":\"bytes32\"},{\"internalType\":\"bool\",\"name\":\"isExecuted\",\"type\":\"bool\"},{\"internalType\":\"bool\",\"name\":\"isIncrease\",\"type\":\"bool\"}],\"name\":\"gmxPositionCallback\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"src/core/interfaces/IPositionRouterCallbackReceiver.sol\":\"IPositionRouterCallbackReceiver\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[\":@chainlink/contracts/=lib/chainlink/contracts/src/v0.6/\",\":chainlink/=lib/chainlink/\",\":ds-test/=lib/forge-std/lib/ds-test/src/\",\":erc4626-tests/=lib/chainlink/contracts/foundry-lib/openzeppelin-contracts/lib/erc4626-tests/\",\":forge-std/=lib/forge-std/src/\"]},\"sources\":{\"src/core/interfaces/IPositionRouterCallbackReceiver.sol\":{\"keccak256\":\"0x1310b664cc354da93f1016e9e5ed9ef97de19c13ffe7bd8e61387e962236513c\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://99eea54cd891dda74c76b387ad8afab36402f7c9b89b2e8d2adaeef1fdc02aae\",\"dweb:/ipfs/QmUumTpzQaRPCb3uxmoBdURXiUUh8Qc5biYbgoYqTb74ap\"]}},\"version\":1}",
+  "metadata": {
+    "compiler": {
+      "version": "0.8.18+commit.87f61d96"
+    },
+    "language": "Solidity",
+    "output": {
+      "abi": [
+        {
+          "inputs": [
+            {
+              "internalType": "bytes32",
+              "name": "positionKey",
+              "type": "bytes32"
+            },
+            {
+              "internalType": "bool",
+              "name": "isExecuted",
+              "type": "bool"
+            },
+            {
+              "internalType": "bool",
+              "name": "isIncrease",
+              "type": "bool"
+            }
+          ],
+          "stateMutability": "nonpayable",
+          "type": "function",
+          "name": "gmxPositionCallback"
+        }
+      ],
+      "devdoc": {
+        "kind": "dev",
+        "methods": {},
+        "version": 1
+      },
+      "userdoc": {
+        "kind": "user",
+        "methods": {},
+        "version": 1
+      }
+    },
+    "settings": {
+      "remappings": [
+        "@chainlink/contracts/=lib/chainlink/contracts/src/v0.6/",
+        "chainlink/=lib/chainlink/",
+        "ds-test/=lib/forge-std/lib/ds-test/src/",
+        "erc4626-tests/=lib/chainlink/contracts/foundry-lib/openzeppelin-contracts/lib/erc4626-tests/",
+        "forge-std/=lib/forge-std/src/"
+      ],
+      "optimizer": {
+        "enabled": true,
+        "runs": 200
+      },
+      "metadata": {
+        "bytecodeHash": "ipfs"
+      },
+      "compilationTarget": {
+        "src/core/interfaces/IPositionRouterCallbackReceiver.sol": "IPositionRouterCallbackReceiver"
+      },
+      "libraries": {}
+    },
+    "sources": {
+      "src/core/interfaces/IPositionRouterCallbackReceiver.sol": {
+        "keccak256": "0x1310b664cc354da93f1016e9e5ed9ef97de19c13ffe7bd8e61387e962236513c",
+        "urls": [
+          "bzz-raw://99eea54cd891dda74c76b387ad8afab36402f7c9b89b2e8d2adaeef1fdc02aae",
+          "dweb:/ipfs/QmUumTpzQaRPCb3uxmoBdURXiUUh8Qc5biYbgoYqTb74ap"
+        ],
+        "license": "MIT"
+      }
+    },
+    "version": 1
+  },
+  "ast": {
+    "absolutePath": "src/core/interfaces/IPositionRouterCallbackReceiver.sol",
+    "id": 49045,
+    "exportedSymbols": {
+      "IPositionRouterCallbackReceiver": [
+        49044
+      ]
+    },
+    "nodeType": "SourceUnit",
+    "src": "33:169:53",
+    "nodes": [
+      {
+        "id": 49034,
+        "nodeType": "PragmaDirective",
+        "src": "33:23:53",
+        "nodes": [],
+        "literals": [
+          "solidity",
+          "0.8",
+          ".18"
+        ]
+      },
+      {
+        "id": 49044,
+        "nodeType": "ContractDefinition",
+        "src": "58:143:53",
+        "nodes": [
+          {
+            "id": 49043,
+            "nodeType": "FunctionDefinition",
+            "src": "106:93:53",
+            "nodes": [],
+            "functionSelector": "edf3daec",
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "gmxPositionCallback",
+            "nameLocation": "115:19:53",
+            "parameters": {
+              "id": 49041,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 49036,
+                  "mutability": "mutable",
+                  "name": "positionKey",
+                  "nameLocation": "143:11:53",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 49043,
+                  "src": "135:19:53",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 49035,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "135:7:53",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 49038,
+                  "mutability": "mutable",
+                  "name": "isExecuted",
+                  "nameLocation": "161:10:53",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 49043,
+                  "src": "156:15:53",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 49037,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "156:4:53",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 49040,
+                  "mutability": "mutable",
+                  "name": "isIncrease",
+                  "nameLocation": "178:10:53",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 49043,
+                  "src": "173:15:53",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 49039,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "173:4:53",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "134:55:53"
+            },
+            "returnParameters": {
+              "id": 49042,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "198:0:53"
+            },
+            "scope": 49044,
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "IPositionRouterCallbackReceiver",
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "fullyImplemented": false,
+        "linearizedBaseContracts": [
+          49044
+        ],
+        "name": "IPositionRouterCallbackReceiver",
+        "nameLocation": "68:31:53",
+        "scope": 49045,
+        "usedErrors": []
+      }
+    ],
+    "license": "MIT"
+  },
+  "id": 53
+}

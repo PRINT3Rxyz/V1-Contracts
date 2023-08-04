@@ -1,0 +1,687 @@
+{
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_vault",
+          "type": "address"
+        }
+      ],
+      "name": "disableLeverage",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_vault",
+          "type": "address"
+        }
+      ],
+      "name": "enableLeverage",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "marginFeeBasisPoints",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_admin",
+          "type": "address"
+        }
+      ],
+      "name": "setAdmin",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_vault",
+          "type": "address"
+        },
+        {
+          "internalType": "bool",
+          "name": "_isLeverageEnabled",
+          "type": "bool"
+        }
+      ],
+      "name": "setIsLeverageEnabled",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_target",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "_gov",
+          "type": "address"
+        }
+      ],
+      "name": "signalSetGov",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "bytecode": {
+    "object": "0x",
+    "sourceMap": "",
+    "linkReferences": {}
+  },
+  "deployedBytecode": {
+    "object": "0x",
+    "sourceMap": "",
+    "linkReferences": {}
+  },
+  "methodIdentifiers": {
+    "disableLeverage(address)": "d3c87bbb",
+    "enableLeverage(address)": "6d63c1d0",
+    "marginFeeBasisPoints()": "318bc689",
+    "setAdmin(address)": "704b6c02",
+    "setIsLeverageEnabled(address,bool)": "cd2b1230",
+    "signalSetGov(address,address)": "996a7a1e"
+  },
+  "rawMetadata": "{\"compiler\":{\"version\":\"0.8.18+commit.87f61d96\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_vault\",\"type\":\"address\"}],\"name\":\"disableLeverage\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_vault\",\"type\":\"address\"}],\"name\":\"enableLeverage\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"marginFeeBasisPoints\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_admin\",\"type\":\"address\"}],\"name\":\"setAdmin\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_vault\",\"type\":\"address\"},{\"internalType\":\"bool\",\"name\":\"_isLeverageEnabled\",\"type\":\"bool\"}],\"name\":\"setIsLeverageEnabled\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_target\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_gov\",\"type\":\"address\"}],\"name\":\"signalSetGov\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"src/peripherals/interfaces/ITimelock.sol\":\"ITimelock\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[\":@chainlink/contracts/=lib/chainlink/contracts/src/v0.6/\",\":chainlink/=lib/chainlink/\",\":ds-test/=lib/forge-std/lib/ds-test/src/\",\":erc4626-tests/=lib/chainlink/contracts/foundry-lib/openzeppelin-contracts/lib/erc4626-tests/\",\":forge-std/=lib/forge-std/src/\"]},\"sources\":{\"src/peripherals/interfaces/ITimelock.sol\":{\"keccak256\":\"0x1cea9f51e2da3f4e639ffe0a128a1494ae3208a7ebb8e2c53e39f4a6c4e0c5d1\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://bbd5befffea851aa03f2e8e15c9d3eecd2e732d7cef56a3300a5d54422ee5972\",\"dweb:/ipfs/QmfPqHmDybL3CLJwy2nAwWcftu1gjFFu19387Cz9GoP46s\"]}},\"version\":1}",
+  "metadata": {
+    "compiler": {
+      "version": "0.8.18+commit.87f61d96"
+    },
+    "language": "Solidity",
+    "output": {
+      "abi": [
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "_vault",
+              "type": "address"
+            }
+          ],
+          "stateMutability": "nonpayable",
+          "type": "function",
+          "name": "disableLeverage"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "_vault",
+              "type": "address"
+            }
+          ],
+          "stateMutability": "nonpayable",
+          "type": "function",
+          "name": "enableLeverage"
+        },
+        {
+          "inputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function",
+          "name": "marginFeeBasisPoints",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ]
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "_admin",
+              "type": "address"
+            }
+          ],
+          "stateMutability": "nonpayable",
+          "type": "function",
+          "name": "setAdmin"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "_vault",
+              "type": "address"
+            },
+            {
+              "internalType": "bool",
+              "name": "_isLeverageEnabled",
+              "type": "bool"
+            }
+          ],
+          "stateMutability": "nonpayable",
+          "type": "function",
+          "name": "setIsLeverageEnabled"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "_target",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "_gov",
+              "type": "address"
+            }
+          ],
+          "stateMutability": "nonpayable",
+          "type": "function",
+          "name": "signalSetGov"
+        }
+      ],
+      "devdoc": {
+        "kind": "dev",
+        "methods": {},
+        "version": 1
+      },
+      "userdoc": {
+        "kind": "user",
+        "methods": {},
+        "version": 1
+      }
+    },
+    "settings": {
+      "remappings": [
+        "@chainlink/contracts/=lib/chainlink/contracts/src/v0.6/",
+        "chainlink/=lib/chainlink/",
+        "ds-test/=lib/forge-std/lib/ds-test/src/",
+        "erc4626-tests/=lib/chainlink/contracts/foundry-lib/openzeppelin-contracts/lib/erc4626-tests/",
+        "forge-std/=lib/forge-std/src/"
+      ],
+      "optimizer": {
+        "enabled": true,
+        "runs": 200
+      },
+      "metadata": {
+        "bytecodeHash": "ipfs"
+      },
+      "compilationTarget": {
+        "src/peripherals/interfaces/ITimelock.sol": "ITimelock"
+      },
+      "libraries": {}
+    },
+    "sources": {
+      "src/peripherals/interfaces/ITimelock.sol": {
+        "keccak256": "0x1cea9f51e2da3f4e639ffe0a128a1494ae3208a7ebb8e2c53e39f4a6c4e0c5d1",
+        "urls": [
+          "bzz-raw://bbd5befffea851aa03f2e8e15c9d3eecd2e732d7cef56a3300a5d54422ee5972",
+          "dweb:/ipfs/QmfPqHmDybL3CLJwy2nAwWcftu1gjFFu19387Cz9GoP46s"
+        ],
+        "license": "MIT"
+      }
+    },
+    "version": 1
+  },
+  "ast": {
+    "absolutePath": "src/peripherals/interfaces/ITimelock.sol",
+    "id": 66670,
+    "exportedSymbols": {
+      "ITimelock": [
+        66669
+      ]
+    },
+    "nodeType": "SourceUnit",
+    "src": "33:422:100",
+    "nodes": [
+      {
+        "id": 66634,
+        "nodeType": "PragmaDirective",
+        "src": "33:23:100",
+        "nodes": [],
+        "literals": [
+          "solidity",
+          "0.8",
+          ".18"
+        ]
+      },
+      {
+        "id": 66669,
+        "nodeType": "ContractDefinition",
+        "src": "58:396:100",
+        "nodes": [
+          {
+            "id": 66639,
+            "nodeType": "FunctionDefinition",
+            "src": "84:59:100",
+            "nodes": [],
+            "functionSelector": "318bc689",
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "marginFeeBasisPoints",
+            "nameLocation": "93:20:100",
+            "parameters": {
+              "id": 66635,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "113:2:100"
+            },
+            "returnParameters": {
+              "id": 66638,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 66637,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 66639,
+                  "src": "134:7:100",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 66636,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "134:7:100",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "133:9:100"
+            },
+            "scope": 66669,
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "id": 66644,
+            "nodeType": "FunctionDefinition",
+            "src": "148:43:100",
+            "nodes": [],
+            "functionSelector": "704b6c02",
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "setAdmin",
+            "nameLocation": "157:8:100",
+            "parameters": {
+              "id": 66642,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 66641,
+                  "mutability": "mutable",
+                  "name": "_admin",
+                  "nameLocation": "174:6:100",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 66644,
+                  "src": "166:14:100",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 66640,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "166:7:100",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "165:16:100"
+            },
+            "returnParameters": {
+              "id": 66643,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "190:0:100"
+            },
+            "scope": 66669,
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "id": 66649,
+            "nodeType": "FunctionDefinition",
+            "src": "196:49:100",
+            "nodes": [],
+            "functionSelector": "6d63c1d0",
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "enableLeverage",
+            "nameLocation": "205:14:100",
+            "parameters": {
+              "id": 66647,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 66646,
+                  "mutability": "mutable",
+                  "name": "_vault",
+                  "nameLocation": "228:6:100",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 66649,
+                  "src": "220:14:100",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 66645,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "220:7:100",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "219:16:100"
+            },
+            "returnParameters": {
+              "id": 66648,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "244:0:100"
+            },
+            "scope": 66669,
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "id": 66654,
+            "nodeType": "FunctionDefinition",
+            "src": "250:50:100",
+            "nodes": [],
+            "functionSelector": "d3c87bbb",
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "disableLeverage",
+            "nameLocation": "259:15:100",
+            "parameters": {
+              "id": 66652,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 66651,
+                  "mutability": "mutable",
+                  "name": "_vault",
+                  "nameLocation": "283:6:100",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 66654,
+                  "src": "275:14:100",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 66650,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "275:7:100",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "274:16:100"
+            },
+            "returnParameters": {
+              "id": 66653,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "299:0:100"
+            },
+            "scope": 66669,
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "id": 66661,
+            "nodeType": "FunctionDefinition",
+            "src": "305:80:100",
+            "nodes": [],
+            "functionSelector": "cd2b1230",
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "setIsLeverageEnabled",
+            "nameLocation": "314:20:100",
+            "parameters": {
+              "id": 66659,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 66656,
+                  "mutability": "mutable",
+                  "name": "_vault",
+                  "nameLocation": "343:6:100",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 66661,
+                  "src": "335:14:100",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 66655,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "335:7:100",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 66658,
+                  "mutability": "mutable",
+                  "name": "_isLeverageEnabled",
+                  "nameLocation": "356:18:100",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 66661,
+                  "src": "351:23:100",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 66657,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "351:4:100",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "334:41:100"
+            },
+            "returnParameters": {
+              "id": 66660,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "384:0:100"
+            },
+            "scope": 66669,
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "id": 66668,
+            "nodeType": "FunctionDefinition",
+            "src": "390:62:100",
+            "nodes": [],
+            "functionSelector": "996a7a1e",
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "signalSetGov",
+            "nameLocation": "399:12:100",
+            "parameters": {
+              "id": 66666,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 66663,
+                  "mutability": "mutable",
+                  "name": "_target",
+                  "nameLocation": "420:7:100",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 66668,
+                  "src": "412:15:100",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 66662,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "412:7:100",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 66665,
+                  "mutability": "mutable",
+                  "name": "_gov",
+                  "nameLocation": "437:4:100",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 66668,
+                  "src": "429:12:100",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 66664,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "429:7:100",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "411:31:100"
+            },
+            "returnParameters": {
+              "id": 66667,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "451:0:100"
+            },
+            "scope": 66669,
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "ITimelock",
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "fullyImplemented": false,
+        "linearizedBaseContracts": [
+          66669
+        ],
+        "name": "ITimelock",
+        "nameLocation": "68:9:100",
+        "scope": 66670,
+        "usedErrors": []
+      }
+    ],
+    "license": "MIT"
+  },
+  "id": 100
+}

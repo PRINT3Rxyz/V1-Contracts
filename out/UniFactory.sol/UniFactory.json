@@ -1,0 +1,272 @@
+{
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        },
+        {
+          "internalType": "uint24",
+          "name": "",
+          "type": "uint24"
+        }
+      ],
+      "name": "getPool",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "bytecode": {
+    "object": "0x608060405234801561001057600080fd5b50610119806100206000396000f3fe6080604052348015600f57600080fd5b506004361060285760003560e01c80631698ee8214602d575b600080fd5b60636038366004609a565b600060208181529381526040808220855292815282812090935282529020546001600160a01b031681565b6040516001600160a01b03909116815260200160405180910390f35b80356001600160a01b0381168114609557600080fd5b919050565b60008060006060848603121560ae57600080fd5b60b584607f565b925060c160208501607f565b9150604084013562ffffff8116811460d857600080fd5b80915050925092509256fea26469706673582212204ac60cde186ca7a8f3212d9ac59dc046791121455d26d9269f6788a931368b9a64736f6c63430008120033",
+    "sourceMap": "58:110:29:-:0;;;;;;;;;;;;;;;;;;;",
+    "linkReferences": {}
+  },
+  "deployedBytecode": {
+    "object": "0x6080604052348015600f57600080fd5b506004361060285760003560e01c80631698ee8214602d575b600080fd5b60636038366004609a565b600060208181529381526040808220855292815282812090935282529020546001600160a01b031681565b6040516001600160a01b03909116815260200160405180910390f35b80356001600160a01b0381168114609557600080fd5b919050565b60008060006060848603121560ae57600080fd5b60b584607f565b925060c160208501607f565b9150604084013562ffffff8116811460d857600080fd5b80915050925092509256fea26469706673582212204ac60cde186ca7a8f3212d9ac59dc046791121455d26d9269f6788a931368b9a64736f6c63430008120033",
+    "sourceMap": "58:110:29:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;84:81;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;-1:-1:-1;;;;;84:81:29;;;;;;-1:-1:-1;;;;;783:32:145;;;765:51;;753:2;738:18;84:81:29;;;;;;;14:173:145;82:20;;-1:-1:-1;;;;;131:31:145;;121:42;;111:70;;177:1;174;167:12;111:70;14:173;;;:::o;192:422::-;268:6;276;284;337:2;325:9;316:7;312:23;308:32;305:52;;;353:1;350;343:12;305:52;376:29;395:9;376:29;:::i;:::-;366:39;;424:38;458:2;447:9;443:18;424:38;:::i;:::-;414:48;;512:2;501:9;497:18;484:32;556:8;549:5;545:20;538:5;535:31;525:59;;580:1;577;570:12;525:59;603:5;593:15;;;192:422;;;;;:::o",
+    "linkReferences": {}
+  },
+  "methodIdentifiers": {
+    "getPool(address,address,uint24)": "1698ee82"
+  },
+  "rawMetadata": "{\"compiler\":{\"version\":\"0.8.18+commit.87f61d96\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"},{\"internalType\":\"uint24\",\"name\":\"\",\"type\":\"uint24\"}],\"name\":\"getPool\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"src/amm/UniFactory.sol\":\"UniFactory\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[\":@chainlink/contracts/=lib/chainlink/contracts/src/v0.6/\",\":chainlink/=lib/chainlink/\",\":ds-test/=lib/forge-std/lib/ds-test/src/\",\":erc4626-tests/=lib/chainlink/contracts/foundry-lib/openzeppelin-contracts/lib/erc4626-tests/\",\":forge-std/=lib/forge-std/src/\"]},\"sources\":{\"src/amm/UniFactory.sol\":{\"keccak256\":\"0xd68735eb24b2bfb5c1b5feaeb65640a44a35a18153f40d7ed5697e2cde4ab69a\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://3aa025c12745c6c68f3239cc4fbe79833344ae880e42dc72e24265375171120a\",\"dweb:/ipfs/QmbAaBVRMnGkieJF7CnYteDUHZMpbxh9aWJjyGFGsdqnd4\"]}},\"version\":1}",
+  "metadata": {
+    "compiler": {
+      "version": "0.8.18+commit.87f61d96"
+    },
+    "language": "Solidity",
+    "output": {
+      "abi": [
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "",
+              "type": "address"
+            },
+            {
+              "internalType": "uint24",
+              "name": "",
+              "type": "uint24"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function",
+          "name": "getPool",
+          "outputs": [
+            {
+              "internalType": "address",
+              "name": "",
+              "type": "address"
+            }
+          ]
+        }
+      ],
+      "devdoc": {
+        "kind": "dev",
+        "methods": {},
+        "version": 1
+      },
+      "userdoc": {
+        "kind": "user",
+        "methods": {},
+        "version": 1
+      }
+    },
+    "settings": {
+      "remappings": [
+        "@chainlink/contracts/=lib/chainlink/contracts/src/v0.6/",
+        "chainlink/=lib/chainlink/",
+        "ds-test/=lib/forge-std/lib/ds-test/src/",
+        "erc4626-tests/=lib/chainlink/contracts/foundry-lib/openzeppelin-contracts/lib/erc4626-tests/",
+        "forge-std/=lib/forge-std/src/"
+      ],
+      "optimizer": {
+        "enabled": true,
+        "runs": 200
+      },
+      "metadata": {
+        "bytecodeHash": "ipfs"
+      },
+      "compilationTarget": {
+        "src/amm/UniFactory.sol": "UniFactory"
+      },
+      "libraries": {}
+    },
+    "sources": {
+      "src/amm/UniFactory.sol": {
+        "keccak256": "0xd68735eb24b2bfb5c1b5feaeb65640a44a35a18153f40d7ed5697e2cde4ab69a",
+        "urls": [
+          "bzz-raw://3aa025c12745c6c68f3239cc4fbe79833344ae880e42dc72e24265375171120a",
+          "dweb:/ipfs/QmbAaBVRMnGkieJF7CnYteDUHZMpbxh9aWJjyGFGsdqnd4"
+        ],
+        "license": "MIT"
+      }
+    },
+    "version": 1
+  },
+  "ast": {
+    "absolutePath": "src/amm/UniFactory.sol",
+    "id": 31417,
+    "exportedSymbols": {
+      "UniFactory": [
+        31416
+      ]
+    },
+    "nodeType": "SourceUnit",
+    "src": "33:136:29",
+    "nodes": [
+      {
+        "id": 31407,
+        "nodeType": "PragmaDirective",
+        "src": "33:23:29",
+        "nodes": [],
+        "literals": [
+          "solidity",
+          "0.8",
+          ".18"
+        ]
+      },
+      {
+        "id": 31416,
+        "nodeType": "ContractDefinition",
+        "src": "58:110:29",
+        "nodes": [
+          {
+            "id": 31415,
+            "nodeType": "VariableDeclaration",
+            "src": "84:81:29",
+            "nodes": [],
+            "constant": false,
+            "functionSelector": "1698ee82",
+            "mutability": "mutable",
+            "name": "getPool",
+            "nameLocation": "158:7:29",
+            "scope": 31416,
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_address_$_t_mapping$_t_address_$_t_mapping$_t_uint24_$_t_address_$_$_$",
+              "typeString": "mapping(address => mapping(address => mapping(uint24 => address)))"
+            },
+            "typeName": {
+              "id": 31414,
+              "keyName": "",
+              "keyNameLocation": "-1:-1:-1",
+              "keyType": {
+                "id": 31408,
+                "name": "address",
+                "nodeType": "ElementaryTypeName",
+                "src": "92:7:29",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "84:66:29",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_address_$_t_mapping$_t_address_$_t_mapping$_t_uint24_$_t_address_$_$_$",
+                "typeString": "mapping(address => mapping(address => mapping(uint24 => address)))"
+              },
+              "valueName": "",
+              "valueNameLocation": "-1:-1:-1",
+              "valueType": {
+                "id": 31413,
+                "keyName": "",
+                "keyNameLocation": "-1:-1:-1",
+                "keyType": {
+                  "id": 31409,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "111:7:29",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "nodeType": "Mapping",
+                "src": "103:46:29",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_mapping$_t_address_$_t_mapping$_t_uint24_$_t_address_$_$",
+                  "typeString": "mapping(address => mapping(uint24 => address))"
+                },
+                "valueName": "",
+                "valueNameLocation": "-1:-1:-1",
+                "valueType": {
+                  "id": 31412,
+                  "keyName": "",
+                  "keyNameLocation": "-1:-1:-1",
+                  "keyType": {
+                    "id": 31410,
+                    "name": "uint24",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "130:6:29",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint24",
+                      "typeString": "uint24"
+                    }
+                  },
+                  "nodeType": "Mapping",
+                  "src": "122:26:29",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_mapping$_t_uint24_$_t_address_$",
+                    "typeString": "mapping(uint24 => address)"
+                  },
+                  "valueName": "",
+                  "valueNameLocation": "-1:-1:-1",
+                  "valueType": {
+                    "id": 31411,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "140:7:29",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  }
+                }
+              }
+            },
+            "visibility": "public"
+          }
+        ],
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "UniFactory",
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "fullyImplemented": true,
+        "linearizedBaseContracts": [
+          31416
+        ],
+        "name": "UniFactory",
+        "nameLocation": "67:10:29",
+        "scope": 31417,
+        "usedErrors": []
+      }
+    ],
+    "license": "MIT"
+  },
+  "id": 29
+}
