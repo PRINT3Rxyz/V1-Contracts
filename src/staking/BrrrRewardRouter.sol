@@ -70,7 +70,6 @@ contract BrrrRewardRouter is IBrrrRewardRouter, ReentrancyGuard, Governable {
         return brrrAmount;
     }
 
-    // Essential: Handles minting and staking of BRRR using native Ether in 1 TX
     function mintAndStakeBrrrETH(uint256 _minUsdg, uint256 _minBrrr)
         external
         payable
