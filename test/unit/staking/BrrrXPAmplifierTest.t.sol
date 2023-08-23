@@ -169,6 +169,7 @@ contract BrrrXpAmplifierTest is Test {
 
         reader = new Reader();
 
+        // Make sure to update season end date to hard coded date
         amplifier = new BrrrXpAmplifier(address(rewardTracker), address(transferStakedBrrr), weth);
 
         console.log("Deployed contracts");
@@ -194,6 +195,8 @@ contract BrrrXpAmplifierTest is Test {
         uint256[] memory _deltaDiffs = deltaDiffs;
         fastPriceFeed.setMaxCumulativeDeltaDiffs(_tokenArray, _deltaDiffs);
         fastPriceFeed.setPriceDataInterval(60);
+        // Set Price Keepers
+        fastPriceFeed.setUpdater(USER, true);
 
         priceEvents.setIsPriceFeed(address(fastPriceFeed), true);
 
@@ -212,14 +215,17 @@ contract BrrrXpAmplifierTest is Test {
         vault.setTokenConfig(weth, 18, 10000, 150, 0, false, true);
         vault.setTokenConfig(wbtc, 8, 10000, 150, 0, false, true);
         vault.setTokenConfig(usdc, 6, 20000, 150, 0, true, false);
-        vault.setFees(15, 5, 15, 15, 1, 10, 2000000000000000000000000000000, 86400, true);
+        vault.setFees(60, 5, 25, 25, 1, 40, 2000000000000000000000000000000, 10800, true);
         vault.setIsLeverageEnabled(false);
         vault.setFundingRate(3600, 100, 100);
         vault.setVaultUtils(vaultUtils);
+        vault.setInPrivateLiquidationMode(true);
         vault.setGov(address(timelock));
 
         shortsTracker.setHandler(address(positionManager), true);
         shortsTracker.setHandler(address(positionRouter), true);
+        // Set Keepers as Handlers
+        shortsTracker.setHandler(USER, true);
 
         brrrManager.setInPrivateMode(false);
         brrrManager.setHandler(address(rewardRouter), true);
@@ -246,6 +252,8 @@ contract BrrrXpAmplifierTest is Test {
         uint256[] memory _shortSizes = shortSizes;
         positionRouter.setMaxGlobalSizes(_tokenArray, _longSizes, _shortSizes);
         positionRouter.setCallbackGasLimit(800000);
+        // Set any position keepers
+        positionRouter.setPositionKeeper(USER, true);
 
         errors.push("Vault: zero error");
         errors.push("Vault: already initialized");
@@ -350,6 +358,8 @@ contract BrrrXpAmplifierTest is Test {
         timelock.setContractHandler(address(positionManager), true);
         timelock.setContractHandler(OWNER, true);
         timelock.setContractHandler(USER, true);
+        // Set Liquidator
+        timelock.setLiquidator(address(vault), USER, true);
 
         vm.stopPrank();
     }

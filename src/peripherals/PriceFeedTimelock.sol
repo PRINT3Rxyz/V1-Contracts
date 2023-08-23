@@ -104,6 +104,10 @@ contract PriceFeedTimelock {
         IVaultPriceFeed(_priceFeed).setUseV2Pricing(_useV2Pricing);
     }
 
+    function setFavorPrimaryPrice(address _priceFeed, bool _favorPrimaryPrice) external onlyAdmin {
+        IVaultPriceFeed(_priceFeed).setFavorPrimaryPrice(_favorPrimaryPrice);
+    }
+
     function setAdjustment(address _priceFeed, address _token, bool _isAdditive, uint256 _adjustmentBps)
         external
         onlyKeeperAndAbove
