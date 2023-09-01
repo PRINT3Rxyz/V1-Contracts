@@ -33,6 +33,7 @@ import {BrrrBalance} from "../../../src/staking/BrrrBalance.sol";
 import {Reader} from "../../../src/peripherals/Reader.sol";
 import {Token} from "../../../src/tokens/Token.sol";
 import {BrrrXpAmplifier} from "../../../src/staking/BrrrXpAmplifier.sol";
+import {OrderExecutor} from "../../../src/core/OrderExecutor.sol";
 
 contract BrrrXpAmplifierTest is Test {
     address public OWNER;
@@ -66,6 +67,7 @@ contract BrrrXpAmplifierTest is Test {
     ReferralReader referralReader;
     Reader reader;
     BrrrXpAmplifier amplifier;
+    OrderExecutor executor;
 
     address public wbtc;
     address payable weth;
@@ -171,6 +173,8 @@ contract BrrrXpAmplifierTest is Test {
 
         // Make sure to update season end date to hard coded date
         amplifier = new BrrrXpAmplifier(address(rewardTracker), address(transferStakedBrrr), weth);
+
+        executor = new OrderExecutor(address(vault), address(orderBook));
 
         console.log("Deployed contracts");
 
@@ -356,6 +360,7 @@ contract BrrrXpAmplifierTest is Test {
         timelock.setShouldToggleIsLeverageEnabled(true);
         timelock.setContractHandler(address(positionRouter), true);
         timelock.setContractHandler(address(positionManager), true);
+        timelock.setContractHandler(address(executor), true);
         timelock.setContractHandler(OWNER, true);
         timelock.setContractHandler(USER, true);
         // Set Liquidator
