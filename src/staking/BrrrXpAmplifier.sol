@@ -64,6 +64,7 @@ contract BrrrXpAmplifier is Governable, ReentrancyGuard {
     uint256 public contractBalance;
 
     constructor(address _rewardTracker, address _transferStakedBrrr, address _weth) {
+        require(_rewardTracker != address(0), "BrrrXpAmplifier: Invalid RewardTracker");
         rewardTracker = RewardTracker(_rewardTracker);
         stakeTransferrer = TransferStakedBrrr(_transferStakedBrrr);
         weth = _weth;

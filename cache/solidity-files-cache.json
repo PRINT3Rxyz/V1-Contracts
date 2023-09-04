@@ -1708,8 +1708,8 @@
       }
     },
     "src/core/PositionRouter.sol": {
-      "lastModificationDate": 1690463045749,
-      "contentHash": "97b41d28b8dde04f3f01b27b83c38eef",
+      "lastModificationDate": 1693564158677,
+      "contentHash": "1c197527ec908c110e5e7e4d1200400e",
       "sourceName": "src/core/PositionRouter.sol",
       "solcConfig": {
         "settings": {
@@ -2267,8 +2267,8 @@
       }
     },
     "src/core/interfaces/IPositionRouterCallbackReceiver.sol": {
-      "lastModificationDate": 1690373861283,
-      "contentHash": "5ca72f4e6a4fa83db3e63bb324a6dfb3",
+      "lastModificationDate": 1693564645052,
+      "contentHash": "290e6187a78384f23d22e843721c0262",
       "sourceName": "src/core/interfaces/IPositionRouterCallbackReceiver.sol",
       "solcConfig": {
         "settings": {
@@ -3955,8 +3955,8 @@
       }
     },
     "src/peripherals/PriceFeedTimelock.sol": {
-      "lastModificationDate": 1690920027784,
-      "contentHash": "02a784a41db67fef644f58795dedaf9d",
+      "lastModificationDate": 1692545981769,
+      "contentHash": "7ee31caeeada6124e61f7035042c2fcf",
       "sourceName": "src/peripherals/PriceFeedTimelock.sol",
       "solcConfig": {
         "settings": {
@@ -4644,8 +4644,8 @@
       }
     },
     "src/staking/BrrrXpAmplifier.sol": {
-      "lastModificationDate": 1691169426327,
-      "contentHash": "8c50ff1ca9bc08217ba231053f55afc5",
+      "lastModificationDate": 1693564648535,
+      "contentHash": "71115c82695be3deba6816cef5c92612",
       "sourceName": "src/staking/BrrrXpAmplifier.sol",
       "solcConfig": {
         "settings": {
@@ -8887,8 +8887,8 @@
       }
     },
     "test/unit/staking/BrrrXPAmplifierTest.t.sol": {
-      "lastModificationDate": 1691168230272,
-      "contentHash": "be7364036a33071e5a2f8abae65082c8",
+      "lastModificationDate": 1693123707370,
+      "contentHash": "9188e38337ceb144f4427936a2f0914d",
       "sourceName": "test/unit/staking/BrrrXPAmplifierTest.t.sol",
       "solcConfig": {
         "settings": {
@@ -8947,6 +8947,7 @@
         "src/core/BasePositionManager.sol",
         "src/core/BrrrManager.sol",
         "src/core/OrderBook.sol",
+        "src/core/OrderExecutor.sol",
         "src/core/PositionManager.sol",
         "src/core/PositionRouter.sol",
         "src/core/PositionUtils.sol",

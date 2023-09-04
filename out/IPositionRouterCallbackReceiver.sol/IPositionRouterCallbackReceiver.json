@@ -18,7 +18,7 @@
           "type": "bool"
         }
       ],
-      "name": "gmxPositionCallback",
+      "name": "print3rPositionCallback",
       "outputs": [],
       "stateMutability": "nonpayable",
       "type": "function"
@@ -35,9 +35,9 @@
     "linkReferences": {}
   },
   "methodIdentifiers": {
-    "gmxPositionCallback(bytes32,bool,bool)": "edf3daec"
+    "print3rPositionCallback(bytes32,bool,bool)": "da6c4362"
   },
-  "rawMetadata": "{\"compiler\":{\"version\":\"0.8.18+commit.87f61d96\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"positionKey\",\"type\":\"bytes32\"},{\"internalType\":\"bool\",\"name\":\"isExecuted\",\"type\":\"bool\"},{\"internalType\":\"bool\",\"name\":\"isIncrease\",\"type\":\"bool\"}],\"name\":\"gmxPositionCallback\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"src/core/interfaces/IPositionRouterCallbackReceiver.sol\":\"IPositionRouterCallbackReceiver\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[\":@chainlink/contracts/=lib/chainlink/contracts/src/v0.6/\",\":chainlink/=lib/chainlink/\",\":ds-test/=lib/forge-std/lib/ds-test/src/\",\":erc4626-tests/=lib/chainlink/contracts/foundry-lib/openzeppelin-contracts/lib/erc4626-tests/\",\":forge-std/=lib/forge-std/src/\"]},\"sources\":{\"src/core/interfaces/IPositionRouterCallbackReceiver.sol\":{\"keccak256\":\"0x1310b664cc354da93f1016e9e5ed9ef97de19c13ffe7bd8e61387e962236513c\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://99eea54cd891dda74c76b387ad8afab36402f7c9b89b2e8d2adaeef1fdc02aae\",\"dweb:/ipfs/QmUumTpzQaRPCb3uxmoBdURXiUUh8Qc5biYbgoYqTb74ap\"]}},\"version\":1}",
+  "rawMetadata": "{\"compiler\":{\"version\":\"0.8.18+commit.87f61d96\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"positionKey\",\"type\":\"bytes32\"},{\"internalType\":\"bool\",\"name\":\"isExecuted\",\"type\":\"bool\"},{\"internalType\":\"bool\",\"name\":\"isIncrease\",\"type\":\"bool\"}],\"name\":\"print3rPositionCallback\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"src/core/interfaces/IPositionRouterCallbackReceiver.sol\":\"IPositionRouterCallbackReceiver\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[\":@chainlink/contracts/=lib/chainlink/contracts/src/v0.6/\",\":chainlink/=lib/chainlink/\",\":ds-test/=lib/forge-std/lib/ds-test/src/\",\":erc4626-tests/=lib/chainlink/contracts/foundry-lib/openzeppelin-contracts/lib/erc4626-tests/\",\":forge-std/=lib/forge-std/src/\"]},\"sources\":{\"src/core/interfaces/IPositionRouterCallbackReceiver.sol\":{\"keccak256\":\"0x246f2fc984318fae8ffb4d7ea904532022d1763d9a689d844052fe19769cccfa\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://37a0959ade7569c050aa15e1d34d69aef2a03338a0e3f2d48f8b140ad2dbc7f7\",\"dweb:/ipfs/QmbsQYowBdNmbdbJZKBUqpvmGhocgDQBuAhqy6oAMtb1DK\"]}},\"version\":1}",
   "metadata": {
     "compiler": {
       "version": "0.8.18+commit.87f61d96"
@@ -65,7 +65,7 @@
           ],
           "stateMutability": "nonpayable",
           "type": "function",
-          "name": "gmxPositionCallback"
+          "name": "print3rPositionCallback"
         }
       ],
       "devdoc": {
@@ -101,10 +101,10 @@
     },
     "sources": {
       "src/core/interfaces/IPositionRouterCallbackReceiver.sol": {
-        "keccak256": "0x1310b664cc354da93f1016e9e5ed9ef97de19c13ffe7bd8e61387e962236513c",
+        "keccak256": "0x246f2fc984318fae8ffb4d7ea904532022d1763d9a689d844052fe19769cccfa",
         "urls": [
-          "bzz-raw://99eea54cd891dda74c76b387ad8afab36402f7c9b89b2e8d2adaeef1fdc02aae",
-          "dweb:/ipfs/QmUumTpzQaRPCb3uxmoBdURXiUUh8Qc5biYbgoYqTb74ap"
+          "bzz-raw://37a0959ade7569c050aa15e1d34d69aef2a03338a0e3f2d48f8b140ad2dbc7f7",
+          "dweb:/ipfs/QmbsQYowBdNmbdbJZKBUqpvmGhocgDQBuAhqy6oAMtb1DK"
         ],
         "license": "MIT"
       }
@@ -113,19 +113,19 @@
   },
   "ast": {
     "absolutePath": "src/core/interfaces/IPositionRouterCallbackReceiver.sol",
-    "id": 49045,
+    "id": 48413,
     "exportedSymbols": {
       "IPositionRouterCallbackReceiver": [
-        49044
+        48412
       ]
     },
     "nodeType": "SourceUnit",
-    "src": "33:169:53",
+    "src": "33:173:42",
     "nodes": [
       {
-        "id": 49034,
+        "id": 48402,
         "nodeType": "PragmaDirective",
-        "src": "33:23:53",
+        "src": "33:23:42",
         "nodes": [],
         "literals": [
           "solidity",
@@ -134,34 +134,34 @@
         ]
       },
       {
-        "id": 49044,
+        "id": 48412,
         "nodeType": "ContractDefinition",
-        "src": "58:143:53",
+        "src": "58:147:42",
         "nodes": [
           {
-            "id": 49043,
+            "id": 48411,
             "nodeType": "FunctionDefinition",
-            "src": "106:93:53",
+            "src": "106:97:42",
             "nodes": [],
-            "functionSelector": "edf3daec",
+            "functionSelector": "da6c4362",
             "implemented": false,
             "kind": "function",
             "modifiers": [],
-            "name": "gmxPositionCallback",
-            "nameLocation": "115:19:53",
+            "name": "print3rPositionCallback",
+            "nameLocation": "115:23:42",
             "parameters": {
-              "id": 49041,
+              "id": 48409,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 49036,
+                  "id": 48404,
                   "mutability": "mutable",
                   "name": "positionKey",
-                  "nameLocation": "143:11:53",
+                  "nameLocation": "147:11:42",
                   "nodeType": "VariableDeclaration",
-                  "scope": 49043,
-                  "src": "135:19:53",
+                  "scope": 48411,
+                  "src": "139:19:42",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -169,10 +169,10 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 49035,
+                    "id": 48403,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
-                    "src": "135:7:53",
+                    "src": "139:7:42",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bytes32",
                       "typeString": "bytes32"
@@ -182,13 +182,13 @@
                 },
                 {
                   "constant": false,
-                  "id": 49038,
+                  "id": 48406,
                   "mutability": "mutable",
                   "name": "isExecuted",
-                  "nameLocation": "161:10:53",
+                  "nameLocation": "165:10:42",
                   "nodeType": "VariableDeclaration",
-                  "scope": 49043,
-                  "src": "156:15:53",
+                  "scope": 48411,
+                  "src": "160:15:42",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -196,10 +196,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 49037,
+                    "id": 48405,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "156:4:53",
+                    "src": "160:4:42",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -209,13 +209,13 @@
                 },
                 {
                   "constant": false,
-                  "id": 49040,
+                  "id": 48408,
                   "mutability": "mutable",
                   "name": "isIncrease",
-                  "nameLocation": "178:10:53",
+                  "nameLocation": "182:10:42",
                   "nodeType": "VariableDeclaration",
-                  "scope": 49043,
-                  "src": "173:15:53",
+                  "scope": 48411,
+                  "src": "177:15:42",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -223,10 +223,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 49039,
+                    "id": 48407,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "173:4:53",
+                    "src": "177:4:42",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -235,15 +235,15 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "134:55:53"
+              "src": "138:55:42"
             },
             "returnParameters": {
-              "id": 49042,
+              "id": 48410,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "198:0:53"
+              "src": "202:0:42"
             },
-            "scope": 49044,
+            "scope": 48412,
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
@@ -256,15 +256,15 @@
         "contractKind": "interface",
         "fullyImplemented": false,
         "linearizedBaseContracts": [
-          49044
+          48412
         ],
         "name": "IPositionRouterCallbackReceiver",
-        "nameLocation": "68:31:53",
-        "scope": 49045,
+        "nameLocation": "68:31:42",
+        "scope": 48413,
         "usedErrors": []
       }
     ],
     "license": "MIT"
   },
-  "id": 53
+  "id": 42
 }
