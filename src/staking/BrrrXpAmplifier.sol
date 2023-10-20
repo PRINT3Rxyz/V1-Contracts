@@ -64,7 +64,7 @@ contract BrrrXpAmplifier is Governable, ReentrancyGuard {
     uint256 public contractBalance;
 
     constructor(address _rewardTracker, address _transferStakedBrrr, address _weth) {
-        require(_rewardTracker != address(0), "BrrrXpAmplifier: Invalid RewardTracker");
+        require(_rewardTracker != address(0));
         rewardTracker = RewardTracker(_rewardTracker);
         stakeTransferrer = TransferStakedBrrr(_transferStakedBrrr);
         weth = _weth;
@@ -132,15 +132,11 @@ contract BrrrXpAmplifier is Governable, ReentrancyGuard {
         contractBalance = contractBalance - position.depositAmount;
         delete positions[msg.sender][index];
         uint256[] storage userPositions = userPositionIds[msg.sender];
-        uint256 len = userPositions.length;
-        for (uint256 i = 0; i < len;) {
+        for (uint256 i = 0; i < userPositions.length; ++i) {
             if (userPositions[i] == index) {
                 userPositions[i] = userPositions[userPositions.length - 1];
                 userPositions.pop();
                 break;
-            }
-            unchecked {
-                i += 1;
             }
         }
 
@@ -154,14 +150,9 @@ contract BrrrXpAmplifier is Governable, ReentrancyGuard {
         uint256 userXpRewards = _updateRewards(msg.sender);
 
         uint256 userTokenRewards = claimableReward[msg.sender];
-
-        if (userTokenRewards > IERC20(weth).balanceOf(address(this))) {
-            revert BrrrXpAmplifier_InsufficientFunds();
-        }
-
         claimableReward[msg.sender] = 0;
 
-        if (userTokenRewards != 0) {
+        if (userTokenRewards != 0 && IERC20(weth).balanceOf(address(this)) >= userTokenRewards) {
             IERC20(weth).transfer(msg.sender, userTokenRewards);
         }
 
@@ -215,7 +206,7 @@ contract BrrrXpAmplifier is Governable, ReentrancyGuard {
 
         uint256 bal = contractBalance;
         uint256 _cumulativeRewardPerToken = cumulativeRewardPerToken;
-        if (bal != 0 && blockReward != 0) {
+        if (bal > 0 && blockReward > 0) {
             _cumulativeRewardPerToken = _cumulativeRewardPerToken + ((blockReward * PRECISION) / bal);
             cumulativeRewardPerToken = _cumulativeRewardPerToken;
         }
@@ -229,7 +220,7 @@ contract BrrrXpAmplifier is Governable, ReentrancyGuard {
             claimableReward[_account] = _claimableReward;
             previousCumulativeRewardPerToken[_account] = _cumulativeRewardPerToken;
 
-            if (_claimableReward != 0 && lockedAmount[_account] != 0) {
+            if (_claimableReward > 0 && lockedAmount[_account] > 0) {
                 uint256 nextCumulativeReward = cumulativeRewards[_account] + accountReward;
 
                 averageLockedAmounts[_account] = (
@@ -275,13 +266,9 @@ contract BrrrXpAmplifier is Governable, ReentrancyGuard {
         } else {
             accumulationDuration = block.timestamp - lastXpUpdate[user];
         }
-        uint256 len = tokens.length;
-        for (uint256 i = 0; i < len;) {
+        for (uint256 i = 0; i < tokens.length; ++i) {
             Position memory position = positions[user][tokens[i]];
             totalXp = totalXp + (position.depositAmount * position.multiplier * (accumulationDuration * xpPerSecond));
-            unchecked {
-                i += 1;
-            }
         }
         return totalXp / 100;
     }

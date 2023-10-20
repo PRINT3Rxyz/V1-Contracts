@@ -207,16 +207,6 @@ contract Vault is ReentrancyGuard, IVault {
     event CollectSwapFees(address token, uint256 feeUsd, uint256 feeTokens);
     event CollectMarginFees(address token, uint256 feeUsd, uint256 feeTokens);
 
-    event DirectPoolDeposit(address token, uint256 amount);
-    event IncreasePoolAmount(address token, uint256 amount);
-    event DecreasePoolAmount(address token, uint256 amount);
-    event IncreaseUsdpAmount(address token, uint256 amount);
-    event DecreaseUsdpAmount(address token, uint256 amount);
-    event IncreaseReservedAmount(address token, uint256 amount);
-    event DecreaseReservedAmount(address token, uint256 amount);
-    event IncreaseGuaranteedUsd(address token, uint256 amount);
-    event DecreaseGuaranteedUsd(address token, uint256 amount);
-
     // once the parameters are verified to be working correctly,
     // gov should be set to a timelock contract or a governance contract
     constructor() {
@@ -455,7 +445,6 @@ contract Vault is ReentrancyGuard, IVault {
         uint256 tokenAmount = _transferIn(_token);
         _validate(tokenAmount > 0, 15);
         _increasePoolAmount(_token, tokenAmount);
-        emit DirectPoolDeposit(_token, tokenAmount);
     }
 
     function buyUSDP(address _token, address _receiver) external override nonReentrant returns (uint256) {
@@ -1327,13 +1316,11 @@ contract Vault is ReentrancyGuard, IVault {
         poolAmounts[_token] = poolAmounts[_token] + _amount;
         uint256 balance = IERC20(_token).balanceOf(address(this));
         _validate(poolAmounts[_token] <= balance, 49);
-        emit IncreasePoolAmount(_token, _amount);
     }
 
     function _decreasePoolAmount(address _token, uint256 _amount) private {
         poolAmounts[_token] = poolAmounts[_token] - _amount;
         _validate(reservedAmounts[_token] <= poolAmounts[_token], 50);
-        emit DecreasePoolAmount(_token, _amount);
     }
 
     function _validateBufferAmount(address _token) private view {
@@ -1348,7 +1335,6 @@ contract Vault is ReentrancyGuard, IVault {
         if (maxUsdpAmount != 0) {
             _validate(usdpAmounts[_token] <= maxUsdpAmount, 51);
         }
-        emit IncreaseUsdpAmount(_token, _amount);
     }
 
     function _decreaseUsdpAmount(address _token, uint256 _amount) private {
@@ -1361,28 +1347,23 @@ contract Vault is ReentrancyGuard, IVault {
             return;
         }
         usdpAmounts[_token] = value - _amount;
-        emit DecreaseUsdpAmount(_token, _amount);
     }
 
     function _increaseReservedAmount(address _token, uint256 _amount) private {
         reservedAmounts[_token] = reservedAmounts[_token] + _amount;
         _validate(reservedAmounts[_token] <= poolAmounts[_token], 52);
-        emit IncreaseReservedAmount(_token, _amount);
     }
 
     function _decreaseReservedAmount(address _token, uint256 _amount) private {
         reservedAmounts[_token] = reservedAmounts[_token] - _amount;
-        emit DecreaseReservedAmount(_token, _amount);
     }
 
     function _increaseGuaranteedUsd(address _token, uint256 _usdAmount) private {
         guaranteedUsd[_token] = guaranteedUsd[_token] + _usdAmount;
-        emit IncreaseGuaranteedUsd(_token, _usdAmount);
     }
 
     function _decreaseGuaranteedUsd(address _token, uint256 _usdAmount) private {
         guaranteedUsd[_token] = guaranteedUsd[_token] - _usdAmount;
-        emit DecreaseGuaranteedUsd(_token, _usdAmount);
     }
 
     function _increaseGlobalShortSize(address _token, uint256 _amount) internal {

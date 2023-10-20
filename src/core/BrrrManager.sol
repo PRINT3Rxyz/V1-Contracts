@@ -173,7 +173,7 @@ contract BrrrManager is ReentrancyGuard, Governable, IBrrrManager {
             uint256 decimals = _vault.tokenDecimals(token);
 
             if (_vault.stableTokens(token)) {
-                aum = aum + ((poolAmount * price) / (10 ** decimals));
+                aum = aum + (poolAmount * price) / (10 ** decimals);
             } else {
                 // add global short profit / loss
                 uint256 size = _vault.globalShortSizes(token);
@@ -191,7 +191,8 @@ contract BrrrManager is ReentrancyGuard, Governable, IBrrrManager {
                 aum = (aum + (_vault.guaranteedUsd(token)));
 
                 uint256 reservedAmount = _vault.reservedAmounts(token);
-                aum = aum + (((poolAmount - reservedAmount) * price) / (10 ** decimals));
+                // aum = aum.add(poolAmount.sub(reservedAmount).mul(price).div(10 ** decimals));
+                aum = aum + ((poolAmount - reservedAmount) * price) / (10 ** decimals);
             }
         }
 
@@ -223,8 +224,8 @@ contract BrrrManager is ReentrancyGuard, Governable, IBrrrManager {
         uint256 shortsTrackerAveragePrice = _shortsTracker.globalShortAveragePrices(_token);
 
         return (
-            (vaultAveragePrice * (BASIS_POINTS_DIVISOR - _shortsTrackerAveragePriceWeight))
-                + (shortsTrackerAveragePrice * _shortsTrackerAveragePriceWeight)
+            vaultAveragePrice * (BASIS_POINTS_DIVISOR - _shortsTrackerAveragePriceWeight)
+                + shortsTrackerAveragePrice * _shortsTrackerAveragePriceWeight
         ) / BASIS_POINTS_DIVISOR;
     }
 

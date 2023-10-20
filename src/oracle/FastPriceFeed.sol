@@ -26,7 +26,7 @@ contract FastPriceFeed is ISecondaryPriceFeed, IFastPriceFeed, Governable {
     uint256 public constant MAX_CUMULATIVE_REF_DELTA = type(uint32).max;
     uint256 public constant MAX_CUMULATIVE_FAST_DELTA = type(uint32).max;
 
-    // type(uint256).max is 256 bits of 1s
+    // uint256(~0) is 256 bits of 1s
     // shift the 1s by (256 - 32) to get (256 - 32) 0s followed by 32 1s
     uint256 public constant BITMASK_32 = type(uint256).max >> (256 - 32);
 
@@ -416,7 +416,6 @@ contract FastPriceFeed is ISecondaryPriceFeed, IFastPriceFeed, Governable {
     }
 
     function _setPrice(address _token, uint256 _price, address _vaultPriceFeed, address _fastPriceEvents) private {
-        require(_price != 0, "FastPriceFeed: Price can't be 0");
         if (_vaultPriceFeed != address(0)) {
             uint256 refPrice = IVaultPriceFeed(_vaultPriceFeed).getLatestPrimaryPrice(_token);
             uint256 fastPrice = prices[_token];

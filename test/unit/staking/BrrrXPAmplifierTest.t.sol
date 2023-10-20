@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.18;
 
-import {Test, console} from "forge-std/Test.sol";
+import {Test, console} from "lib/forge-std/src/Test.sol";
 import {HelperConfig} from "../../../script/HelperConfig.s.sol";
 import {VaultPriceFeed} from "../../../src/core/VaultPriceFeed.sol";
 import {FastPriceEvents} from "../../../src/oracle/FastPriceEvents.sol";
@@ -33,7 +33,6 @@ import {BrrrBalance} from "../../../src/staking/BrrrBalance.sol";
 import {Reader} from "../../../src/peripherals/Reader.sol";
 import {Token} from "../../../src/tokens/Token.sol";
 import {BrrrXpAmplifier} from "../../../src/staking/BrrrXpAmplifier.sol";
-import {OrderExecutor} from "../../../src/core/OrderExecutor.sol";
 
 contract BrrrXpAmplifierTest is Test {
     address public OWNER;
@@ -67,7 +66,6 @@ contract BrrrXpAmplifierTest is Test {
     ReferralReader referralReader;
     Reader reader;
     BrrrXpAmplifier amplifier;
-    OrderExecutor executor;
 
     address public wbtc;
     address payable weth;
@@ -111,6 +109,8 @@ contract BrrrXpAmplifierTest is Test {
             helperConfig.activeNetworkConfig();
         vm.deal(OWNER, 1e18 ether);
         vm.startPrank(OWNER);
+
+        /// Note Full Deployment Steps To Avoid Stack too Deep Error
 
         priceFeed = new VaultPriceFeed();
 
@@ -171,10 +171,7 @@ contract BrrrXpAmplifierTest is Test {
 
         reader = new Reader();
 
-        // Make sure to update season end date to hard coded date
         amplifier = new BrrrXpAmplifier(address(rewardTracker), address(transferStakedBrrr), weth);
-
-        executor = new OrderExecutor(address(vault), address(orderBook));
 
         console.log("Deployed contracts");
 
@@ -199,8 +196,6 @@ contract BrrrXpAmplifierTest is Test {
         uint256[] memory _deltaDiffs = deltaDiffs;
         fastPriceFeed.setMaxCumulativeDeltaDiffs(_tokenArray, _deltaDiffs);
         fastPriceFeed.setPriceDataInterval(60);
-        // Set Price Keepers
-        fastPriceFeed.setUpdater(USER, true);
 
         priceEvents.setIsPriceFeed(address(fastPriceFeed), true);
 
@@ -219,17 +214,14 @@ contract BrrrXpAmplifierTest is Test {
         vault.setTokenConfig(weth, 18, 10000, 150, 0, false, true);
         vault.setTokenConfig(wbtc, 8, 10000, 150, 0, false, true);
         vault.setTokenConfig(usdc, 6, 20000, 150, 0, true, false);
-        vault.setFees(60, 5, 25, 25, 1, 40, 2000000000000000000000000000000, 10800, true);
+        vault.setFees(15, 5, 15, 15, 1, 10, 2000000000000000000000000000000, 86400, true);
         vault.setIsLeverageEnabled(false);
         vault.setFundingRate(3600, 100, 100);
         vault.setVaultUtils(vaultUtils);
-        vault.setInPrivateLiquidationMode(true);
         vault.setGov(address(timelock));
 
         shortsTracker.setHandler(address(positionManager), true);
         shortsTracker.setHandler(address(positionRouter), true);
-        // Set Keepers as Handlers
-        shortsTracker.setHandler(USER, true);
 
         brrrManager.setInPrivateMode(false);
         brrrManager.setHandler(address(rewardRouter), true);
@@ -256,8 +248,6 @@ contract BrrrXpAmplifierTest is Test {
         uint256[] memory _shortSizes = shortSizes;
         positionRouter.setMaxGlobalSizes(_tokenArray, _longSizes, _shortSizes);
         positionRouter.setCallbackGasLimit(800000);
-        // Set any position keepers
-        positionRouter.setPositionKeeper(USER, true);
 
         errors.push("Vault: zero error");
         errors.push("Vault: already initialized");
@@ -360,11 +350,8 @@ contract BrrrXpAmplifierTest is Test {
         timelock.setShouldToggleIsLeverageEnabled(true);
         timelock.setContractHandler(address(positionRouter), true);
         timelock.setContractHandler(address(positionManager), true);
-        timelock.setContractHandler(address(executor), true);
         timelock.setContractHandler(OWNER, true);
         timelock.setContractHandler(USER, true);
-        // Set Liquidator
-        timelock.setLiquidator(address(vault), USER, true);
 
         vm.stopPrank();
     }

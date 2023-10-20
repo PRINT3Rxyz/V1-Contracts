@@ -4,20 +4,18 @@ pragma solidity 0.8.18;
 pragma abicoder v1;
 
 import "./interfaces/IRouter.sol";
+import "./interfaces/IVault.sol";
 import "./interfaces/IPositionRouter.sol";
 import "./interfaces/IPositionRouterCallbackReceiver.sol";
 
 import "../libraries/utils/Address.sol";
 import "../libraries/token/SafeERC20.sol";
+import "../peripherals/interfaces/ITimelock.sol";
 import "./BasePositionManager.sol";
 
 contract PositionRouter is BasePositionManager, IPositionRouter {
     using Address for address;
     using SafeERC20 for IERC20;
-
-    error PositionRouter_expired();
-    error PositionRouter_403();
-    error PositionRouter_CallbackFailed();
 
     struct IncreasePositionRequest {
         address account;
@@ -195,7 +193,6 @@ contract PositionRouter is BasePositionManager, IPositionRouter {
     }
 
     function setPositionKeeper(address _account, bool _isActive) external onlyAdmin {
-        require(_account != address(0), "PositionRouter: Zero Address");
         isPositionKeeper[_account] = _isActive;
         emit SetPositionKeeper(_account, _isActive);
     }
@@ -206,7 +203,6 @@ contract PositionRouter is BasePositionManager, IPositionRouter {
     }
 
     function setCustomCallbackGasLimit(address _callbackTarget, uint256 _callbackGasLimit) external onlyAdmin {
-        require(_callbackTarget != address(0), "PositionRouter: Zero Address");
         customCallbackGasLimits[_callbackTarget] = _callbackGasLimit;
         emit SetCustomCallbackGasLimit(_callbackTarget, _callbackGasLimit);
     }
@@ -337,7 +333,7 @@ contract PositionRouter is BasePositionManager, IPositionRouter {
         _transferInETH();
         _setTraderReferralCode(_referralCode);
 
-        if (_amountIn != 0) {
+        if (_amountIn > 0) {
             IRouter(router).pluginTransfer(_path[0], msg.sender, address(this), _amountIn);
         }
 
@@ -453,7 +449,7 @@ contract PositionRouter is BasePositionManager, IPositionRouter {
 
         delete increasePositionRequests[_key];
 
-        if (request.amountIn != 0) {
+        if (request.amountIn > 0) {
             uint256 amountIn = request.amountIn;
 
             if (request.path.length > 1) {
@@ -563,7 +559,7 @@ contract PositionRouter is BasePositionManager, IPositionRouter {
             request.acceptablePrice
         );
 
-        if (amountOut != 0) {
+        if (amountOut > 0) {
             if (request.path.length > 1) {
                 IERC20(request.path[0]).safeTransfer(vault, amountOut);
                 amountOut = _swap(request.path, request.minOut, address(this));
@@ -660,7 +656,7 @@ contract PositionRouter is BasePositionManager, IPositionRouter {
         returns (bool)
     {
         if (_positionBlockTime + maxTimeDelay <= block.timestamp) {
-            revert PositionRouter_expired();
+            revert("expired");
         }
 
         return _validateExecutionOrCancellation(_positionBlockNumber, _positionBlockTime, _account);
@@ -682,7 +678,7 @@ contract PositionRouter is BasePositionManager, IPositionRouter {
         bool isKeeperCall = msg.sender == address(this) || isPositionKeeper[msg.sender];
 
         if (!isLeverageEnabled && !isKeeperCall) {
-            revert PositionRouter_403();
+            revert("403");
         }
 
         if (isKeeperCall) {
@@ -854,13 +850,11 @@ contract PositionRouter is BasePositionManager, IPositionRouter {
         }
 
         bool success;
-        try IPositionRouterCallbackReceiver(_callbackTarget).print3rPositionCallback{gas: _gasLimit}(
+        try IPositionRouterCallbackReceiver(_callbackTarget).gmxPositionCallback{gas: _gasLimit}(
             _key, _wasExecuted, _isIncrease
         ) {
             success = true;
-        } catch {
-            revert PositionRouter_CallbackFailed();
-        }
+        } catch {}
 
         emit Callback(_callbackTarget, success, _gasLimit);
     }

@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.18;
 
-import {Test, console} from "forge-std/Test.sol";
+import {Test, console} from "lib/forge-std/src/Test.sol";
 import {HelperConfig} from "../../../script/HelperConfig.s.sol";
 import {VaultPriceFeed} from "../../../src/core/VaultPriceFeed.sol";
 import {FastPriceEvents} from "../../../src/oracle/FastPriceEvents.sol";
@@ -107,6 +107,8 @@ contract BrrrRewardRouterTest is Test {
             helperConfig.activeNetworkConfig();
         vm.deal(OWNER, 1e18 ether);
         vm.startPrank(OWNER);
+
+        /// Note Full Deployment Steps To Avoid Stack too Deep Error
 
         priceFeed = new VaultPriceFeed();
 
@@ -373,9 +375,42 @@ contract BrrrRewardRouterTest is Test {
         vm.expectRevert();
         rewardRouter.initialize(weth, address(brrr), address(rewardTracker), address(brrrManager));
     }
+
     //////////////////
     // Getter Tests //
     //////////////////
+
+    function testAllStateVariablesAreInitialized() public {
+        assertNotEq(rewardRouter.brrr(), address(0));
+        assertNotEq(rewardRouter.brrrManager(), address(0));
+        assertEq(rewardRouter.isInitialized(), true);
+        assertNotEq(rewardRouter.stakedBrrrTracker(), address(0));
+        assertNotEq(rewardRouter.weth(), address(0));
+    }
+
+    event StakeBrrr(address account, uint256 amount);
+    event UnstakeBrrr(address account, uint256 amount);
+
+    function testRewardRouterEventsFireUponFunctionCall() public giveUserCurrencyAndBrrr {
+        // call mintAndStakeBrrr(address _token, uint256 _amount, uint256 _minUsdg, uint256 _minBrrr)
+        vm.startPrank(USER);
+        WETH(weth).approve(address(rewardRouter), LARGE_AMOUNT);
+        uint256 brrrAmount = rewardRouter.mintAndStakeBrrr(weth, 1e18, 1, 1);
+        vm.stopPrank();
+        // expect emit
+        vm.expectEmit();
+        emit StakeBrrr(USER, brrrAmount);
+
+        vm.warp(block.timestamp + brrrManager.cooldownDuration());
+        vm.roll(block.number + 1);
+
+        // call unstakeAndRedeemBrrr(address _tokenOut, uint256 _brrrAmount, uint256 _minOut, address _receiver)
+        vm.prank(USER);
+        uint256 amountOut = rewardRouter.unstakeAndRedeemBrrr(weth, brrrAmount, 1, USER);
+        // expect emit
+        vm.expectEmit();
+        emit UnstakeBrrr(USER, brrrAmount);
+    }
 
     ////////////////////
     // Function Tests //

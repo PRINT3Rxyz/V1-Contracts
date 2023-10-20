@@ -2,7 +2,7 @@
 pragma solidity 0.8.18;
 
 import {MockV3Aggregator} from "../test/mocks/MockV3Aggregator.sol";
-import {Script} from "forge-std/Script.sol";
+import {Script} from "lib/forge-std/src/Script.sol";
 import {WETH} from "../src/tokens/WETH.sol";
 import {WBTC} from "../src/tokens/WBTC.sol";
 import {Token} from "../src/tokens/Token.sol";
