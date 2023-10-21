@@ -814,9 +814,141 @@
         }
       }
     },
+    "script/DeployP3.s.sol": {
+      "lastModificationDate": 1697907762417,
+      "contentHash": "adb60995e8115ebe91b98eb61e35b3e5",
+      "sourceName": "script/DeployP3.s.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "ipfs",
+            "appendCBOR": true
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "lib/forge-std/src/Base.sol",
+        "lib/forge-std/src/Script.sol",
+        "lib/forge-std/src/StdChains.sol",
+        "lib/forge-std/src/StdCheats.sol",
+        "lib/forge-std/src/StdJson.sol",
+        "lib/forge-std/src/StdMath.sol",
+        "lib/forge-std/src/StdStorage.sol",
+        "lib/forge-std/src/StdUtils.sol",
+        "lib/forge-std/src/Vm.sol",
+        "lib/forge-std/src/console.sol",
+        "lib/forge-std/src/console2.sol",
+        "lib/forge-std/src/interfaces/IMulticall3.sol",
+        "script/HelperConfig.s.sol",
+        "src/access/Governable.sol",
+        "src/access/interfaces/IAdmin.sol",
+        "src/amm/interfaces/IPancakeFactory.sol",
+        "src/amm/interfaces/IPancakePair.sol",
+        "src/core/BRRR.sol",
+        "src/core/BasePositionManager.sol",
+        "src/core/BrrrManager.sol",
+        "src/core/OrderBook.sol",
+        "src/core/PositionManager.sol",
+        "src/core/PositionRouter.sol",
+        "src/core/PositionUtils.sol",
+        "src/core/Router.sol",
+        "src/core/ShortsTracker.sol",
+        "src/core/Vault.sol",
+        "src/core/VaultErrorController.sol",
+        "src/core/VaultPriceFeed.sol",
+        "src/core/VaultUtils.sol",
+        "src/core/interfaces/IBasePositionManager.sol",
+        "src/core/interfaces/IBrrrManager.sol",
+        "src/core/interfaces/IOrderBook.sol",
+        "src/core/interfaces/IPositionRouter.sol",
+        "src/core/interfaces/IPositionRouterCallbackReceiver.sol",
+        "src/core/interfaces/IRouter.sol",
+        "src/core/interfaces/IShortsTracker.sol",
+        "src/core/interfaces/IVault.sol",
+        "src/core/interfaces/IVaultPriceFeed.sol",
+        "src/core/interfaces/IVaultUtils.sol",
+        "src/libraries/GSN/Context.sol",
+        "src/libraries/token/ERC20.sol",
+        "src/libraries/token/IERC20.sol",
+        "src/libraries/token/IERC20Metadata.sol",
+        "src/libraries/token/IERC20Permit.sol",
+        "src/libraries/token/SafeERC20.sol",
+        "src/libraries/token/draft-IERC6093.sol",
+        "src/libraries/utils/Address.sol",
+        "src/libraries/utils/ReentrancyGuard.sol",
+        "src/oracle/FastPriceEvents.sol",
+        "src/oracle/FastPriceFeed.sol",
+        "src/oracle/interfaces/IFastPriceEvents.sol",
+        "src/oracle/interfaces/IFastPriceFeed.sol",
+        "src/oracle/interfaces/IPriceFeed.sol",
+        "src/oracle/interfaces/ISecondaryPriceFeed.sol",
+        "src/peripherals/OrderBookReader.sol",
+        "src/peripherals/Reader.sol",
+        "src/peripherals/RewardReader.sol",
+        "src/peripherals/Timelock.sol",
+        "src/peripherals/VaultReader.sol",
+        "src/peripherals/interfaces/IHandlerTarget.sol",
+        "src/peripherals/interfaces/ITimelock.sol",
+        "src/peripherals/interfaces/ITimelockTarget.sol",
+        "src/referrals/ReferralReader.sol",
+        "src/referrals/ReferralStorage.sol",
+        "src/referrals/interfaces/IReferralStorage.sol",
+        "src/staking/BrrrBalance.sol",
+        "src/staking/BrrrRewardRouter.sol",
+        "src/staking/BrrrXpAmplifier.sol",
+        "src/staking/RewardDistributor.sol",
+        "src/staking/RewardTracker.sol",
+        "src/staking/TransferStakedBrrr.sol",
+        "src/staking/interfaces/IBrrrRewardRouter.sol",
+        "src/staking/interfaces/IBrrrXpAmplifier.sol",
+        "src/staking/interfaces/IRewardDistributor.sol",
+        "src/staking/interfaces/IRewardTracker.sol",
+        "src/tokens/BaseToken.sol",
+        "src/tokens/MintableBaseToken.sol",
+        "src/tokens/Token.sol",
+        "src/tokens/USDP.sol",
+        "src/tokens/WBTC.sol",
+        "src/tokens/WETH.sol",
+        "src/tokens/YieldToken.sol",
+        "src/tokens/interfaces/IBaseToken.sol",
+        "src/tokens/interfaces/IMintable.sol",
+        "src/tokens/interfaces/IUSDP.sol",
+        "src/tokens/interfaces/IWETH.sol",
+        "src/tokens/interfaces/IYieldToken.sol",
+        "src/tokens/interfaces/IYieldTracker.sol",
+        "test/mocks/MockV3Aggregator.sol"
+      ],
+      "versionRequirement": "=0.8.18",
+      "artifacts": {
+        "DeployP3": {
+          "0.8.18+commit.87f61d96.Darwin.appleclang": "DeployP3.s.sol/DeployP3.json"
+        }
+      }
+    },
     "script/HelperConfig.s.sol": {
-      "lastModificationDate": 1690475716198,
-      "contentHash": "8e432645b65a2f3c50895fc3b4c2bee5",
+      "lastModificationDate": 1697900147796,
+      "contentHash": "14c61be7e27be689f5a1af28bef2792a",
       "sourceName": "script/HelperConfig.s.sol",
       "solcConfig": {
         "settings": {
@@ -1497,8 +1629,8 @@
       }
     },
     "src/core/BrrrManager.sol": {
-      "lastModificationDate": 1692527489093,
-      "contentHash": "bd78fed52a4bae9d6a75b8918a453b12",
+      "lastModificationDate": 1697900147798,
+      "contentHash": "3ad10d09f44aa927a414b331643329a1",
       "sourceName": "src/core/BrrrManager.sol",
       "solcConfig": {
         "settings": {
@@ -1708,8 +1840,8 @@
       }
     },
     "src/core/PositionRouter.sol": {
-      "lastModificationDate": 1693564158677,
-      "contentHash": "1c197527ec908c110e5e7e4d1200400e",
+      "lastModificationDate": 1697900147798,
+      "contentHash": "97b41d28b8dde04f3f01b27b83c38eef",
       "sourceName": "src/core/PositionRouter.sol",
       "solcConfig": {
         "settings": {
@@ -1912,8 +2044,8 @@
       }
     },
     "src/core/Vault.sol": {
-      "lastModificationDate": 1692529844503,
-      "contentHash": "b57987ebf4e5953c067e53e4e24e2bf1",
+      "lastModificationDate": 1697900147798,
+      "contentHash": "8b70650f0e671750b934c018386462af",
       "sourceName": "src/core/Vault.sol",
       "solcConfig": {
         "settings": {
@@ -2267,8 +2399,8 @@
       }
     },
     "src/core/interfaces/IPositionRouterCallbackReceiver.sol": {
-      "lastModificationDate": 1693564645052,
-      "contentHash": "290e6187a78384f23d22e843721c0262",
+      "lastModificationDate": 1697900147799,
+      "contentHash": "5ca72f4e6a4fa83db3e63bb324a6dfb3",
       "sourceName": "src/core/interfaces/IPositionRouterCallbackReceiver.sol",
       "solcConfig": {
         "settings": {
@@ -3506,8 +3638,8 @@
       }
     },
     "src/oracle/FastPriceFeed.sol": {
-      "lastModificationDate": 1692440726985,
-      "contentHash": "625f2f805d0b6542c0f47cc6a865cf1e",
+      "lastModificationDate": 1697900147801,
+      "contentHash": "9724e78f5e81a7e352e293962552dfd4",
       "sourceName": "src/oracle/FastPriceFeed.sol",
       "solcConfig": {
         "settings": {
@@ -3893,7 +4025,7 @@
       }
     },
     "src/peripherals/PositionRouterReader.sol": {
-      "lastModificationDate": 1690374115728,
+      "lastModificationDate": 1697900147802,
       "contentHash": "545ac90c77308fc46b8aeb8dec3efa61",
       "sourceName": "src/peripherals/PositionRouterReader.sol",
       "solcConfig": {
@@ -3955,8 +4087,8 @@
       }
     },
     "src/peripherals/PriceFeedTimelock.sol": {
-      "lastModificationDate": 1692545981769,
-      "contentHash": "7ee31caeeada6124e61f7035042c2fcf",
+      "lastModificationDate": 1697900147802,
+      "contentHash": "02a784a41db67fef644f58795dedaf9d",
       "sourceName": "src/peripherals/PriceFeedTimelock.sol",
       "solcConfig": {
         "settings": {
@@ -4644,8 +4776,8 @@
       }
     },
     "src/staking/BrrrXpAmplifier.sol": {
-      "lastModificationDate": 1693564648535,
-      "contentHash": "71115c82695be3deba6816cef5c92612",
+      "lastModificationDate": 1697903656379,
+      "contentHash": "c0040c6857737de129e19b8207d776f0",
       "sourceName": "src/staking/BrrrXpAmplifier.sol",
       "solcConfig": {
         "settings": {
@@ -6138,8 +6270,8 @@
       }
     },
     "test/unit/core/BrrrManagerTest.t.sol": {
-      "lastModificationDate": 1690920073649,
-      "contentHash": "9c4a15aa901cdd962da0a5079226f7da",
+      "lastModificationDate": 1697900147806,
+      "contentHash": "66a1755ea07cea498c255d56911151d8",
       "sourceName": "test/unit/core/BrrrManagerTest.t.sol",
       "solcConfig": {
         "settings": {
@@ -6275,8 +6407,8 @@
       }
     },
     "test/unit/core/OrderBookTest.t.sol": {
-      "lastModificationDate": 1690920606112,
-      "contentHash": "62aedd97e3fda69dfe9ddf1bf3a1c591",
+      "lastModificationDate": 1697900147806,
+      "contentHash": "da535433e58c468dde465730b662a306",
       "sourceName": "test/unit/core/OrderBookTest.t.sol",
       "solcConfig": {
         "settings": {
@@ -6412,8 +6544,8 @@
       }
     },
     "test/unit/core/OrderExecutorTest.t.sol": {
-      "lastModificationDate": 1690920728612,
-      "contentHash": "ec6e77745c931fd2c1b2c869d9c49e86",
+      "lastModificationDate": 1697900147806,
+      "contentHash": "3a66601aca494b6c327c3d83aee83938",
       "sourceName": "test/unit/core/OrderExecutorTest.t.sol",
       "solcConfig": {
         "settings": {
@@ -6550,8 +6682,8 @@
       }
     },
     "test/unit/core/PositionManagerTest.t.sol": {
-      "lastModificationDate": 1690920096278,
-      "contentHash": "0b04c6ccee00dd849dc47ce504b64082",
+      "lastModificationDate": 1697900147806,
+      "contentHash": "42810263e2197cac17fc09aca74f39be",
       "sourceName": "test/unit/core/PositionManagerTest.t.sol",
       "solcConfig": {
         "settings": {
@@ -6687,8 +6819,8 @@
       }
     },
     "test/unit/core/PositionRouterTest.t.sol": {
-      "lastModificationDate": 1690920099132,
-      "contentHash": "af3fefc7643959acf9371fdc362cd043",
+      "lastModificationDate": 1697900147806,
+      "contentHash": "adf6603c4ef74cc73a1fda9e7d97dfcf",
       "sourceName": "test/unit/core/PositionRouterTest.t.sol",
       "solcConfig": {
         "settings": {
@@ -6824,8 +6956,8 @@
       }
     },
     "test/unit/core/RouterTest.t.sol": {
-      "lastModificationDate": 1690920772570,
-      "contentHash": "ee6163bd874d585f776d752b13246233",
+      "lastModificationDate": 1697900147806,
+      "contentHash": "ec116b8e1d68a076823397935631ed1d",
       "sourceName": "test/unit/core/RouterTest.t.sol",
       "solcConfig": {
         "settings": {
@@ -6961,8 +7093,8 @@
       }
     },
     "test/unit/core/ShortsTrackerTest.t.sol": {
-      "lastModificationDate": 1690920106195,
-      "contentHash": "a895f16faa74b65d399183a83dbafc23",
+      "lastModificationDate": 1697900147806,
+      "contentHash": "452b91a8fa8f1cafbae6354eeac1901b",
       "sourceName": "test/unit/core/ShortsTrackerTest.t.sol",
       "solcConfig": {
         "settings": {
@@ -7098,8 +7230,8 @@
       }
     },
     "test/unit/core/VaultErrorControllerTest.t.sol": {
-      "lastModificationDate": 1690920110734,
-      "contentHash": "391e0b28dc29612ab6a7964fcbdc1ec1",
+      "lastModificationDate": 1697900147806,
+      "contentHash": "6d93dc30ed09875cfda8c49d88208e9f",
       "sourceName": "test/unit/core/VaultErrorControllerTest.t.sol",
       "solcConfig": {
         "settings": {
@@ -7235,8 +7367,8 @@
       }
     },
     "test/unit/oracle/FastPriceEventsTest.t.sol": {
-      "lastModificationDate": 1690920114331,
-      "contentHash": "aa9bab914482b4e07c34b350d50f56e7",
+      "lastModificationDate": 1697900147807,
+      "contentHash": "1e5dd381396f38d5791967c99280783c",
       "sourceName": "test/unit/oracle/FastPriceEventsTest.t.sol",
       "solcConfig": {
         "settings": {
@@ -7372,8 +7504,8 @@
       }
     },
     "test/unit/oracle/FastPriceFeedTest.t.sol": {
-      "lastModificationDate": 1690920117735,
-      "contentHash": "88fbafc8bf92471bdab4a32e9f777204",
+      "lastModificationDate": 1697900147807,
+      "contentHash": "074e668e858350ae5b77277097eb40a2",
       "sourceName": "test/unit/oracle/FastPriceFeedTest.t.sol",
       "solcConfig": {
         "settings": {
@@ -7509,8 +7641,8 @@
       }
     },
     "test/unit/oracle/VaultPriceFeedTest.t.sol": {
-      "lastModificationDate": 1690920120445,
-      "contentHash": "d24cca9583238f11a23ac4bf5fce361f",
+      "lastModificationDate": 1697900147807,
+      "contentHash": "c804978e59ae1094c0b53ab594e5af30",
       "sourceName": "test/unit/oracle/VaultPriceFeedTest.t.sol",
       "solcConfig": {
         "settings": {
@@ -7646,8 +7778,8 @@
       }
     },
     "test/unit/peripherals/OrderBookReaderTest.t.sol": {
-      "lastModificationDate": 1690920124091,
-      "contentHash": "34000e36b74090bc338fb274751a16cd",
+      "lastModificationDate": 1697900147807,
+      "contentHash": "449b0953f50c2a7b4c2dee5a671de8fb",
       "sourceName": "test/unit/peripherals/OrderBookReaderTest.t.sol",
       "solcConfig": {
         "settings": {
@@ -7783,8 +7915,8 @@
       }
     },
     "test/unit/peripherals/PositionRouterReaderTest.t.sol": {
-      "lastModificationDate": 1690920813420,
-      "contentHash": "5f8d92f7b4afbcadafa5a1d588380a2d",
+      "lastModificationDate": 1697900147807,
+      "contentHash": "f3eb91d6538187f259a3103d214f0fcc",
       "sourceName": "test/unit/peripherals/PositionRouterReaderTest.t.sol",
       "solcConfig": {
         "settings": {
@@ -7921,8 +8053,8 @@
       }
     },
     "test/unit/peripherals/ReaderTest.t.sol": {
-      "lastModificationDate": 1690920827516,
-      "contentHash": "b2e607439b6f37be9f4e8a5c648dae6b",
+      "lastModificationDate": 1697900147807,
+      "contentHash": "e22f414d0c36ddff33920fd1b9ec94df",
       "sourceName": "test/unit/peripherals/ReaderTest.t.sol",
       "solcConfig": {
         "settings": {
@@ -8059,8 +8191,8 @@
       }
     },
     "test/unit/peripherals/RewardReaderTest.t.sol": {
-      "lastModificationDate": 1690920854790,
-      "contentHash": "2576544eb0ac3d3bcb39d2f52b4eddd3",
+      "lastModificationDate": 1697900147807,
+      "contentHash": "aec5f85f2cdb49e03b37a68ac6537c63",
       "sourceName": "test/unit/peripherals/RewardReaderTest.t.sol",
       "solcConfig": {
         "settings": {
@@ -8197,8 +8329,8 @@
       }
     },
     "test/unit/peripherals/TimelockTest.t.sol": {
-      "lastModificationDate": 1690920417323,
-      "contentHash": "35192d08d7669777ffaf65e802be7fa0",
+      "lastModificationDate": 1697900147807,
+      "contentHash": "8adf9735864f82ecd96d50c231587d50",
       "sourceName": "test/unit/peripherals/TimelockTest.t.sol",
       "solcConfig": {
         "settings": {
@@ -8336,8 +8468,8 @@
       }
     },
     "test/unit/peripherals/VaultReaderTest.t.sol": {
-      "lastModificationDate": 1690920437459,
-      "contentHash": "a2e4359982fb822865e13480cf9d94ca",
+      "lastModificationDate": 1697900147807,
+      "contentHash": "b0edbd9446fd3ce023f041bc2a7a9496",
       "sourceName": "test/unit/peripherals/VaultReaderTest.t.sol",
       "solcConfig": {
         "settings": {
@@ -8474,8 +8606,8 @@
       }
     },
     "test/unit/referrals/ReferralReaderTest.t.sol": {
-      "lastModificationDate": 1690920871528,
-      "contentHash": "a6e8c1447cfdaf6de6529bb7c44a6f2a",
+      "lastModificationDate": 1697900147808,
+      "contentHash": "66fdf7d993be050c0750b8f6eb6f89f0",
       "sourceName": "test/unit/referrals/ReferralReaderTest.t.sol",
       "solcConfig": {
         "settings": {
@@ -8612,8 +8744,8 @@
       }
     },
     "test/unit/referrals/ReferralStorageTest.t.sol": {
-      "lastModificationDate": 1690920444611,
-      "contentHash": "87fbafc9e5dd85d73c2ce34c538b6eb8",
+      "lastModificationDate": 1697900147808,
+      "contentHash": "c780c29eb98d03fe00a8035bb3279581",
       "sourceName": "test/unit/referrals/ReferralStorageTest.t.sol",
       "solcConfig": {
         "settings": {
@@ -8750,8 +8882,8 @@
       }
     },
     "test/unit/staking/BrrrRewardRouterTest.t.sol": {
-      "lastModificationDate": 1690921058390,
-      "contentHash": "be1808109df8cd9dc78b58c5dc19f172",
+      "lastModificationDate": 1697900147808,
+      "contentHash": "63d94dcdd91b9df26a3125e14dae9809",
       "sourceName": "test/unit/staking/BrrrRewardRouterTest.t.sol",
       "solcConfig": {
         "settings": {
@@ -8887,8 +9019,8 @@
       }
     },
     "test/unit/staking/BrrrXPAmplifierTest.t.sol": {
-      "lastModificationDate": 1693123707370,
-      "contentHash": "9188e38337ceb144f4427936a2f0914d",
+      "lastModificationDate": 1697900147808,
+      "contentHash": "a622a62d6f3d8ff85880676ee8fedaf0",
       "sourceName": "test/unit/staking/BrrrXPAmplifierTest.t.sol",
       "solcConfig": {
         "settings": {
@@ -8947,7 +9079,6 @@
         "src/core/BasePositionManager.sol",
         "src/core/BrrrManager.sol",
         "src/core/OrderBook.sol",
-        "src/core/OrderExecutor.sol",
         "src/core/PositionManager.sol",
         "src/core/PositionRouter.sol",
         "src/core/PositionUtils.sol",
@@ -9026,8 +9157,8 @@
       }
     },
     "test/unit/staking/RewardDistributorTest.t.sol": {
-      "lastModificationDate": 1691002657665,
-      "contentHash": "5accddd507392f685b7d36a5f84a316e",
+      "lastModificationDate": 1697900147808,
+      "contentHash": "7fe23bc2cdb40547ee532f4d4483353d",
       "sourceName": "test/unit/staking/RewardDistributorTest.t.sol",
       "solcConfig": {
         "settings": {
@@ -9163,8 +9294,8 @@
       }
     },
     "test/unit/staking/RewardTrackerTest.t.sol": {
-      "lastModificationDate": 1692270570892,
-      "contentHash": "0cd68f1ec6598e952a273df5c18fa4a2",
+      "lastModificationDate": 1697900147808,
+      "contentHash": "f108285bfdea8fa02363fdada6d0d101",
       "sourceName": "test/unit/staking/RewardTrackerTest.t.sol",
       "solcConfig": {
         "settings": {
@@ -9300,8 +9431,8 @@
       }
     },
     "test/unit/tokens/TokenManagerTest.t.sol": {
-      "lastModificationDate": 1690921373691,
-      "contentHash": "2f2a4047fc191f3c2ba552faf956efc0",
+      "lastModificationDate": 1697900147808,
+      "contentHash": "1b2d88863a1920d7964c7a3ae7f43c4d",
       "sourceName": "test/unit/tokens/TokenManagerTest.t.sol",
       "solcConfig": {
         "settings": {

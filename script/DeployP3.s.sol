@@ -78,36 +78,6 @@ contract DeployP3 is Script {
 
     function run()
         external
-        returns (
-            VaultPriceFeed,
-            FastPriceEvents,
-            FastPriceFeed,
-            Vault,
-            USDP,
-            Router,
-            VaultUtils,
-            ShortsTracker,
-            OrderBook,
-            PositionManager,
-            PositionRouter,
-            BRRR,
-            BrrrManager,
-            VaultErrorController,
-            ReferralStorage,
-            BrrrRewardRouter,
-            RewardTracker,
-            RewardDistributor,
-            Timelock,
-            TransferStakedBrrr,
-            BrrrBalance,
-            OrderBookReader,
-            VaultReader,
-            RewardReader,
-            ReferralReader,
-            Reader,
-            BrrrXpAmplifier,
-            HelperConfig
-        )
     {
         HelperConfig helperConfig = new HelperConfig(); // This comes with our mocks!
 
@@ -175,35 +145,5 @@ contract DeployP3 is Script {
         amplifier = new BrrrXpAmplifier(address(rewardTracker), address(transferStakedBrrr), weth);
 
         vm.stopBroadcast();
-        return (
-            priceFeed,
-            priceEvents,
-            fastPriceFeed,
-            vault,
-            usdp,
-            router,
-            vaultUtils,
-            shortsTracker,
-            orderBook,
-            positionManager,
-            positionRouter,
-            brrr,
-            brrrManager,
-            vaultErrorController,
-            referralStorage,
-            rewardRouter,
-            rewardTracker,
-            rewardDistributor,
-            timelock,
-            transferStakedBrrr,
-            brrrBalance,
-            orderBookReader,
-            vaultReader,
-            rewardReader,
-            referralReader,
-            reader,
-            amplifier,
-            helperConfig
-        );
     }
 }
