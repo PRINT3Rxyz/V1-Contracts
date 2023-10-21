@@ -198,6 +198,42 @@ contract BrrrXpAmplifier is Governable, ReentrancyGuard {
         return userPositionIds[user];
     }
 
+    /// @notice Getter function for a specific locked position.
+    /// @param _tier The tiers to check total staked amounts for.
+    /// @param _user The address of the user to check.
+    function getUserTotalStakedAmountForTier(uint8 _tier, address _user) external view returns (uint256) {
+        uint256 total;
+        uint256[] memory userPositions = userPositionIds[_user];
+        for (uint256 i = 0; i < userPositions.length; ++i) {
+            Position memory position = positions[_user][userPositions[i]];
+            if (position.tier == _tier) {
+                total = total + position.depositAmount;
+            }
+        }
+        return total;
+    }
+
+    /// @notice Getter function for a specific locked position.
+    /// @param _tier The tiers to check total staked amounts for.
+    /// @param _user The address of the user to check.
+    function getUserTotalXpEarnedForTier(uint8 _tier, address _user) external view returns (uint256) {
+        uint256 totalXp;
+        uint256[] memory tokens = userPositionIds[_user];
+        uint256 accumulationDuration;
+        if (block.timestamp >= SEASON_END) {
+            accumulationDuration = SEASON_END - lastXpUpdate[_user];
+        } else {
+            accumulationDuration = block.timestamp - lastXpUpdate[_user];
+        }
+        for (uint256 i = 0; i < tokens.length; ++i) {
+            Position memory position = positions[_user][tokens[i]];
+            if (position.tier == _tier) {
+                totalXp = totalXp + (position.depositAmount * position.multiplier * (accumulationDuration * xpPerSecond));
+            }
+        }
+        return totalXp / 100;
+    }
+
     /// @notice Crucial function. Claims WETH from the RewardTracker and updates the contract state.
     /// @dev Adaptation of the RewardTracker's _updateReward function. Essentially collates rewards and divides them up by the same mechanism.
     /// @param _account The address of the user to update.
