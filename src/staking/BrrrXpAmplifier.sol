@@ -19,6 +19,7 @@ contract BrrrXpAmplifier is Governable, ReentrancyGuard {
     error BrrrXpAmplifier_InvalidUser();
     error BrrrXpAmplifier_DurationPastSeasonEnd();
     error BrrrXpAmplifier_SeasonNotOver();
+    error BrrrXpAmplifier_NoPositions();
 
     event BrrrXpAmplifier_LiquidityLocked(address indexed user, uint256 indexed index, uint256 indexed amount);
     event BrrrXpAmplifier_LiquidityUnlocked(address indexed user, uint256 indexed index);
@@ -117,7 +118,7 @@ contract BrrrXpAmplifier is Governable, ReentrancyGuard {
 
     /// @notice Used to unlock RewardTracker tokens after the set duration has passed.
     /// @param index The index of the position to unlock. Can use getter to find.
-    function unlockLiquidity(uint256 index) external {
+    function unlockLiquidity(uint256 index) public {
         Position memory position = positions[msg.sender][index];
         if (position.depositAmount == 0) revert BrrrXpAmplifier_EmptyPosition();
         if (position.unlockDate > block.timestamp) revert BrrrXpAmplifier_DurationNotFinished();
@@ -143,6 +144,17 @@ contract BrrrXpAmplifier is Governable, ReentrancyGuard {
         stakeTransferrer.transfer(msg.sender, position.depositAmount);
 
         emit BrrrXpAmplifier_LiquidityUnlocked(msg.sender, index);
+    }
+    
+    /// @notice Used to unlock all expired positions.
+    function unlockAllPositions() external {
+        uint256[] memory userPositions = userPositionIds[msg.sender];
+        if (userPositions.length == 0) revert BrrrXpAmplifier_NoPositions();
+        for (uint256 i = 0; i < userPositions.length; ++i) {
+            if (positions[msg.sender][userPositions[i]].unlockDate <= block.timestamp){
+                unlockLiquidity(userPositions[i]);
+            }
+        }
     }
 
     /// @notice Used to claim pending WETH/XP rewards accumulated. Callable at any time.
