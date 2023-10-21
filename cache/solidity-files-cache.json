@@ -4776,8 +4776,8 @@
       }
     },
     "src/staking/BrrrXpAmplifier.sol": {
-      "lastModificationDate": 1697903656379,
-      "contentHash": "c0040c6857737de129e19b8207d776f0",
+      "lastModificationDate": 1697917398431,
+      "contentHash": "c5bb75232669e813c451f0425d7ce839",
       "sourceName": "src/staking/BrrrXpAmplifier.sol",
       "solcConfig": {
         "settings": {

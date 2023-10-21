@@ -21,8 +21,8 @@ contract BrrrXpAmplifier is Governable, ReentrancyGuard {
     error BrrrXpAmplifier_SeasonNotOver();
     error BrrrXpAmplifier_NoPositions();
 
-    event BrrrXpAmplifier_LiquidityLocked(address indexed user, uint256 indexed index, uint256 indexed amount);
-    event BrrrXpAmplifier_LiquidityUnlocked(address indexed user, uint256 indexed index);
+    event BrrrXpAmplifier_LiquidityLocked(address indexed user, uint256 index, uint256 indexed amount, uint8 indexed tier);
+    event BrrrXpAmplifier_LiquidityUnlocked(address indexed user, uint256 index, uint256 indexed amount, uint8 indexed tier);
     event BrrrXpAmplifier_RewardsClaimed(address indexed user, uint256 indexed tokenAmount, uint256 indexed xpAmount);
 
     RewardTracker public rewardTracker;
@@ -113,7 +113,7 @@ contract BrrrXpAmplifier is Governable, ReentrancyGuard {
         lockedAmount[msg.sender] = lockedAmount[msg.sender] + amount;
         contractBalance = contractBalance + amount;
 
-        emit BrrrXpAmplifier_LiquidityLocked(msg.sender, id, amount);
+        emit BrrrXpAmplifier_LiquidityLocked(msg.sender, id, amount, tier);
     }
 
     /// @notice Used to unlock RewardTracker tokens after the set duration has passed.
@@ -143,7 +143,7 @@ contract BrrrXpAmplifier is Governable, ReentrancyGuard {
 
         stakeTransferrer.transfer(msg.sender, position.depositAmount);
 
-        emit BrrrXpAmplifier_LiquidityUnlocked(msg.sender, index);
+        emit BrrrXpAmplifier_LiquidityUnlocked(msg.sender, index, position.depositAmount, position.tier);
     }
     
     /// @notice Used to unlock all expired positions.
