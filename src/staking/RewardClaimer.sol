@@ -25,8 +25,8 @@ contract RewardClaimer {
         rewardTracker = _tracker;
     }
 
-    function claimAllPendingRewards(address _receiver) external returns (uint256, uint256) {
-        uint256 stakedRewards = rewardTracker.claimForAccount(msg.sender, _receiver);
+    function claimAllPendingRewards() external returns (uint256, uint256) {
+        uint256 stakedRewards = rewardTracker.claimForAccount(msg.sender, msg.sender);
         (uint256 lockedRewards, uint256 xpRewards) = brrrXpAmplifier.claimRewardsForAccount(msg.sender);
         emit RewardsClaimed(msg.sender, stakedRewards + lockedRewards, xpRewards);
         return (stakedRewards + lockedRewards, xpRewards);
