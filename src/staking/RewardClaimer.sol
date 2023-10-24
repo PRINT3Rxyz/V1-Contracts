@@ -2,10 +2,6 @@
 
 pragma solidity 0.8.18;
 
-// Need the address for BrrrXPAmplifier and RewardTracker
-// call BrrrXPAmplifier.claimPendingRewards
-// call RewardTracker.claim
-// might need to use claimForAccount instead of claim for Reward Tracker
 import {IBrrrXpAmplifier} from "./interfaces/IBrrrXpAmplifier.sol";
 import {IRewardTracker} from "./interfaces/IRewardTracker.sol";
 
