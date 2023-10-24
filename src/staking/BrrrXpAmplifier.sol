@@ -20,6 +20,7 @@ contract BrrrXpAmplifier is Governable, ReentrancyGuard {
     error BrrrXpAmplifier_DurationPastSeasonEnd();
     error BrrrXpAmplifier_SeasonNotOver();
     error BrrrXpAmplifier_NoPositions();
+    error BrrrXpAmplifier_InvalidHandler();
 
     event BrrrXpAmplifier_LiquidityLocked(address indexed user, uint256 index, uint256 indexed amount, uint8 indexed tier);
     event BrrrXpAmplifier_LiquidityUnlocked(address indexed user, uint256 index, uint256 indexed amount, uint8 indexed tier);
@@ -49,6 +50,7 @@ contract BrrrXpAmplifier is Governable, ReentrancyGuard {
     mapping(address => uint256) public previousCumulativeRewardPerToken;
     mapping(address => uint256) public cumulativeRewards;
     mapping(address => uint256) public lastXpUpdate;
+    mapping(address => bool) public isHandler;
 
     uint256 public constant TIER1_DURATION = 1 hours; // Earn XP from BRRR
     uint256 public constant TIER2_DURATION = 30 days; // 1.25x XP multiplier
@@ -86,6 +88,10 @@ contract BrrrXpAmplifier is Governable, ReentrancyGuard {
     function updateXpPerSecond(uint256 val) external onlyGov {
         if (val == 0) revert BrrrXpAmplifier_InvalidAmount();
         xpPerSecond = val;
+    }
+
+    function setHandler(address _handler, bool _isActive) external onlyGov {
+        isHandler[_handler] = _isActive;
     }
 
     /// @notice Used to lock RewardTracker tokens for a set durations.
@@ -159,17 +165,13 @@ contract BrrrXpAmplifier is Governable, ReentrancyGuard {
 
     /// @notice Used to claim pending WETH/XP rewards accumulated. Callable at any time.
     function claimPendingRewards() external nonReentrant returns (uint256, uint256) {
-        uint256 userXpRewards = _updateRewards(msg.sender);
+        return _claimPendingRewards(msg.sender);
+    }
 
-        uint256 userTokenRewards = claimableReward[msg.sender];
-        claimableReward[msg.sender] = 0;
-
-        if (userTokenRewards != 0 && IERC20(weth).balanceOf(address(this)) >= userTokenRewards) {
-            IERC20(weth).transfer(msg.sender, userTokenRewards);
-        }
-
-        emit BrrrXpAmplifier_RewardsClaimed(msg.sender, userTokenRewards, userXpRewards);
-        return (userTokenRewards, userXpRewards);
+    /// @notice Used to claim WETH/XP for a user externally.
+    function claimRewardsForAccount(address _account) external nonReentrant returns (uint256, uint256) {
+        _validateHandler();
+        return _claimPendingRewards(_account);
     }
 
     /// @notice Returns the amount of claimable WETH rewards.
@@ -288,6 +290,20 @@ contract BrrrXpAmplifier is Governable, ReentrancyGuard {
         return 0;
     }
 
+    function _claimPendingRewards(address _user) internal returns (uint256, uint256) {
+        uint256 userXpRewards = _updateRewards(_user);
+
+        uint256 userTokenRewards = claimableReward[_user];
+        claimableReward[_user] = 0;
+
+        if (userTokenRewards != 0 && IERC20(weth).balanceOf(address(this)) >= userTokenRewards) {
+            IERC20(weth).transfer(_user, userTokenRewards);
+        }
+
+        emit BrrrXpAmplifier_RewardsClaimed(_user, userTokenRewards, userXpRewards);
+        return (userTokenRewards, userXpRewards);
+    }
+
     /// @notice Returns the duration of a locked position by tier.
     /// @param tier The tier of the position.
     function _getDuration(uint8 tier) private pure returns (uint256) {
@@ -332,6 +348,12 @@ contract BrrrXpAmplifier is Governable, ReentrancyGuard {
             return 150;
         } else {
             return 200;
+        }
+    }
+
+    function _validateHandler() private view {
+        if (!isHandler[msg.sender]) {
+            revert BrrrXpAmplifier_InvalidHandler();
         }
     }
 }

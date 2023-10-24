@@ -30,6 +30,8 @@ contract HelperConfig is Script {
     constructor() {
         if (block.chainid == 11155111) {
             activeNetworkConfig = getSepoliaEthConfig();
+        } else if (block.chainid == 84531) {
+            activeNetworkConfig = getBaseGorliConfig();
         } else {
             activeNetworkConfig = getOrCreateAnvilEthConfig();
         }
@@ -45,6 +47,19 @@ contract HelperConfig is Script {
             // WETH altered. Re-deploy for Sepolia.
             weth: payable(0x5f871b68DB327999dE84B9757F30F9B4dc73186A),
             wbtc: address(_wbtc),
+            usdc: address(_usdc),
+            deployerKey: vm.envUint("PRIVATE_KEY")
+        });
+    }
+
+    function getBaseGorliConfig() public returns (NetworkConfig memory baseGorliConfig) {
+        Token _usdc = new Token();
+        baseGorliConfig = NetworkConfig({
+            wethUsdPriceFeed: 0xcD2A119bD1F7DF95d706DE6F2057fDD45A0503E2, // ETH / USD
+            wbtcUsdPriceFeed: 0xAC15714c08986DACC0379193e22382736796496f,
+            usdcPriceFeed: 0xb85765935B4d9Ab6f841c9a00690Da5F34368bc0,
+            weth: payable(0x77410Eea3dD4F7dbc8D527a3519db16a9D91B4ea),
+            wbtc: 0xE9E36f0aaEd18a2f96B358173b484832407B51Da,
             usdc: address(_usdc),
             deployerKey: vm.envUint("PRIVATE_KEY")
         });

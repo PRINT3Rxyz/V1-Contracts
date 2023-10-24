@@ -72,14 +72,10 @@ contract DeployP3 is Script {
     address public usdcPriceFeed;
     uint256 public deployerKey;
 
-    uint256 public constant LARGE_AMOUNT = 1e30;
-    uint256 public constant DEPOSIT_AMOUNT = 1e22;
-    uint256 public constant SMALL_AMOUNT = 1e20;
-
     function run()
         external
     {
-        HelperConfig helperConfig = new HelperConfig(); // This comes with our mocks!
+        helperConfig = new HelperConfig(); // This comes with our mocks!
 
         (wethUsdPriceFeed, wbtcUsdPriceFeed, usdcPriceFeed, weth, wbtc, usdc, deployerKey) =
             helperConfig.activeNetworkConfig();

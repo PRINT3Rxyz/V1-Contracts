@@ -214,7 +214,7 @@ contract BrrrXpAmplifierTest is Test {
         vault.setTokenConfig(weth, 18, 10000, 150, 0, false, true);
         vault.setTokenConfig(wbtc, 8, 10000, 150, 0, false, true);
         vault.setTokenConfig(usdc, 6, 20000, 150, 0, true, false);
-        vault.setFees(15, 5, 15, 15, 1, 10, 2000000000000000000000000000000, 86400, true);
+        vault.setFees(15, 5, 15, 15, 1, 10, 2000000000000000000000000000000, 10800, true);
         vault.setIsLeverageEnabled(false);
         vault.setFundingRate(3600, 100, 100);
         vault.setVaultUtils(vaultUtils);
@@ -333,7 +333,7 @@ contract BrrrXpAmplifierTest is Test {
         rewardTracker.setHandler(address(transferStakedBrrr), true);
 
         rewardDistributor.updateLastDistributionTime();
-        rewardDistributor.setTokensPerInterval(4670965608460);
+        rewardDistributor.setTokensPerInterval(0);
 
         WBTC(wbtc).approve(address(brrrManager), LARGE_AMOUNT);
         WETH(weth).approve(address(brrrManager), LARGE_AMOUNT);

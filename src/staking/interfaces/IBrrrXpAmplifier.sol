@@ -33,6 +33,7 @@ interface IBrrrXpAmplifier {
     function lockLiquidity(uint8 tier, uint256 amount) external;
     function unlockLiquidity(uint256 index) external;
     function claimPendingRewards(address user) external;
+    function claimRewardsForAccount(address _account) external returns (uint256, uint256);
     function getClaimableTokenRewards(address user) external view returns (uint256);
     function getClaimableXpRewards(address user) external view returns (uint256);
     function getRemainingLockDuration(address user, uint256 index) external view returns (uint256);
