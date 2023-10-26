@@ -52,15 +52,14 @@ contract HelperConfig is Script {
         });
     }
 
-    function getBaseGorliConfig() public returns (NetworkConfig memory baseGorliConfig) {
-        Token _usdc = new Token();
+    function getBaseGorliConfig() public view returns (NetworkConfig memory baseGorliConfig) {
         baseGorliConfig = NetworkConfig({
             wethUsdPriceFeed: 0xcD2A119bD1F7DF95d706DE6F2057fDD45A0503E2, // ETH / USD
             wbtcUsdPriceFeed: 0xAC15714c08986DACC0379193e22382736796496f,
             usdcPriceFeed: 0xb85765935B4d9Ab6f841c9a00690Da5F34368bc0,
             weth: payable(0x77410Eea3dD4F7dbc8D527a3519db16a9D91B4ea),
             wbtc: 0xE9E36f0aaEd18a2f96B358173b484832407B51Da,
-            usdc: address(_usdc),
+            usdc: 0x15DC6BB178857fD1ad54934436221211eE5d0180,
             deployerKey: vm.envUint("PRIVATE_KEY")
         });
     }

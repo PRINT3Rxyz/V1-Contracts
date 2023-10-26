@@ -815,8 +815,8 @@
       }
     },
     "script/DeployP3.s.sol": {
-      "lastModificationDate": 1698155456440,
-      "contentHash": "660f726025163a93a70a36b9ea8a3fdf",
+      "lastModificationDate": 1698228154350,
+      "contentHash": "745a059046b4a9fb912ebfb4c1dea399",
       "sourceName": "script/DeployP3.s.sol",
       "solcConfig": {
         "settings": {
@@ -906,6 +906,7 @@
         "src/peripherals/OrderBookReader.sol",
         "src/peripherals/Reader.sol",
         "src/peripherals/RewardReader.sol",
+        "src/peripherals/ShortsTrackerTimelock.sol",
         "src/peripherals/Timelock.sol",
         "src/peripherals/VaultReader.sol",
         "src/peripherals/interfaces/IHandlerTarget.sol",
@@ -917,6 +918,7 @@
         "src/staking/BrrrBalance.sol",
         "src/staking/BrrrRewardRouter.sol",
         "src/staking/BrrrXpAmplifier.sol",
+        "src/staking/RewardClaimer.sol",
         "src/staking/RewardDistributor.sol",
         "src/staking/RewardTracker.sol",
         "src/staking/TransferStakedBrrr.sol",
@@ -947,8 +949,8 @@
       }
     },
     "script/HelperConfig.s.sol": {
-      "lastModificationDate": 1698158891625,
-      "contentHash": "8373d3d3d2d0bc03503472ad632a0319",
+      "lastModificationDate": 1698228848290,
+      "contentHash": "b8981b734232d54ab3b554da2874254d",
       "sourceName": "script/HelperConfig.s.sol",
       "solcConfig": {
         "settings": {
@@ -1006,6 +1008,60 @@
       "artifacts": {
         "HelperConfig": {
           "0.8.18+commit.87f61d96.Darwin.appleclang": "HelperConfig.s.sol/HelperConfig.json"
+        }
+      }
+    },
+    "script/SetKeeper.s.sol": {
+      "lastModificationDate": 1698228321743,
+      "contentHash": "ebb316ab95c2bca70d1adad620c03d5c",
+      "sourceName": "script/SetKeeper.s.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "ipfs",
+            "appendCBOR": true
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "lib/forge-std/src/Base.sol",
+        "lib/forge-std/src/Script.sol",
+        "lib/forge-std/src/StdChains.sol",
+        "lib/forge-std/src/StdCheats.sol",
+        "lib/forge-std/src/StdJson.sol",
+        "lib/forge-std/src/StdMath.sol",
+        "lib/forge-std/src/StdStorage.sol",
+        "lib/forge-std/src/StdUtils.sol",
+        "lib/forge-std/src/Vm.sol",
+        "lib/forge-std/src/console.sol",
+        "lib/forge-std/src/console2.sol",
+        "lib/forge-std/src/interfaces/IMulticall3.sol"
+      ],
+      "versionRequirement": "=0.8.18",
+      "artifacts": {
+        "SetKeeper": {
+          "0.8.18+commit.87f61d96.Darwin.appleclang": "SetKeeper.s.sol/SetKeeper.json"
         }
       }
     },
@@ -4279,7 +4335,7 @@
       }
     },
     "src/peripherals/Timelock.sol": {
-      "lastModificationDate": 1691170328047,
+      "lastModificationDate": 1698074538898,
       "contentHash": "853985562421c5833435fa2c681154fd",
       "sourceName": "src/peripherals/Timelock.sol",
       "solcConfig": {
@@ -4776,8 +4832,8 @@
       }
     },
     "src/staking/BrrrXpAmplifier.sol": {
-      "lastModificationDate": 1698074538899,
-      "contentHash": "85c129bebac00ddade68760d9fd37aa5",
+      "lastModificationDate": 1698177593535,
+      "contentHash": "21d86b35e3d441c76117e33c36504552",
       "sourceName": "src/staking/BrrrXpAmplifier.sol",
       "solcConfig": {
         "settings": {
@@ -4827,6 +4883,50 @@
       "artifacts": {
         "BrrrXpAmplifier": {
           "0.8.18+commit.87f61d96.Darwin.appleclang": "BrrrXpAmplifier.sol/BrrrXpAmplifier.json"
+        }
+      }
+    },
+    "src/staking/RewardClaimer.sol": {
+      "lastModificationDate": 1698217443735,
+      "contentHash": "494e979eb542edfb07e6ec9f8af42115",
+      "sourceName": "src/staking/RewardClaimer.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "ipfs",
+            "appendCBOR": true
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "src/staking/interfaces/IBrrrXpAmplifier.sol",
+        "src/staking/interfaces/IRewardTracker.sol"
+      ],
+      "versionRequirement": "=0.8.18",
+      "artifacts": {
+        "RewardClaimer": {
+          "0.8.18+commit.87f61d96.Darwin.appleclang": "RewardClaimer.sol/RewardClaimer.json"
         }
       }
     },
@@ -5111,8 +5211,8 @@
       }
     },
     "src/staking/interfaces/IBrrrXpAmplifier.sol": {
-      "lastModificationDate": 1691144996779,
-      "contentHash": "ba11400f024b3a36c263ec83da3abef5",
+      "lastModificationDate": 1698177825670,
+      "contentHash": "b0770c922b44f142613f427ef916ecb1",
       "sourceName": "src/staking/interfaces/IBrrrXpAmplifier.sol",
       "solcConfig": {
         "settings": {
@@ -6407,8 +6507,8 @@
       }
     },
     "test/unit/core/OrderBookTest.t.sol": {
-      "lastModificationDate": 1698074538901,
-      "contentHash": "da535433e58c468dde465730b662a306",
+      "lastModificationDate": 1698311158835,
+      "contentHash": "bdaa4e4de0b1fdc7b1d773156ba762d5",
       "sourceName": "test/unit/core/OrderBookTest.t.sol",
       "solcConfig": {
         "settings": {
@@ -6819,8 +6919,8 @@
       }
     },
     "test/unit/core/PositionRouterTest.t.sol": {
-      "lastModificationDate": 1698173874620,
-      "contentHash": "dae4f49ce44c929318aab120a77cd53a",
+      "lastModificationDate": 1698309558063,
+      "contentHash": "de1d8f779e9fb42362af196e394f305a",
       "sourceName": "test/unit/core/PositionRouterTest.t.sol",
       "solcConfig": {
         "settings": {
@@ -6916,6 +7016,7 @@
         "src/peripherals/OrderBookReader.sol",
         "src/peripherals/Reader.sol",
         "src/peripherals/RewardReader.sol",
+        "src/peripherals/ShortsTrackerTimelock.sol",
         "src/peripherals/Timelock.sol",
         "src/peripherals/VaultReader.sol",
         "src/peripherals/interfaces/IHandlerTarget.sol",
@@ -6926,6 +7027,8 @@
         "src/referrals/interfaces/IReferralStorage.sol",
         "src/staking/BrrrBalance.sol",
         "src/staking/BrrrRewardRouter.sol",
+        "src/staking/BrrrXpAmplifier.sol",
+        "src/staking/RewardClaimer.sol",
         "src/staking/RewardDistributor.sol",
         "src/staking/RewardTracker.sol",
         "src/staking/TransferStakedBrrr.sol",
@@ -8882,8 +8985,8 @@
       }
     },
     "test/unit/staking/BrrrRewardRouterTest.t.sol": {
-      "lastModificationDate": 1698074538903,
-      "contentHash": "63d94dcdd91b9df26a3125e14dae9809",
+      "lastModificationDate": 1698320907572,
+      "contentHash": "93c3e6d64453808a3ef34985726f263e",
       "sourceName": "test/unit/staking/BrrrRewardRouterTest.t.sol",
       "solcConfig": {
         "settings": {
@@ -9019,8 +9122,8 @@
       }
     },
     "test/unit/staking/BrrrXPAmplifierTest.t.sol": {
-      "lastModificationDate": 1698171528361,
-      "contentHash": "73b91efff4a1dde18b675af8a1edf11b",
+      "lastModificationDate": 1698308593466,
+      "contentHash": "736fe4fe091262bb7c18b9f43c686202",
       "sourceName": "test/unit/staking/BrrrXPAmplifierTest.t.sol",
       "solcConfig": {
         "settings": {
@@ -9116,6 +9219,7 @@
         "src/peripherals/OrderBookReader.sol",
         "src/peripherals/Reader.sol",
         "src/peripherals/RewardReader.sol",
+        "src/peripherals/ShortsTrackerTimelock.sol",
         "src/peripherals/Timelock.sol",
         "src/peripherals/VaultReader.sol",
         "src/peripherals/interfaces/IHandlerTarget.sol",
@@ -9127,6 +9231,7 @@
         "src/staking/BrrrBalance.sol",
         "src/staking/BrrrRewardRouter.sol",
         "src/staking/BrrrXpAmplifier.sol",
+        "src/staking/RewardClaimer.sol",
         "src/staking/RewardDistributor.sol",
         "src/staking/RewardTracker.sol",
         "src/staking/TransferStakedBrrr.sol",

@@ -14,10 +14,18 @@ import {IYieldToken} from "../tokens/interfaces/IYieldToken.sol";
 import {IBaseToken} from "../tokens/interfaces/IBaseToken.sol";
 import {IMintable} from "../tokens/interfaces/IMintable.sol";
 import {IUSDP} from "../tokens/interfaces/IUSDP.sol";
-import {IBrrrRewardRouter} from "../staking/interfaces/IBrrrRewardRouter.sol";
-import {IBrrrXpAmplifier} from "../staking/interfaces/IBrrrXpAmplifier.sol";
-
+import {IPositionRouter} from "../core/interfaces/IPositionRouter.sol";
+import {IPositionManager} from "../core/interfaces/IPositionManager.sol";
 import {IERC20} from "../libraries/token/IERC20.sol";
+
+/*
+    @dev Governance contract for the following contracts:
+    - Vault
+    - BrrrManager
+    - ReferralStorage
+    - USDP
+    - Tokens
+*/
 
 contract Timelock is ITimelock {
     uint256 public constant PRICE_PRECISION = 10 ** 30;
@@ -31,7 +39,6 @@ contract Timelock is ITimelock {
     address public tokenManager;
     address public mintReceiver;
     address public brrrManager;
-    address public rewardRouter;
     uint256 public maxTokenSupply;
 
     uint256 public override marginFeeBasisPoints;
@@ -61,9 +68,7 @@ contract Timelock is ITimelock {
         bool isStable,
         bool isShortable
     );
-    event SignalClearSetTokenConfig(address vault, address token);
-    event SignalRecoverTokens(address target, address token);
-    event SignalUpdateXpPerSecond(address target, uint256 value);
+    event SignalClearSetTokenConfig(address vault, address token, bytes32 action);
     event ClearAction(bytes32 action);
 
     modifier onlyAdmin() {
@@ -92,7 +97,6 @@ contract Timelock is ITimelock {
         address _tokenManager,
         address _mintReceiver,
         address _brrrManager,
-        address _rewardRouter,
         uint256 _maxTokenSupply,
         uint256 _marginFeeBasisPoints,
         uint256 _maxMarginFeeBasisPoints
@@ -103,7 +107,6 @@ contract Timelock is ITimelock {
         tokenManager = _tokenManager;
         mintReceiver = _mintReceiver;
         brrrManager = _brrrManager;
-        rewardRouter = _rewardRouter;
         maxTokenSupply = _maxTokenSupply;
 
         marginFeeBasisPoints = _marginFeeBasisPoints;
@@ -117,6 +120,10 @@ contract Timelock is ITimelock {
     function setExternalAdmin(address _target, address _admin) external onlyAdmin {
         require(_target != address(this), "Timelock: invalid _target");
         IAdmin(_target).setAdmin(_admin);
+    }
+
+    function setTokenManager(address _tokenManager) external onlyTokenManager {
+        tokenManager = _tokenManager;
     }
 
     function setContractHandler(address _handler, bool _isActive) external onlyAdmin {
@@ -134,13 +141,6 @@ contract Timelock is ITimelock {
 
         IVault vault = _brrrManager.vault();
         vault.setManager(brrrManager, true);
-    }
-
-    function initRewardRouter() external onlyAdmin {
-        IBrrrRewardRouter _rewardRouter = IBrrrRewardRouter(rewardRouter);
-
-        IHandlerTarget(_rewardRouter.stakedBrrrTracker()).setHandler(rewardRouter, true);
-        IHandlerTarget(brrrManager).setHandler(rewardRouter, true);
     }
 
     function setKeeper(address _keeper, bool _isActive) external onlyAdmin {
@@ -357,6 +357,15 @@ contract Timelock is ITimelock {
         onlyKeeperAndAbove
     {
         IReferralStorage(_referralStorage).setTier(_tierId, _totalRebate, _discountShare);
+    }
+
+    function govSetKeeper(address _positionRouter, address _positionManager, address _keeper, bool _isActive)
+        external
+        onlyAdmin
+    {
+        IPositionRouter(_positionRouter).setPositionKeeper(_keeper, _isActive);
+        IPositionManager(_positionManager).setOrderKeeper(_keeper, _isActive);
+        IPositionManager(_positionManager).setLiquidator(_keeper, _isActive);
     }
 
     function setReferrerTier(address _referralStorage, address _referrer, uint256 _tierId)
@@ -582,7 +591,7 @@ contract Timelock is ITimelock {
 
         _setPendingAction(action);
 
-        emit SignalClearSetTokenConfig(_vault, _token);
+        emit SignalClearSetTokenConfig(_vault, _token, action);
     }
 
     function vaultClearTokenConfig(address _vault, address _token) external onlyAdmin {
@@ -592,32 +601,6 @@ contract Timelock is ITimelock {
         _clearAction(action);
 
         IVault(_vault).clearTokenConfig(_token);
-    }
-
-    function signalRecoverTokens(address _token, address _target) external onlyAdmin {
-        bytes32 action = keccak256(abi.encodePacked("recoverTokens", _token, _target));
-        _setPendingAction(action);
-        emit SignalRecoverTokens(_token, _target);
-    }
-
-    function recoverTokens(address _token, address _target) external onlyAdmin {
-        bytes32 action = keccak256(abi.encodePacked("recoverTokens", _token, _target));
-        _validateAction(action);
-        _clearAction(action);
-        IBrrrXpAmplifier(_target).recoverTokens(_token);
-    }
-
-    function signalUpdateXpPerSecond(uint256 _value, address _target) external onlyAdmin {
-        bytes32 action = keccak256(abi.encodePacked("updateXpPerSecond", _value, _target));
-        _setPendingAction(action);
-        emit SignalUpdateXpPerSecond(_target, _value);
-    }
-
-    function updateXpPerSecond(uint256 _value, address _target) external onlyAdmin {
-        bytes32 action = keccak256(abi.encodePacked("updateXpPerSecond", _value, _target));
-        _validateAction(action);
-        _clearAction(action);
-        IBrrrXpAmplifier(_target).updateXpPerSecond(_value);
     }
 
     function cancelAction(bytes32 _action) external onlyAdmin {

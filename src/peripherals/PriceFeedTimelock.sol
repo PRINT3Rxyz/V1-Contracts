@@ -15,6 +15,12 @@ import "../tokens/interfaces/IUSDP.sol";
 
 import "../libraries/token/IERC20.sol";
 
+/*
+    @dev Governance contract for:
+    - VaultPriceFeed
+    - FastPriceFeed
+*/
+
 contract PriceFeedTimelock {
     uint256 public constant MAX_BUFFER = 5 days;
 

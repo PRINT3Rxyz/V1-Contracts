@@ -33,6 +33,8 @@ import {BrrrBalance} from "../../../src/staking/BrrrBalance.sol";
 import {Reader} from "../../../src/peripherals/Reader.sol";
 import {Token} from "../../../src/tokens/Token.sol";
 import {BrrrXpAmplifier} from "../../../src/staking/BrrrXpAmplifier.sol";
+import {ShortsTrackerTimelock} from "../../../src/peripherals/ShortsTrackerTimelock.sol";
+import {RewardClaimer} from "../../../src/staking/RewardClaimer.sol";
 
 contract BrrrXpAmplifierTest is Test {
     address public OWNER;
@@ -66,6 +68,8 @@ contract BrrrXpAmplifierTest is Test {
     ReferralReader referralReader;
     Reader reader;
     BrrrXpAmplifier amplifier;
+    ShortsTrackerTimelock shortsTrackerTimelock;
+    RewardClaimer rewardClaimer;
 
     address public wbtc;
     address payable weth;
@@ -172,6 +176,10 @@ contract BrrrXpAmplifierTest is Test {
         reader = new Reader();
 
         amplifier = new BrrrXpAmplifier(address(rewardTracker), address(transferStakedBrrr), weth);
+
+        shortsTrackerTimelock = new ShortsTrackerTimelock(OWNER, 60, 300, 20);
+
+        rewardClaimer = new RewardClaimer(address(amplifier), address(rewardTracker));
 
         console.log("Deployed contracts");
 
@@ -331,6 +339,9 @@ contract BrrrXpAmplifierTest is Test {
         rewardTracker.setHandler(address(rewardRouter), true);
         // TransferStakedBrrr must be a handler for BrrrXpAmplifier to function
         rewardTracker.setHandler(address(transferStakedBrrr), true);
+        rewardTracker.setHandler(address(rewardClaimer), true);
+
+        amplifier.setHandler(address(rewardClaimer), true);
 
         rewardDistributor.updateLastDistributionTime();
         rewardDistributor.setTokensPerInterval(0);
@@ -352,6 +363,13 @@ contract BrrrXpAmplifierTest is Test {
         timelock.setContractHandler(address(positionManager), true);
         timelock.setContractHandler(OWNER, true);
         timelock.setContractHandler(USER, true);
+
+        uint256[] memory priceArray = new uint256[](2);
+        priceArray[0] = priceFeed.getPrimaryPrice(weth, true);
+        priceArray[1] = priceFeed.getPrimaryPrice(wbtc, true);
+        /// CRUCIAL: MUST CALL BEFORE SETTING GOV TO SHORTSTIMELOCK
+        shortsTracker.setInitData(tokenArray, priceArray);
+        shortsTracker.setGov(address(shortsTrackerTimelock));
 
         vm.stopPrank();
     }

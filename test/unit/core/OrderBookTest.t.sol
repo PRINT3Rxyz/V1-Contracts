@@ -642,4 +642,52 @@ contract OrderBookTest is Test {
         vm.stopPrank();
     }
     // Executing Orders => Positions Can Only Execute If Price Hits Limit
+
+    function testOrderBookLimitShortPositions() public giveUserCurrency {
+        vm.startPrank(USER);
+        wethToUsdcArray.push(address(weth));
+        wethToUsdcArray.push(address(usdc));
+        address[] memory _path = wethToUsdcArray;
+        router.approvePlugin(address(orderBook));
+        WETH(weth).approve(address(router), LARGE_AMOUNT);
+        orderBook.createIncreaseOrder{value: 300000000000000}(
+            _path, 1e18, weth, 0, 9e34, usdc, false, 1661587547909500000000000000000000, true, 300000000000000, false
+        );
+        vm.stopPrank();
+        uint256 _orderIndex = orderBook.increaseOrdersIndex(USER) - 1;
+        vm.prank(OWNER);
+        positionManager.executeIncreaseOrder(USER, _orderIndex, payable(msg.sender));
+    }
+
+    function testOrderBookLimitLongPositions() public giveUserCurrency {
+        vm.startPrank(USER);
+        wethArray.push(address(weth));
+        address[] memory _path = wethArray;
+        router.approvePlugin(address(orderBook));
+        WETH(weth).approve(address(router), LARGE_AMOUNT);
+        orderBook.createIncreaseOrder{value: 300000000000000}(
+            _path, 1e18, weth, 0, 9e34, weth, true, 1661587547909500000000000000000000, true, 300000000000000, false
+        );
+        vm.stopPrank();
+        uint256 _orderIndex = orderBook.increaseOrdersIndex(USER) - 1;
+        vm.prank(OWNER);
+        positionManager.executeIncreaseOrder(USER, _orderIndex, payable(msg.sender));
+    }
+
+    function testOrderBookLimitPositionsWithDelay() public giveUserCurrency {
+        vm.startPrank(USER);
+        wethArray.push(address(weth));
+        address[] memory _path = wethArray;
+        router.approvePlugin(address(orderBook));
+        WETH(weth).approve(address(router), LARGE_AMOUNT);
+        orderBook.createIncreaseOrder{value: 300000000000000}(
+            _path, 1e18, weth, 0, 1e34, weth, true, 1661587547909500000000000000000000, true, 300000000000000, false
+        );
+        vm.stopPrank();
+        vm.warp(block.timestamp + 1 days);
+        vm.roll(block.number + 1);
+        uint256 _orderIndex = orderBook.increaseOrdersIndex(USER) - 1;
+        vm.prank(OWNER);
+        positionManager.executeIncreaseOrder(USER, _orderIndex, payable(msg.sender));
+    }
 }

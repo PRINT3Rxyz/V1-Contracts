@@ -22,8 +22,12 @@ contract BrrrXpAmplifier is Governable, ReentrancyGuard {
     error BrrrXpAmplifier_NoPositions();
     error BrrrXpAmplifier_InvalidHandler();
 
-    event BrrrXpAmplifier_LiquidityLocked(address indexed user, uint256 index, uint256 indexed amount, uint8 indexed tier);
-    event BrrrXpAmplifier_LiquidityUnlocked(address indexed user, uint256 index, uint256 indexed amount, uint8 indexed tier);
+    event BrrrXpAmplifier_LiquidityLocked(
+        address indexed user, uint256 index, uint256 indexed amount, uint8 indexed tier
+    );
+    event BrrrXpAmplifier_LiquidityUnlocked(
+        address indexed user, uint256 index, uint256 indexed amount, uint8 indexed tier
+    );
     event BrrrXpAmplifier_RewardsClaimed(address indexed user, uint256 indexed tokenAmount, uint256 indexed xpAmount);
 
     RewardTracker public rewardTracker;
@@ -151,13 +155,13 @@ contract BrrrXpAmplifier is Governable, ReentrancyGuard {
 
         emit BrrrXpAmplifier_LiquidityUnlocked(msg.sender, index, position.depositAmount, position.tier);
     }
-    
+
     /// @notice Used to unlock all expired positions.
     function unlockAllPositions() external {
         uint256[] memory userPositions = userPositionIds[msg.sender];
         if (userPositions.length == 0) revert BrrrXpAmplifier_NoPositions();
         for (uint256 i = 0; i < userPositions.length; ++i) {
-            if (positions[msg.sender][userPositions[i]].unlockDate <= block.timestamp){
+            if (positions[msg.sender][userPositions[i]].unlockDate <= block.timestamp) {
                 unlockLiquidity(userPositions[i]);
             }
         }
@@ -242,7 +246,8 @@ contract BrrrXpAmplifier is Governable, ReentrancyGuard {
         for (uint256 i = 0; i < tokens.length; ++i) {
             Position memory position = positions[_user][tokens[i]];
             if (position.tier == _tier) {
-                totalXp = totalXp + (position.depositAmount * position.multiplier * (accumulationDuration * xpPerSecond));
+                totalXp =
+                    totalXp + (position.depositAmount * position.multiplier * (accumulationDuration * xpPerSecond));
             }
         }
         return totalXp / 100;

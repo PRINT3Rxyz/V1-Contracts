@@ -531,4 +531,17 @@ contract BrrrRewardRouterTest is Test {
         uint256 rewardTokenBalAfter = WETH(weth).balanceOf(USER);
         assertGt(rewardTokenBalAfter, rewardTokenBalBefore);
     }
+
+    function testRewardRouterGivesAnOutputComparableToInput() public giveUserCurrencyAndBrrr {
+        vm.startPrank(USER);
+        WETH(weth).transfer(address(rewardDistributor), DEPOSIT_AMOUNT);
+        WETH(weth).approve(address(rewardRouter), LARGE_AMOUNT);
+        // 100 weth in
+        uint256 brrrAmount = rewardRouter.mintAndStakeBrrr(weth, SMALL_AMOUNT, 1, 1);
+        vm.warp(block.timestamp + brrrManager.cooldownDuration());
+        vm.roll(block.number + 1);
+        uint256 wethOut = rewardRouter.unstakeAndRedeemBrrr(weth, brrrAmount, 0, USER);
+        vm.stopPrank();
+        assertGt(wethOut, 90e18); // should get at least 90% of input
+    }
 }

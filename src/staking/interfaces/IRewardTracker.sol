@@ -17,4 +17,7 @@ interface IRewardTracker {
     function claimable(address _account) external view returns (uint256);
     function averageStakedAmounts(address _account) external view returns (uint256);
     function cumulativeRewards(address _account) external view returns (uint256);
+    function setInPrivateTransferMode(bool _inPrivateTransferMode) external;
+    function setInPrivateStakingMode(bool _inPrivateStakingMode) external;
+    function setInPrivateClaimingMode(bool _inPrivateClaimingMode) external;
 }

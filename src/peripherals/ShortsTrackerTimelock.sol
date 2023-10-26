@@ -6,6 +6,10 @@ import "./interfaces/IHandlerTarget.sol";
 
 pragma solidity 0.8.18;
 
+/*
+    @dev Governance contract for ShortsTracker
+*/
+
 contract ShortsTrackerTimelock {
     uint256 public constant BASIS_POINTS_DIVISOR = 10000;
     uint256 public constant MAX_BUFFER = 5 days;

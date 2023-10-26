@@ -10,15 +10,14 @@ import {IRewardTracker} from "./interfaces/IRewardTracker.sol";
 /// 2. BrrrXPAmplifier
 
 contract RewardClaimer {
-
     event RewardsClaimed(address indexed user, uint256 indexed tokenAmount, uint256 indexed xpAmount);
 
     IBrrrXpAmplifier public immutable brrrXpAmplifier;
     IRewardTracker public immutable rewardTracker;
 
-    constructor(IBrrrXpAmplifier _amplifier, IRewardTracker _tracker) {
-        brrrXpAmplifier = _amplifier;
-        rewardTracker = _tracker;
+    constructor(address _amplifier, address _tracker) {
+        brrrXpAmplifier = IBrrrXpAmplifier(_amplifier);
+        rewardTracker = IRewardTracker(_tracker);
     }
 
     function claimAllPendingRewards() external returns (uint256, uint256) {
@@ -27,5 +26,4 @@ contract RewardClaimer {
         emit RewardsClaimed(msg.sender, stakedRewards + lockedRewards, xpRewards);
         return (stakedRewards + lockedRewards, xpRewards);
     }
-
 }
