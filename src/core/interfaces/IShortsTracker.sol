@@ -24,4 +24,5 @@ interface IShortsTracker {
     ) external;
     function setIsGlobalShortDataReady(bool value) external;
     function setInitData(address[] calldata _tokens, uint256[] calldata _averagePrices) external;
+    function setHandler(address _handler, bool _isActive) external;
 }

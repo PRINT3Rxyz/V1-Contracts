@@ -125,6 +125,9 @@ interface ITimelock {
 
     function setLiquidator(address _vault, address _liquidator, bool _isActive) external;
 
+    function govSetKeeper(address _positionRouter, address _positionManager, address _keeper, bool _isActive)
+        external;
+
     function setInPrivateTransferMode(address _token, bool _inPrivateTransferMode) external;
 
     function transferIn(address _sender, address _token, uint256 _amount) external;

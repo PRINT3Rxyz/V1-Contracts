@@ -37,6 +37,7 @@ import {ShortsTrackerTimelock} from "../src/peripherals/ShortsTrackerTimelock.so
 import {RewardClaimer} from "../src/staking/RewardClaimer.sol";
 import {PriceFeedTimelock} from "../src/peripherals/PriceFeedTimelock.sol";
 import {RewardTimelock} from "../src/peripherals/RewardTimelock.sol";
+import {TokenManager} from "../src/access/TokenManager.sol";
 
 contract DeployP3 is Script {
     HelperConfig public helperConfig;
@@ -71,6 +72,7 @@ contract DeployP3 is Script {
     RewardClaimer rewardClaimer;
     PriceFeedTimelock priceFeedTimelock;
     RewardTimelock rewardTimelock;
+    TokenManager tokenManager;
 
     address public wbtc;
     address payable weth;
@@ -78,7 +80,7 @@ contract DeployP3 is Script {
     address public wethUsdPriceFeed;
     address public wbtcUsdPriceFeed;
     address public usdcPriceFeed;
-    uint256 public deployerKey;
+    uint256 private deployerKey;
 
     address[] ownerArray;
     address[] tokenArray; // WETH => WBTC
@@ -119,7 +121,7 @@ contract DeployP3 is Script {
             new PositionManager(address(vault), address(router), address(shortsTracker), weth, 50, address(orderBook));
 
         positionRouter =
-            new PositionRouter(address(vault), address(router), weth, address(shortsTracker), 30, 300000000000000);
+            new PositionRouter(address(vault), address(router), weth, address(shortsTracker), 30, 180000000000000);
 
         brrr = new BRRR();
 
@@ -154,14 +156,7 @@ contract DeployP3 is Script {
 
         amplifier = new BrrrXpAmplifier(address(rewardTracker), address(transferStakedBrrr), weth);
 
-        shortsTrackerTimelock = new ShortsTrackerTimelock(OWNER, 60, 300, 20);
-
         rewardClaimer = new RewardClaimer(address(amplifier), address(rewardTracker));
-
-        priceFeedTimelock = new PriceFeedTimelock(OWNER, 60, OWNER);
-
-        rewardTimelock =
-        new RewardTimelock(OWNER, 60, OWNER, address(rewardRouter), address(brrrManager), address(rewardDistributor));
 
         usdp.addVault(address(vault));
         usdp.addVault(address(brrrManager));
@@ -184,6 +179,15 @@ contract DeployP3 is Script {
         uint256[] memory _deltaDiffs = deltaDiffs;
         fastPriceFeed.setMaxCumulativeDeltaDiffs(_tokenArray, _deltaDiffs);
         fastPriceFeed.setPriceDataInterval(60);
+        address[] memory _tokens = new address[](3);
+        _tokens[0] = weth;
+        _tokens[1] = wbtc;
+        _tokens[2] = usdc;
+        uint256[] memory _precisions = new uint256[](3);
+        _precisions[0] = 1000;
+        _precisions[1] = 1000;
+        _precisions[2] = 1000;
+        fastPriceFeed.setTokens(_tokens, _precisions);
 
         priceEvents.setIsPriceFeed(address(fastPriceFeed), true);
 
@@ -202,7 +206,7 @@ contract DeployP3 is Script {
         vault.setTokenConfig(weth, 18, 10000, 150, 0, false, true);
         vault.setTokenConfig(wbtc, 8, 10000, 150, 0, false, true);
         vault.setTokenConfig(usdc, 6, 20000, 150, 0, true, false);
-        vault.setFees(15, 5, 15, 15, 1, 10, 2000000000000000000000000000000, 10800, true);
+        vault.setFees(60, 5, 15, 25, 1, 40, 5000000000000000000000000000000, 10800, true);
         vault.setIsLeverageEnabled(false);
         vault.setFundingRate(3600, 100, 100);
         vault.setVaultUtils(vaultUtils);
@@ -293,7 +297,7 @@ contract DeployP3 is Script {
         vaultErrorController.setErrors(vault, _errors);
 
         orderBook.initialize(
-            address(router), address(vault), weth, address(usdp), 300000000000000, 10000000000000000000000000000000
+            address(router), address(vault), weth, address(usdp), 100000000000000, 10000000000000000000000000000000
         );
 
         positionManager.setDepositFee(30);
@@ -331,25 +335,11 @@ contract DeployP3 is Script {
         /// CRUCIAL: MUST CALL BEFORE SETTING GOV TO SHORTSTIMELOCK
         shortsTracker.setInitData(tokenArray, priceArray);
 
-        // Set Governance
-        shortsTracker.setGov(address(shortsTrackerTimelock));
-        priceFeed.setGov(address(priceFeedTimelock));
-        usdp.setGov(address(timelock));
-        positionManager.setGov(address(timelock));
-        positionRouter.setGov(address(timelock));
-        brrr.setGov(address(timelock));
-        brrrManager.setGov(address(timelock));
-        vaultErrorController.setGov(address(timelock));
-        referralStorage.setGov(address(timelock));
-        rewardDistributor.setGov(address(rewardTimelock));
-        rewardTracker.setGov(address(rewardTimelock));
-        rewardRouter.setGov(address(rewardTimelock));
-        amplifier.setGov(address(rewardTimelock));
-
         vm.stopBroadcast();
         /// Next Steps:
         /// 1. Get currency (WETH, WBTC, USDC)
         /// 2. LP Currency calling rewardRouter.mintAndStakeBrr (Never directPoolDeposit first)
         /// 3. Run the keeper script to give permissions to keepers
+        /// 4. Run the governance script to give permissions to governance
     }
 }

@@ -152,7 +152,7 @@ contract BrrrRewardRouterTest is Test {
 
         rewardDistributor = new RewardDistributor(weth, address(rewardTracker));
 
-        timelock = new Timelock(OWNER, 1, OWNER, OWNER, address(brrrManager), address(rewardRouter), 0, 10, 500);
+        timelock = new Timelock(OWNER, 1, OWNER, OWNER, address(brrrManager), 1e60, 10, 500);
 
         transferStakedBrrr = new TransferStakedBrrr(address(brrr), brrrManager, address(rewardTracker));
 
@@ -395,21 +395,19 @@ contract BrrrRewardRouterTest is Test {
         // call mintAndStakeBrrr(address _token, uint256 _amount, uint256 _minUsdg, uint256 _minBrrr)
         vm.startPrank(USER);
         WETH(weth).approve(address(rewardRouter), LARGE_AMOUNT);
+        vm.expectEmit();
+        emit StakeBrrr(USER, 1979946389891701149060);
         uint256 brrrAmount = rewardRouter.mintAndStakeBrrr(weth, 1e18, 1, 1);
         vm.stopPrank();
-        // expect emit
-        vm.expectEmit();
-        emit StakeBrrr(USER, brrrAmount);
 
         vm.warp(block.timestamp + brrrManager.cooldownDuration());
         vm.roll(block.number + 1);
 
         // call unstakeAndRedeemBrrr(address _tokenOut, uint256 _brrrAmount, uint256 _minOut, address _receiver)
         vm.prank(USER);
-        uint256 amountOut = rewardRouter.unstakeAndRedeemBrrr(weth, brrrAmount, 1, USER);
-        // expect emit
         vm.expectEmit();
-        emit UnstakeBrrr(USER, brrrAmount);
+        emit UnstakeBrrr(USER, 1979946389891701149060);
+        rewardRouter.unstakeAndRedeemBrrr(weth, brrrAmount, 1, USER);
     }
 
     ////////////////////

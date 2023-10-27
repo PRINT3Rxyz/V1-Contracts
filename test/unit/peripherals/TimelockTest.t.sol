@@ -158,7 +158,7 @@ contract TimelockTest is Test {
         rewardDistributor = new RewardDistributor(weth, address(rewardTracker));
 
         // Increased maxTokenSupply to test minting
-        timelock = new Timelock(OWNER, 1, OWNER, OWNER, address(brrrManager), address(rewardRouter), 1e60, 10, 500);
+        timelock = new Timelock(OWNER, 1, OWNER, OWNER, address(brrrManager), 1e60, 10, 500);
 
         priceFeedTimelock = new PriceFeedTimelock(OWNER, 1, OWNER);
 
@@ -405,8 +405,7 @@ contract TimelockTest is Test {
     }
 
     function testTimelockSetExternalAdmin() public {
-        Timelock newTimelock =
-            new Timelock(OWNER, 1, OWNER, OWNER, address(brrrManager), address(rewardRouter), 0, 10, 500);
+        Timelock newTimelock = new Timelock(OWNER, 1, OWNER, OWNER, address(brrrManager), 0, 10, 500);
         vm.prank(OWNER);
         vm.expectRevert();
         timelock.setExternalAdmin(address(newTimelock), USER);
@@ -422,12 +421,6 @@ contract TimelockTest is Test {
         vm.prank(OWNER);
         timelock.initBrrrManager();
         assertEq(timelock.brrrManager(), address(brrrManager));
-    }
-
-    function testTimelockInitRewardRouter() public {
-        vm.prank(OWNER);
-        timelock.initRewardRouter();
-        assertEq(timelock.rewardRouter(), address(rewardRouter));
     }
 
     function testTimelockSetKeeper() public {

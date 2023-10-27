@@ -159,7 +159,7 @@ contract BrrrXpAmplifierTest is Test {
 
         rewardDistributor = new RewardDistributor(weth, address(rewardTracker));
 
-        timelock = new Timelock(OWNER, 1, OWNER, OWNER, address(brrrManager), address(rewardRouter), 0, 10, 500);
+        timelock = new Timelock(OWNER, 1, OWNER, OWNER, address(brrrManager), 1e60, 10, 500);
 
         transferStakedBrrr = new TransferStakedBrrr(address(brrr), brrrManager, address(rewardTracker));
 
@@ -344,7 +344,7 @@ contract BrrrXpAmplifierTest is Test {
         amplifier.setHandler(address(rewardClaimer), true);
 
         rewardDistributor.updateLastDistributionTime();
-        rewardDistributor.setTokensPerInterval(0);
+        rewardDistributor.setTokensPerInterval(165343915343915);
 
         WBTC(wbtc).approve(address(brrrManager), LARGE_AMOUNT);
         WETH(weth).approve(address(brrrManager), LARGE_AMOUNT);
@@ -373,6 +373,13 @@ contract BrrrXpAmplifierTest is Test {
 
         vm.stopPrank();
     }
+
+    event BrrrXpAmplifier_LiquidityLocked(
+        address indexed user, uint256 index, uint256 indexed amount, uint8 indexed tier
+    );
+    event BrrrXpAmplifier_LiquidityUnlocked(
+        address indexed user, uint256 index, uint256 indexed amount, uint8 indexed tier
+    );
 
     modifier giveUserCurrency() {
         vm.deal(OWNER, LARGE_AMOUNT);
@@ -646,13 +653,11 @@ contract BrrrXpAmplifierTest is Test {
         assertEq(amplifier.lockedAmount(USER), 6e17);
     }
 
-    event BrrrXpAmplifier_LiquidityLocked(address indexed user, uint256 indexed index, uint256 indexed amount);
-
     function testAmplifierLockLiquidityFiresLiquidityLockedEventWithCorrectArgs() public setUpAmplifier {
         vm.startPrank(USER);
         transferStakedBrrr.approve(address(amplifier), LARGE_AMOUNT);
         vm.expectEmit();
-        emit BrrrXpAmplifier_LiquidityLocked(USER, 0, 1e17);
+        emit BrrrXpAmplifier_LiquidityLocked(USER, 0, 1e17, 1);
         amplifier.lockLiquidity(1, 1e17);
         vm.stopPrank();
     }
@@ -802,8 +807,6 @@ contract BrrrXpAmplifierTest is Test {
         assertEq(userTokenIds[1], 2);
     }
 
-    event BrrrXpAmplifier_LiquidityUnlocked(address indexed user, uint256 indexed index);
-
     function testAmplifierLiquidityUnlockedEventFiresOnUnlock() public setUpAmplifier {
         uint256 balance = rewardTracker.balanceOf(USER);
         vm.startPrank(USER);
@@ -814,7 +817,7 @@ contract BrrrXpAmplifierTest is Test {
         vm.roll(block.number + 1);
         vm.prank(USER);
         vm.expectEmit();
-        emit BrrrXpAmplifier_LiquidityUnlocked(USER, 0);
+        emit BrrrXpAmplifier_LiquidityUnlocked(USER, 0, 1e18, 0);
         amplifier.unlockLiquidity(0);
     }
 
@@ -872,8 +875,8 @@ contract BrrrXpAmplifierTest is Test {
         uint256 userClaimableRewards = amplifier.getClaimableTokenRewards(USER);
         uint256 ownerClaimableRewards = amplifier.getClaimableTokenRewards(OWNER);
 
+        assertEq(userClaimableRewards, ownerClaimableRewards * 2);
         // Due to rounding errors, value returned is slightly over double, but will = double
-        assertGt(userClaimableRewards, ownerClaimableRewards * 2);
         assertGt(amplifier.getClaimableXpRewards(OWNER) * 2, amplifier.getClaimableXpRewards(USER));
     }
 

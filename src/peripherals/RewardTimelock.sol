@@ -53,12 +53,12 @@ contract RewardTimelock {
     event ClearAction(bytes32 action);
 
     modifier onlyAdmin() {
-        require(msg.sender == admin, "Timelock: forbidden");
+        require(msg.sender == admin, "RewardTimelock: forbidden");
         _;
     }
 
     modifier onlyHandlerAndAbove() {
-        require(msg.sender == admin || isHandler[msg.sender], "Timelock: forbidden");
+        require(msg.sender == admin || isHandler[msg.sender], "RewardTimelock: forbidden");
         _;
     }
 
@@ -68,7 +68,7 @@ contract RewardTimelock {
     }
 
     modifier onlyTokenManager() {
-        require(msg.sender == tokenManager, "Timelock: forbidden");
+        require(msg.sender == tokenManager, "RewardTimelock: forbidden");
         _;
     }
 
@@ -80,7 +80,7 @@ contract RewardTimelock {
         address _rewardRouter,
         address _rewardDistributor
     ) {
-        require(_buffer <= MAX_BUFFER, "Timelock: invalid _buffer");
+        require(_buffer <= MAX_BUFFER, "RewardTimelock: invalid _buffer");
         admin = _admin;
         buffer = _buffer;
         tokenManager = _tokenManager;
@@ -98,7 +98,7 @@ contract RewardTimelock {
     }
 
     function setExternalAdmin(address _target, address _admin) external onlyAdmin {
-        require(_target != address(this), "Timelock: invalid _target");
+        require(_target != address(this), "RewardTimelock: invalid _target");
         IAdmin(_target).setAdmin(_admin);
     }
 
@@ -111,8 +111,8 @@ contract RewardTimelock {
     }
 
     function setBuffer(uint256 _buffer) external onlyAdmin {
-        require(_buffer <= MAX_BUFFER, "Timelock: invalid _buffer");
-        require(_buffer > buffer, "Timelock: buffer cannot be decreased");
+        require(_buffer <= MAX_BUFFER, "RewardTimelock: invalid _buffer");
+        require(_buffer > buffer, "RewardTimelock: buffer cannot be decreased");
         buffer = _buffer;
     }
 
@@ -186,6 +186,7 @@ contract RewardTimelock {
     }
 
     /// @notice No signal structure -> Needs instant finality
+    /// @dev Requires Admin Role on RewardDistributor Contract
     function setDistributorRewards(address _target, uint256 _tokensPerInterval) external onlyAdmin {
         IRewardDistributor(_target).updateLastDistributionTime();
         IRewardDistributor(_target).setTokensPerInterval(_tokensPerInterval);
@@ -242,18 +243,18 @@ contract RewardTimelock {
     }
 
     function _setPendingAction(bytes32 _action) private {
-        require(pendingActions[_action] == 0, "Timelock: action already signalled");
+        require(pendingActions[_action] == 0, "RewardTimelock: action already signalled");
         pendingActions[_action] = block.timestamp + buffer;
         emit SignalPendingAction(_action);
     }
 
     function _validateAction(bytes32 _action) private view {
-        require(pendingActions[_action] != 0, "Timelock: action not signalled");
-        require(pendingActions[_action] < block.timestamp, "Timelock: action time not yet passed");
+        require(pendingActions[_action] != 0, "RewardTimelock: action not signalled");
+        require(pendingActions[_action] < block.timestamp, "RewardTimelock: action time not yet passed");
     }
 
     function _clearAction(bytes32 _action) private {
-        require(pendingActions[_action] != 0, "Timelock: invalid _action");
+        require(pendingActions[_action] != 0, "RewardTimelock: invalid _action");
         delete pendingActions[_action];
         emit ClearAction(_action);
     }

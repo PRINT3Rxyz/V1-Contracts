@@ -153,7 +153,7 @@ contract ReaderTest is Test {
 
         rewardDistributor = new RewardDistributor(weth, address(rewardTracker));
 
-        timelock = new Timelock(OWNER, 1, OWNER, OWNER, address(brrrManager), address(rewardRouter), 0, 10, 500);
+        timelock = new Timelock(OWNER, 1, OWNER, OWNER, address(brrrManager), 1e60, 10, 500);
 
         transferStakedBrrr = new TransferStakedBrrr(address(brrr), brrrManager, address(rewardTracker));
 

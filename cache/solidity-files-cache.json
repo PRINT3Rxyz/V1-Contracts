@@ -815,8 +815,8 @@
       }
     },
     "script/DeployP3.s.sol": {
-      "lastModificationDate": 1698228154350,
-      "contentHash": "745a059046b4a9fb912ebfb4c1dea399",
+      "lastModificationDate": 1698423260590,
+      "contentHash": "28279a44e84e1b3752444724a30c8305",
       "sourceName": "script/DeployP3.s.sol",
       "solcConfig": {
         "settings": {
@@ -862,6 +862,7 @@
         "lib/forge-std/src/interfaces/IMulticall3.sol",
         "script/HelperConfig.s.sol",
         "src/access/Governable.sol",
+        "src/access/TokenManager.sol",
         "src/access/interfaces/IAdmin.sol",
         "src/amm/interfaces/IPancakeFactory.sol",
         "src/amm/interfaces/IPancakePair.sol",
@@ -881,6 +882,7 @@
         "src/core/interfaces/IBasePositionManager.sol",
         "src/core/interfaces/IBrrrManager.sol",
         "src/core/interfaces/IOrderBook.sol",
+        "src/core/interfaces/IPositionManager.sol",
         "src/core/interfaces/IPositionRouter.sol",
         "src/core/interfaces/IPositionRouterCallbackReceiver.sol",
         "src/core/interfaces/IRouter.sol",
@@ -889,7 +891,9 @@
         "src/core/interfaces/IVaultPriceFeed.sol",
         "src/core/interfaces/IVaultUtils.sol",
         "src/libraries/GSN/Context.sol",
+        "src/libraries/introspection/IERC165.sol",
         "src/libraries/token/ERC20.sol",
+        "src/libraries/token/ERC721/IERC721.sol",
         "src/libraries/token/IERC20.sol",
         "src/libraries/token/IERC20Metadata.sol",
         "src/libraries/token/IERC20Permit.sol",
@@ -904,8 +908,10 @@
         "src/oracle/interfaces/IPriceFeed.sol",
         "src/oracle/interfaces/ISecondaryPriceFeed.sol",
         "src/peripherals/OrderBookReader.sol",
+        "src/peripherals/PriceFeedTimelock.sol",
         "src/peripherals/Reader.sol",
         "src/peripherals/RewardReader.sol",
+        "src/peripherals/RewardTimelock.sol",
         "src/peripherals/ShortsTrackerTimelock.sol",
         "src/peripherals/Timelock.sol",
         "src/peripherals/VaultReader.sol",
@@ -926,6 +932,7 @@
         "src/staking/interfaces/IBrrrXpAmplifier.sol",
         "src/staking/interfaces/IRewardDistributor.sol",
         "src/staking/interfaces/IRewardTracker.sol",
+        "src/staking/interfaces/IWithdrawalTarget.sol",
         "src/tokens/BaseToken.sol",
         "src/tokens/MintableBaseToken.sol",
         "src/tokens/Token.sol",
@@ -1011,9 +1018,135 @@
         }
       }
     },
+    "script/SetGovernance.s.sol": {
+      "lastModificationDate": 1698423438910,
+      "contentHash": "f1e8bcff4f2930a8dd44272607c0a678",
+      "sourceName": "script/SetGovernance.s.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "ipfs",
+            "appendCBOR": true
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "lib/forge-std/src/Base.sol",
+        "lib/forge-std/src/Script.sol",
+        "lib/forge-std/src/StdChains.sol",
+        "lib/forge-std/src/StdCheats.sol",
+        "lib/forge-std/src/StdJson.sol",
+        "lib/forge-std/src/StdMath.sol",
+        "lib/forge-std/src/StdStorage.sol",
+        "lib/forge-std/src/StdUtils.sol",
+        "lib/forge-std/src/Vm.sol",
+        "lib/forge-std/src/console.sol",
+        "lib/forge-std/src/console2.sol",
+        "lib/forge-std/src/interfaces/IMulticall3.sol",
+        "script/HelperConfig.s.sol",
+        "src/access/Governable.sol",
+        "src/access/TokenManager.sol",
+        "src/access/interfaces/IAdmin.sol",
+        "src/amm/interfaces/IPancakePair.sol",
+        "src/core/BRRR.sol",
+        "src/core/BasePositionManager.sol",
+        "src/core/BrrrManager.sol",
+        "src/core/PositionManager.sol",
+        "src/core/PositionRouter.sol",
+        "src/core/PositionUtils.sol",
+        "src/core/ShortsTracker.sol",
+        "src/core/VaultErrorController.sol",
+        "src/core/VaultPriceFeed.sol",
+        "src/core/interfaces/IBasePositionManager.sol",
+        "src/core/interfaces/IBrrrManager.sol",
+        "src/core/interfaces/IOrderBook.sol",
+        "src/core/interfaces/IPositionManager.sol",
+        "src/core/interfaces/IPositionRouter.sol",
+        "src/core/interfaces/IPositionRouterCallbackReceiver.sol",
+        "src/core/interfaces/IRouter.sol",
+        "src/core/interfaces/IShortsTracker.sol",
+        "src/core/interfaces/IVault.sol",
+        "src/core/interfaces/IVaultPriceFeed.sol",
+        "src/core/interfaces/IVaultUtils.sol",
+        "src/libraries/GSN/Context.sol",
+        "src/libraries/introspection/IERC165.sol",
+        "src/libraries/token/ERC20.sol",
+        "src/libraries/token/ERC721/IERC721.sol",
+        "src/libraries/token/IERC20.sol",
+        "src/libraries/token/IERC20Metadata.sol",
+        "src/libraries/token/IERC20Permit.sol",
+        "src/libraries/token/SafeERC20.sol",
+        "src/libraries/token/draft-IERC6093.sol",
+        "src/libraries/utils/Address.sol",
+        "src/libraries/utils/ReentrancyGuard.sol",
+        "src/oracle/interfaces/IFastPriceFeed.sol",
+        "src/oracle/interfaces/IPriceFeed.sol",
+        "src/oracle/interfaces/ISecondaryPriceFeed.sol",
+        "src/peripherals/PriceFeedTimelock.sol",
+        "src/peripherals/RewardTimelock.sol",
+        "src/peripherals/ShortsTrackerTimelock.sol",
+        "src/peripherals/Timelock.sol",
+        "src/peripherals/interfaces/IHandlerTarget.sol",
+        "src/peripherals/interfaces/ITimelock.sol",
+        "src/peripherals/interfaces/ITimelockTarget.sol",
+        "src/referrals/ReferralStorage.sol",
+        "src/referrals/interfaces/IReferralStorage.sol",
+        "src/staking/BrrrRewardRouter.sol",
+        "src/staking/BrrrXpAmplifier.sol",
+        "src/staking/RewardDistributor.sol",
+        "src/staking/RewardTracker.sol",
+        "src/staking/TransferStakedBrrr.sol",
+        "src/staking/interfaces/IBrrrRewardRouter.sol",
+        "src/staking/interfaces/IBrrrXpAmplifier.sol",
+        "src/staking/interfaces/IRewardDistributor.sol",
+        "src/staking/interfaces/IRewardTracker.sol",
+        "src/staking/interfaces/IWithdrawalTarget.sol",
+        "src/tokens/BaseToken.sol",
+        "src/tokens/MintableBaseToken.sol",
+        "src/tokens/Token.sol",
+        "src/tokens/USDP.sol",
+        "src/tokens/WBTC.sol",
+        "src/tokens/WETH.sol",
+        "src/tokens/YieldToken.sol",
+        "src/tokens/interfaces/IBaseToken.sol",
+        "src/tokens/interfaces/IMintable.sol",
+        "src/tokens/interfaces/IUSDP.sol",
+        "src/tokens/interfaces/IWETH.sol",
+        "src/tokens/interfaces/IYieldToken.sol",
+        "src/tokens/interfaces/IYieldTracker.sol",
+        "test/mocks/MockV3Aggregator.sol"
+      ],
+      "versionRequirement": "=0.8.18",
+      "artifacts": {
+        "DeployP3": {
+          "0.8.18+commit.87f61d96.Darwin.appleclang": "SetGovernance.s.sol/DeployP3.json"
+        }
+      }
+    },
     "script/SetKeeper.s.sol": {
-      "lastModificationDate": 1698228321743,
-      "contentHash": "ebb316ab95c2bca70d1adad620c03d5c",
+      "lastModificationDate": 1698410203336,
+      "contentHash": "319e703d206e55b1d805805ab54a66f9",
       "sourceName": "script/SetKeeper.s.sol",
       "solcConfig": {
         "settings": {
@@ -1056,7 +1189,26 @@
         "lib/forge-std/src/Vm.sol",
         "lib/forge-std/src/console.sol",
         "lib/forge-std/src/console2.sol",
-        "lib/forge-std/src/interfaces/IMulticall3.sol"
+        "lib/forge-std/src/interfaces/IMulticall3.sol",
+        "script/HelperConfig.s.sol",
+        "src/core/interfaces/IPositionManager.sol",
+        "src/core/interfaces/IPositionRouter.sol",
+        "src/core/interfaces/IShortsTracker.sol",
+        "src/core/interfaces/IVaultUtils.sol",
+        "src/libraries/GSN/Context.sol",
+        "src/libraries/token/ERC20.sol",
+        "src/libraries/token/IERC20.sol",
+        "src/libraries/token/IERC20Metadata.sol",
+        "src/libraries/token/draft-IERC6093.sol",
+        "src/oracle/interfaces/IFastPriceFeed.sol",
+        "src/peripherals/interfaces/IPriceFeedTimelock.sol",
+        "src/peripherals/interfaces/IRewardTimelock.sol",
+        "src/peripherals/interfaces/IShortsTrackerTimelock.sol",
+        "src/peripherals/interfaces/ITimelock.sol",
+        "src/tokens/Token.sol",
+        "src/tokens/WBTC.sol",
+        "src/tokens/WETH.sol",
+        "test/mocks/MockV3Aggregator.sol"
       ],
       "versionRequirement": "=0.8.18",
       "artifacts": {
@@ -1107,7 +1259,7 @@
       }
     },
     "src/access/TokenManager.sol": {
-      "lastModificationDate": 1690375327120,
+      "lastModificationDate": 1698345917938,
       "contentHash": "d07d23b0ccaf2877b77ce790cef24afc",
       "sourceName": "src/access/TokenManager.sol",
       "solcConfig": {
@@ -1140,6 +1292,7 @@
         }
       },
       "imports": [
+        "src/core/interfaces/IVaultUtils.sol",
         "src/libraries/introspection/IERC165.sol",
         "src/libraries/token/ERC721/IERC721.sol",
         "src/libraries/token/IERC20.sol",
@@ -1627,7 +1780,7 @@
       }
     },
     "src/core/BasePositionManager.sol": {
-      "lastModificationDate": 1690382239453,
+      "lastModificationDate": 1698345917956,
       "contentHash": "a61cdf36a58e07241d06070f77e47979",
       "sourceName": "src/core/BasePositionManager.sol",
       "solcConfig": {
@@ -1685,7 +1838,7 @@
       }
     },
     "src/core/BrrrManager.sol": {
-      "lastModificationDate": 1697900147798,
+      "lastModificationDate": 1698345917936,
       "contentHash": "3ad10d09f44aa927a414b331643329a1",
       "sourceName": "src/core/BrrrManager.sol",
       "solcConfig": {
@@ -1791,7 +1944,7 @@
       }
     },
     "src/core/OrderExecutor.sol": {
-      "lastModificationDate": 1690376397028,
+      "lastModificationDate": 1698345917945,
       "contentHash": "01ed1c44312783981bdaf685b5e1b3c2",
       "sourceName": "src/core/OrderExecutor.sol",
       "solcConfig": {
@@ -1837,7 +1990,7 @@
       }
     },
     "src/core/PositionManager.sol": {
-      "lastModificationDate": 1690382408910,
+      "lastModificationDate": 1698345917961,
       "contentHash": "349a05cd5d816ece0d20a4325dfa9e91",
       "sourceName": "src/core/PositionManager.sol",
       "solcConfig": {
@@ -1896,7 +2049,7 @@
       }
     },
     "src/core/PositionRouter.sol": {
-      "lastModificationDate": 1697900147798,
+      "lastModificationDate": 1698410203296,
       "contentHash": "97b41d28b8dde04f3f01b27b83c38eef",
       "sourceName": "src/core/PositionRouter.sol",
       "solcConfig": {
@@ -1957,7 +2110,7 @@
       }
     },
     "src/core/PositionUtils.sol": {
-      "lastModificationDate": 1690376517108,
+      "lastModificationDate": 1698345917932,
       "contentHash": "925d04033332bb3b8196a1f5d1be424c",
       "sourceName": "src/core/PositionUtils.sol",
       "solcConfig": {
@@ -2054,7 +2207,7 @@
       }
     },
     "src/core/ShortsTracker.sol": {
-      "lastModificationDate": 1690376768028,
+      "lastModificationDate": 1698345917947,
       "contentHash": "6af8cace188126827ad07811a993a261",
       "sourceName": "src/core/ShortsTracker.sol",
       "solcConfig": {
@@ -2413,9 +2566,50 @@
         }
       }
     },
+    "src/core/interfaces/IPositionManager.sol": {
+      "lastModificationDate": 1698345917934,
+      "contentHash": "c6b95467ad1c90a8d1e6d71450f30dc3",
+      "sourceName": "src/core/interfaces/IPositionManager.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "ipfs",
+            "appendCBOR": true
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [],
+      "versionRequirement": "=0.8.18",
+      "artifacts": {
+        "IPositionManager": {
+          "0.8.18+commit.87f61d96.Darwin.appleclang": "IPositionManager.sol/IPositionManager.json"
+        }
+      }
+    },
     "src/core/interfaces/IPositionRouter.sol": {
-      "lastModificationDate": 1690373858627,
-      "contentHash": "84172c3ed33ca9669a3e7775cbc85db8",
+      "lastModificationDate": 1698410203276,
+      "contentHash": "fc4c325c0299d851a6d6018b5689d495",
       "sourceName": "src/core/interfaces/IPositionRouter.sol",
       "solcConfig": {
         "settings": {
@@ -2537,8 +2731,8 @@
       }
     },
     "src/core/interfaces/IShortsTracker.sol": {
-      "lastModificationDate": 1690373867528,
-      "contentHash": "5ec6381318e543959b01c3b3d674f326",
+      "lastModificationDate": 1698399169654,
+      "contentHash": "80e2e43b99cd2833e8e362608b23ef2f",
       "sourceName": "src/core/interfaces/IShortsTracker.sol",
       "solcConfig": {
         "settings": {
@@ -3694,7 +3888,7 @@
       }
     },
     "src/oracle/FastPriceFeed.sol": {
-      "lastModificationDate": 1697900147801,
+      "lastModificationDate": 1698410203288,
       "contentHash": "9724e78f5e81a7e352e293962552dfd4",
       "sourceName": "src/oracle/FastPriceFeed.sol",
       "solcConfig": {
@@ -4081,7 +4275,7 @@
       }
     },
     "src/peripherals/PositionRouterReader.sol": {
-      "lastModificationDate": 1697900147802,
+      "lastModificationDate": 1698410203322,
       "contentHash": "545ac90c77308fc46b8aeb8dec3efa61",
       "sourceName": "src/peripherals/PositionRouterReader.sol",
       "solcConfig": {
@@ -4143,8 +4337,8 @@
       }
     },
     "src/peripherals/PriceFeedTimelock.sol": {
-      "lastModificationDate": 1697900147802,
-      "contentHash": "02a784a41db67fef644f58795dedaf9d",
+      "lastModificationDate": 1698345917967,
+      "contentHash": "88a413bebd95a3c1ea730ca8cc101636",
       "sourceName": "src/peripherals/PriceFeedTimelock.sol",
       "solcConfig": {
         "settings": {
@@ -4246,7 +4440,7 @@
       }
     },
     "src/peripherals/RewardReader.sol": {
-      "lastModificationDate": 1690380016109,
+      "lastModificationDate": 1698345917967,
       "contentHash": "449f1ff801a96d3003df66fd69b297d4",
       "sourceName": "src/peripherals/RewardReader.sol",
       "solcConfig": {
@@ -4289,9 +4483,60 @@
         }
       }
     },
+    "src/peripherals/RewardTimelock.sol": {
+      "lastModificationDate": 1698411810620,
+      "contentHash": "affc4e06cdae0db3f943cf36256e3045",
+      "sourceName": "src/peripherals/RewardTimelock.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "ipfs",
+            "appendCBOR": true
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "src/access/interfaces/IAdmin.sol",
+        "src/libraries/token/IERC20.sol",
+        "src/peripherals/interfaces/IHandlerTarget.sol",
+        "src/peripherals/interfaces/ITimelockTarget.sol",
+        "src/staking/interfaces/IBrrrRewardRouter.sol",
+        "src/staking/interfaces/IBrrrXpAmplifier.sol",
+        "src/staking/interfaces/IRewardDistributor.sol",
+        "src/staking/interfaces/IRewardTracker.sol",
+        "src/staking/interfaces/IWithdrawalTarget.sol"
+      ],
+      "versionRequirement": "=0.8.18",
+      "artifacts": {
+        "RewardTimelock": {
+          "0.8.18+commit.87f61d96.Darwin.appleclang": "RewardTimelock.sol/RewardTimelock.json"
+        }
+      }
+    },
     "src/peripherals/ShortsTrackerTimelock.sol": {
-      "lastModificationDate": 1690380079564,
-      "contentHash": "2954d538af08b2be8c1756be3c487f51",
+      "lastModificationDate": 1698345917951,
+      "contentHash": "bec58f7b0d6f609137ff7b3cc836aabc",
       "sourceName": "src/peripherals/ShortsTrackerTimelock.sol",
       "solcConfig": {
         "settings": {
@@ -4335,8 +4580,8 @@
       }
     },
     "src/peripherals/Timelock.sol": {
-      "lastModificationDate": 1698074538898,
-      "contentHash": "853985562421c5833435fa2c681154fd",
+      "lastModificationDate": 1698410203314,
+      "contentHash": "0a42abc8d89c507e00209d025dc4c1e2",
       "sourceName": "src/peripherals/Timelock.sol",
       "solcConfig": {
         "settings": {
@@ -4370,6 +4615,8 @@
       "imports": [
         "src/access/interfaces/IAdmin.sol",
         "src/core/interfaces/IBrrrManager.sol",
+        "src/core/interfaces/IPositionManager.sol",
+        "src/core/interfaces/IPositionRouter.sol",
         "src/core/interfaces/IVault.sol",
         "src/core/interfaces/IVaultUtils.sol",
         "src/libraries/token/IERC20.sol",
@@ -4377,8 +4624,6 @@
         "src/peripherals/interfaces/ITimelock.sol",
         "src/peripherals/interfaces/ITimelockTarget.sol",
         "src/referrals/interfaces/IReferralStorage.sol",
-        "src/staking/interfaces/IBrrrRewardRouter.sol",
-        "src/staking/interfaces/IBrrrXpAmplifier.sol",
         "src/tokens/interfaces/IBaseToken.sol",
         "src/tokens/interfaces/IMintable.sol",
         "src/tokens/interfaces/IUSDP.sol",
@@ -4519,10 +4764,10 @@
         }
       }
     },
-    "src/peripherals/interfaces/ITimelock.sol": {
-      "lastModificationDate": 1690374092396,
-      "contentHash": "d1b4ea4aace2819726899bf4b8d27c38",
-      "sourceName": "src/peripherals/interfaces/ITimelock.sol",
+    "src/peripherals/interfaces/IPriceFeedTimelock.sol": {
+      "lastModificationDate": 1698345917933,
+      "contentHash": "bc33173f9039542f7ed77cfd9c38cfd3",
+      "sourceName": "src/peripherals/interfaces/IPriceFeedTimelock.sol",
       "solcConfig": {
         "settings": {
           "optimizer": {
@@ -4553,6 +4798,131 @@
         }
       },
       "imports": [],
+      "versionRequirement": "=0.8.18",
+      "artifacts": {
+        "IPriceFeedTimelock": {
+          "0.8.18+commit.87f61d96.Darwin.appleclang": "IPriceFeedTimelock.sol/IPriceFeedTimelock.json"
+        }
+      }
+    },
+    "src/peripherals/interfaces/IRewardTimelock.sol": {
+      "lastModificationDate": 1698345917937,
+      "contentHash": "8991ce7c39a6fd98727b1c592a956169",
+      "sourceName": "src/peripherals/interfaces/IRewardTimelock.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "ipfs",
+            "appendCBOR": true
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [],
+      "versionRequirement": "=0.8.18",
+      "artifacts": {
+        "IRewardTimelock": {
+          "0.8.18+commit.87f61d96.Darwin.appleclang": "IRewardTimelock.sol/IRewardTimelock.json"
+        }
+      }
+    },
+    "src/peripherals/interfaces/IShortsTrackerTimelock.sol": {
+      "lastModificationDate": 1698345917936,
+      "contentHash": "3759f4dd5a47ddbf7e39116c6d3e3135",
+      "sourceName": "src/peripherals/interfaces/IShortsTrackerTimelock.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "ipfs",
+            "appendCBOR": true
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [],
+      "versionRequirement": "=0.8.18",
+      "artifacts": {
+        "IShortsTrackerTimelock": {
+          "0.8.18+commit.87f61d96.Darwin.appleclang": "IShortsTrackerTimelock.sol/IShortsTrackerTimelock.json"
+        }
+      }
+    },
+    "src/peripherals/interfaces/ITimelock.sol": {
+      "lastModificationDate": 1698398951734,
+      "contentHash": "b55311a24a3ce1d391f4dfa1f57465e2",
+      "sourceName": "src/peripherals/interfaces/ITimelock.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "ipfs",
+            "appendCBOR": true
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "src/core/interfaces/IVaultUtils.sol"
+      ],
       "versionRequirement": "=0.8.18",
       "artifacts": {
         "ITimelock": {
@@ -4645,7 +5015,7 @@
       }
     },
     "src/referrals/ReferralStorage.sol": {
-      "lastModificationDate": 1690380115459,
+      "lastModificationDate": 1698345917939,
       "contentHash": "2b1e997258997471cf86c7173c9fbf4e",
       "sourceName": "src/referrals/ReferralStorage.sol",
       "solcConfig": {
@@ -4679,6 +5049,7 @@
       },
       "imports": [
         "src/access/Governable.sol",
+        "src/core/interfaces/IVaultUtils.sol",
         "src/peripherals/interfaces/ITimelock.sol",
         "src/referrals/interfaces/IReferralStorage.sol"
       ],
@@ -4777,7 +5148,7 @@
       }
     },
     "src/staking/BrrrRewardRouter.sol": {
-      "lastModificationDate": 1691231104768,
+      "lastModificationDate": 1698345917934,
       "contentHash": "6c1208a3997c95de6d88f7fadf278d3d",
       "sourceName": "src/staking/BrrrRewardRouter.sol",
       "solcConfig": {
@@ -4832,8 +5203,8 @@
       }
     },
     "src/staking/BrrrXpAmplifier.sol": {
-      "lastModificationDate": 1698177593535,
-      "contentHash": "21d86b35e3d441c76117e33c36504552",
+      "lastModificationDate": 1698345917944,
+      "contentHash": "7516281527958601bd643b06fb9adbff",
       "sourceName": "src/staking/BrrrXpAmplifier.sol",
       "solcConfig": {
         "settings": {
@@ -4887,8 +5258,8 @@
       }
     },
     "src/staking/RewardClaimer.sol": {
-      "lastModificationDate": 1698217443735,
-      "contentHash": "494e979eb542edfb07e6ec9f8af42115",
+      "lastModificationDate": 1698345917944,
+      "contentHash": "0ab0f1fd1d28fa8fe2bb6dd44550245b",
       "sourceName": "src/staking/RewardClaimer.sol",
       "solcConfig": {
         "settings": {
@@ -4931,7 +5302,7 @@
       }
     },
     "src/staking/RewardDistributor.sol": {
-      "lastModificationDate": 1691135708800,
+      "lastModificationDate": 1698345917950,
       "contentHash": "10a3df033c5e528bfc73a75894ea06f0",
       "sourceName": "src/staking/RewardDistributor.sol",
       "solcConfig": {
@@ -4981,7 +5352,7 @@
       }
     },
     "src/staking/RewardTracker.sol": {
-      "lastModificationDate": 1690380567801,
+      "lastModificationDate": 1698345917948,
       "contentHash": "6bff1d1b6e763b92590f5039f6f6e00f",
       "sourceName": "src/staking/RewardTracker.sol",
       "solcConfig": {
@@ -5031,7 +5402,7 @@
       }
     },
     "src/staking/StakeManager.sol": {
-      "lastModificationDate": 1690374238861,
+      "lastModificationDate": 1698345917951,
       "contentHash": "30b040d2f33c7bbd66b36ab4639661b2",
       "sourceName": "src/staking/StakeManager.sol",
       "solcConfig": {
@@ -5075,7 +5446,7 @@
       }
     },
     "src/staking/StakedBrrrMigrator.sol": {
-      "lastModificationDate": 1690920014175,
+      "lastModificationDate": 1698345917949,
       "contentHash": "91103faef6894ac35f38a9ade0727902",
       "sourceName": "src/staking/StakedBrrrMigrator.sol",
       "solcConfig": {
@@ -5123,7 +5494,7 @@
       }
     },
     "src/staking/TransferStakedBrrr.sol": {
-      "lastModificationDate": 1690919913530,
+      "lastModificationDate": 1698345917951,
       "contentHash": "a669cb8b3305473eedb9698ea58132e7",
       "sourceName": "src/staking/TransferStakedBrrr.sol",
       "solcConfig": {
@@ -5252,8 +5623,8 @@
       }
     },
     "src/staking/interfaces/IRewardDistributor.sol": {
-      "lastModificationDate": 1690374197366,
-      "contentHash": "9531fa19775ad585528df364e3dc187f",
+      "lastModificationDate": 1698345917946,
+      "contentHash": "e2b3dec465fb37c394eb1e248fabe2ce",
       "sourceName": "src/staking/interfaces/IRewardDistributor.sol",
       "solcConfig": {
         "settings": {
@@ -5293,8 +5664,8 @@
       }
     },
     "src/staking/interfaces/IRewardTracker.sol": {
-      "lastModificationDate": 1690374201310,
-      "contentHash": "bd983fa0d01fd2cafcce5def2bd62246",
+      "lastModificationDate": 1698345917946,
+      "contentHash": "58fc4e9f115e8a5ac77993212c36e9de",
       "sourceName": "src/staking/interfaces/IRewardTracker.sol",
       "solcConfig": {
         "settings": {
@@ -5330,6 +5701,47 @@
       "artifacts": {
         "IRewardTracker": {
           "0.8.18+commit.87f61d96.Darwin.appleclang": "IRewardTracker.sol/IRewardTracker.json"
+        }
+      }
+    },
+    "src/staking/interfaces/IWithdrawalTarget.sol": {
+      "lastModificationDate": 1698345917945,
+      "contentHash": "820b5e3ef2aeec579206d785a116215c",
+      "sourceName": "src/staking/interfaces/IWithdrawalTarget.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "ipfs",
+            "appendCBOR": true
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [],
+      "versionRequirement": "=0.8.18",
+      "artifacts": {
+        "IWithdrawalTarget": {
+          "0.8.18+commit.87f61d96.Darwin.appleclang": "IWithdrawalTarget.sol/IWithdrawalTarget.json"
         }
       }
     },
@@ -6370,8 +6782,8 @@
       }
     },
     "test/unit/core/BrrrManagerTest.t.sol": {
-      "lastModificationDate": 1698074538901,
-      "contentHash": "66a1755ea07cea498c255d56911151d8",
+      "lastModificationDate": 1698410203325,
+      "contentHash": "9b87ab51b9c53e8976884e44b0ed1f2d",
       "sourceName": "test/unit/core/BrrrManagerTest.t.sol",
       "solcConfig": {
         "settings": {
@@ -6442,6 +6854,7 @@
         "src/core/interfaces/IBasePositionManager.sol",
         "src/core/interfaces/IBrrrManager.sol",
         "src/core/interfaces/IOrderBook.sol",
+        "src/core/interfaces/IPositionManager.sol",
         "src/core/interfaces/IPositionRouter.sol",
         "src/core/interfaces/IPositionRouterCallbackReceiver.sol",
         "src/core/interfaces/IRouter.sol",
@@ -6481,7 +6894,6 @@
         "src/staking/RewardTracker.sol",
         "src/staking/TransferStakedBrrr.sol",
         "src/staking/interfaces/IBrrrRewardRouter.sol",
-        "src/staking/interfaces/IBrrrXpAmplifier.sol",
         "src/staking/interfaces/IRewardDistributor.sol",
         "src/staking/interfaces/IRewardTracker.sol",
         "src/tokens/BaseToken.sol",
@@ -6507,8 +6919,8 @@
       }
     },
     "test/unit/core/OrderBookTest.t.sol": {
-      "lastModificationDate": 1698311158835,
-      "contentHash": "bdaa4e4de0b1fdc7b1d773156ba762d5",
+      "lastModificationDate": 1698410203321,
+      "contentHash": "fb4b4cc14e808c0bda3147a32659d978",
       "sourceName": "test/unit/core/OrderBookTest.t.sol",
       "solcConfig": {
         "settings": {
@@ -6579,6 +6991,7 @@
         "src/core/interfaces/IBasePositionManager.sol",
         "src/core/interfaces/IBrrrManager.sol",
         "src/core/interfaces/IOrderBook.sol",
+        "src/core/interfaces/IPositionManager.sol",
         "src/core/interfaces/IPositionRouter.sol",
         "src/core/interfaces/IPositionRouterCallbackReceiver.sol",
         "src/core/interfaces/IRouter.sol",
@@ -6618,7 +7031,6 @@
         "src/staking/RewardTracker.sol",
         "src/staking/TransferStakedBrrr.sol",
         "src/staking/interfaces/IBrrrRewardRouter.sol",
-        "src/staking/interfaces/IBrrrXpAmplifier.sol",
         "src/staking/interfaces/IRewardDistributor.sol",
         "src/staking/interfaces/IRewardTracker.sol",
         "src/tokens/BaseToken.sol",
@@ -6644,8 +7056,8 @@
       }
     },
     "test/unit/core/OrderExecutorTest.t.sol": {
-      "lastModificationDate": 1698074538902,
-      "contentHash": "3a66601aca494b6c327c3d83aee83938",
+      "lastModificationDate": 1698410203282,
+      "contentHash": "3d4b465913545faf1b607f47c87e2e31",
       "sourceName": "test/unit/core/OrderExecutorTest.t.sol",
       "solcConfig": {
         "settings": {
@@ -6717,6 +7129,7 @@
         "src/core/interfaces/IBasePositionManager.sol",
         "src/core/interfaces/IBrrrManager.sol",
         "src/core/interfaces/IOrderBook.sol",
+        "src/core/interfaces/IPositionManager.sol",
         "src/core/interfaces/IPositionRouter.sol",
         "src/core/interfaces/IPositionRouterCallbackReceiver.sol",
         "src/core/interfaces/IRouter.sol",
@@ -6756,7 +7169,6 @@
         "src/staking/RewardTracker.sol",
         "src/staking/TransferStakedBrrr.sol",
         "src/staking/interfaces/IBrrrRewardRouter.sol",
-        "src/staking/interfaces/IBrrrXpAmplifier.sol",
         "src/staking/interfaces/IRewardDistributor.sol",
         "src/staking/interfaces/IRewardTracker.sol",
         "src/tokens/BaseToken.sol",
@@ -6782,8 +7194,8 @@
       }
     },
     "test/unit/core/PositionManagerTest.t.sol": {
-      "lastModificationDate": 1698074538902,
-      "contentHash": "42810263e2197cac17fc09aca74f39be",
+      "lastModificationDate": 1698410203331,
+      "contentHash": "9e8897ee3f737f977fa3a5417e18b1a8",
       "sourceName": "test/unit/core/PositionManagerTest.t.sol",
       "solcConfig": {
         "settings": {
@@ -6854,6 +7266,7 @@
         "src/core/interfaces/IBasePositionManager.sol",
         "src/core/interfaces/IBrrrManager.sol",
         "src/core/interfaces/IOrderBook.sol",
+        "src/core/interfaces/IPositionManager.sol",
         "src/core/interfaces/IPositionRouter.sol",
         "src/core/interfaces/IPositionRouterCallbackReceiver.sol",
         "src/core/interfaces/IRouter.sol",
@@ -6893,7 +7306,6 @@
         "src/staking/RewardTracker.sol",
         "src/staking/TransferStakedBrrr.sol",
         "src/staking/interfaces/IBrrrRewardRouter.sol",
-        "src/staking/interfaces/IBrrrXpAmplifier.sol",
         "src/staking/interfaces/IRewardDistributor.sol",
         "src/staking/interfaces/IRewardTracker.sol",
         "src/tokens/BaseToken.sol",
@@ -6919,8 +7331,8 @@
       }
     },
     "test/unit/core/PositionRouterTest.t.sol": {
-      "lastModificationDate": 1698309558063,
-      "contentHash": "de1d8f779e9fb42362af196e394f305a",
+      "lastModificationDate": 1698410203329,
+      "contentHash": "c9a8e35d1ceffc0833a2bb0345bc4103",
       "sourceName": "test/unit/core/PositionRouterTest.t.sol",
       "solcConfig": {
         "settings": {
@@ -6991,6 +7403,7 @@
         "src/core/interfaces/IBasePositionManager.sol",
         "src/core/interfaces/IBrrrManager.sol",
         "src/core/interfaces/IOrderBook.sol",
+        "src/core/interfaces/IPositionManager.sol",
         "src/core/interfaces/IPositionRouter.sol",
         "src/core/interfaces/IPositionRouterCallbackReceiver.sol",
         "src/core/interfaces/IRouter.sol",
@@ -7014,6 +7427,7 @@
         "src/oracle/interfaces/IPriceFeed.sol",
         "src/oracle/interfaces/ISecondaryPriceFeed.sol",
         "src/peripherals/OrderBookReader.sol",
+        "src/peripherals/PriceFeedTimelock.sol",
         "src/peripherals/Reader.sol",
         "src/peripherals/RewardReader.sol",
         "src/peripherals/ShortsTrackerTimelock.sol",
@@ -7059,8 +7473,8 @@
       }
     },
     "test/unit/core/RouterTest.t.sol": {
-      "lastModificationDate": 1698074538902,
-      "contentHash": "ec116b8e1d68a076823397935631ed1d",
+      "lastModificationDate": 1698410203307,
+      "contentHash": "829be1d8f5a14545b95e432aee60d53a",
       "sourceName": "test/unit/core/RouterTest.t.sol",
       "solcConfig": {
         "settings": {
@@ -7131,6 +7545,7 @@
         "src/core/interfaces/IBasePositionManager.sol",
         "src/core/interfaces/IBrrrManager.sol",
         "src/core/interfaces/IOrderBook.sol",
+        "src/core/interfaces/IPositionManager.sol",
         "src/core/interfaces/IPositionRouter.sol",
         "src/core/interfaces/IPositionRouterCallbackReceiver.sol",
         "src/core/interfaces/IRouter.sol",
@@ -7170,7 +7585,6 @@
         "src/staking/RewardTracker.sol",
         "src/staking/TransferStakedBrrr.sol",
         "src/staking/interfaces/IBrrrRewardRouter.sol",
-        "src/staking/interfaces/IBrrrXpAmplifier.sol",
         "src/staking/interfaces/IRewardDistributor.sol",
         "src/staking/interfaces/IRewardTracker.sol",
         "src/tokens/BaseToken.sol",
@@ -7196,8 +7610,8 @@
       }
     },
     "test/unit/core/ShortsTrackerTest.t.sol": {
-      "lastModificationDate": 1698074538902,
-      "contentHash": "452b91a8fa8f1cafbae6354eeac1901b",
+      "lastModificationDate": 1698410203294,
+      "contentHash": "57ba71f217b1f08ec8203aa1fed96861",
       "sourceName": "test/unit/core/ShortsTrackerTest.t.sol",
       "solcConfig": {
         "settings": {
@@ -7268,6 +7682,7 @@
         "src/core/interfaces/IBasePositionManager.sol",
         "src/core/interfaces/IBrrrManager.sol",
         "src/core/interfaces/IOrderBook.sol",
+        "src/core/interfaces/IPositionManager.sol",
         "src/core/interfaces/IPositionRouter.sol",
         "src/core/interfaces/IPositionRouterCallbackReceiver.sol",
         "src/core/interfaces/IRouter.sol",
@@ -7307,7 +7722,6 @@
         "src/staking/RewardTracker.sol",
         "src/staking/TransferStakedBrrr.sol",
         "src/staking/interfaces/IBrrrRewardRouter.sol",
-        "src/staking/interfaces/IBrrrXpAmplifier.sol",
         "src/staking/interfaces/IRewardDistributor.sol",
         "src/staking/interfaces/IRewardTracker.sol",
         "src/tokens/BaseToken.sol",
@@ -7333,8 +7747,8 @@
       }
     },
     "test/unit/core/VaultErrorControllerTest.t.sol": {
-      "lastModificationDate": 1698074538902,
-      "contentHash": "6d93dc30ed09875cfda8c49d88208e9f",
+      "lastModificationDate": 1698410203305,
+      "contentHash": "c438c19f48c39edff8c5578ac00bf726",
       "sourceName": "test/unit/core/VaultErrorControllerTest.t.sol",
       "solcConfig": {
         "settings": {
@@ -7405,6 +7819,7 @@
         "src/core/interfaces/IBasePositionManager.sol",
         "src/core/interfaces/IBrrrManager.sol",
         "src/core/interfaces/IOrderBook.sol",
+        "src/core/interfaces/IPositionManager.sol",
         "src/core/interfaces/IPositionRouter.sol",
         "src/core/interfaces/IPositionRouterCallbackReceiver.sol",
         "src/core/interfaces/IRouter.sol",
@@ -7444,7 +7859,6 @@
         "src/staking/RewardTracker.sol",
         "src/staking/TransferStakedBrrr.sol",
         "src/staking/interfaces/IBrrrRewardRouter.sol",
-        "src/staking/interfaces/IBrrrXpAmplifier.sol",
         "src/staking/interfaces/IRewardDistributor.sol",
         "src/staking/interfaces/IRewardTracker.sol",
         "src/tokens/BaseToken.sol",
@@ -7470,8 +7884,8 @@
       }
     },
     "test/unit/oracle/FastPriceEventsTest.t.sol": {
-      "lastModificationDate": 1698074538902,
-      "contentHash": "1e5dd381396f38d5791967c99280783c",
+      "lastModificationDate": 1698410203330,
+      "contentHash": "8b7047007fe5c2690e5df8aab8663b58",
       "sourceName": "test/unit/oracle/FastPriceEventsTest.t.sol",
       "solcConfig": {
         "settings": {
@@ -7542,6 +7956,7 @@
         "src/core/interfaces/IBasePositionManager.sol",
         "src/core/interfaces/IBrrrManager.sol",
         "src/core/interfaces/IOrderBook.sol",
+        "src/core/interfaces/IPositionManager.sol",
         "src/core/interfaces/IPositionRouter.sol",
         "src/core/interfaces/IPositionRouterCallbackReceiver.sol",
         "src/core/interfaces/IRouter.sol",
@@ -7581,7 +7996,6 @@
         "src/staking/RewardTracker.sol",
         "src/staking/TransferStakedBrrr.sol",
         "src/staking/interfaces/IBrrrRewardRouter.sol",
-        "src/staking/interfaces/IBrrrXpAmplifier.sol",
         "src/staking/interfaces/IRewardDistributor.sol",
         "src/staking/interfaces/IRewardTracker.sol",
         "src/tokens/BaseToken.sol",
@@ -7607,8 +8021,8 @@
       }
     },
     "test/unit/oracle/FastPriceFeedTest.t.sol": {
-      "lastModificationDate": 1698074538902,
-      "contentHash": "074e668e858350ae5b77277097eb40a2",
+      "lastModificationDate": 1698410203320,
+      "contentHash": "262467501fad10de01165f5a8ac4235e",
       "sourceName": "test/unit/oracle/FastPriceFeedTest.t.sol",
       "solcConfig": {
         "settings": {
@@ -7679,6 +8093,7 @@
         "src/core/interfaces/IBasePositionManager.sol",
         "src/core/interfaces/IBrrrManager.sol",
         "src/core/interfaces/IOrderBook.sol",
+        "src/core/interfaces/IPositionManager.sol",
         "src/core/interfaces/IPositionRouter.sol",
         "src/core/interfaces/IPositionRouterCallbackReceiver.sol",
         "src/core/interfaces/IRouter.sol",
@@ -7718,7 +8133,6 @@
         "src/staking/RewardTracker.sol",
         "src/staking/TransferStakedBrrr.sol",
         "src/staking/interfaces/IBrrrRewardRouter.sol",
-        "src/staking/interfaces/IBrrrXpAmplifier.sol",
         "src/staking/interfaces/IRewardDistributor.sol",
         "src/staking/interfaces/IRewardTracker.sol",
         "src/tokens/BaseToken.sol",
@@ -7744,8 +8158,8 @@
       }
     },
     "test/unit/oracle/VaultPriceFeedTest.t.sol": {
-      "lastModificationDate": 1698074538902,
-      "contentHash": "c804978e59ae1094c0b53ab594e5af30",
+      "lastModificationDate": 1698410203314,
+      "contentHash": "7280d108d2b47aaceb04f7bffe3b99c7",
       "sourceName": "test/unit/oracle/VaultPriceFeedTest.t.sol",
       "solcConfig": {
         "settings": {
@@ -7816,6 +8230,7 @@
         "src/core/interfaces/IBasePositionManager.sol",
         "src/core/interfaces/IBrrrManager.sol",
         "src/core/interfaces/IOrderBook.sol",
+        "src/core/interfaces/IPositionManager.sol",
         "src/core/interfaces/IPositionRouter.sol",
         "src/core/interfaces/IPositionRouterCallbackReceiver.sol",
         "src/core/interfaces/IRouter.sol",
@@ -7855,7 +8270,6 @@
         "src/staking/RewardTracker.sol",
         "src/staking/TransferStakedBrrr.sol",
         "src/staking/interfaces/IBrrrRewardRouter.sol",
-        "src/staking/interfaces/IBrrrXpAmplifier.sol",
         "src/staking/interfaces/IRewardDistributor.sol",
         "src/staking/interfaces/IRewardTracker.sol",
         "src/tokens/BaseToken.sol",
@@ -7881,8 +8295,8 @@
       }
     },
     "test/unit/peripherals/OrderBookReaderTest.t.sol": {
-      "lastModificationDate": 1698074538903,
-      "contentHash": "449b0953f50c2a7b4c2dee5a671de8fb",
+      "lastModificationDate": 1698410203350,
+      "contentHash": "c76fc5e1f7bfd1fbd6b9c3de9b0d984f",
       "sourceName": "test/unit/peripherals/OrderBookReaderTest.t.sol",
       "solcConfig": {
         "settings": {
@@ -7953,6 +8367,7 @@
         "src/core/interfaces/IBasePositionManager.sol",
         "src/core/interfaces/IBrrrManager.sol",
         "src/core/interfaces/IOrderBook.sol",
+        "src/core/interfaces/IPositionManager.sol",
         "src/core/interfaces/IPositionRouter.sol",
         "src/core/interfaces/IPositionRouterCallbackReceiver.sol",
         "src/core/interfaces/IRouter.sol",
@@ -7992,7 +8407,6 @@
         "src/staking/RewardTracker.sol",
         "src/staking/TransferStakedBrrr.sol",
         "src/staking/interfaces/IBrrrRewardRouter.sol",
-        "src/staking/interfaces/IBrrrXpAmplifier.sol",
         "src/staking/interfaces/IRewardDistributor.sol",
         "src/staking/interfaces/IRewardTracker.sol",
         "src/tokens/BaseToken.sol",
@@ -8018,8 +8432,8 @@
       }
     },
     "test/unit/peripherals/PositionRouterReaderTest.t.sol": {
-      "lastModificationDate": 1698074538903,
-      "contentHash": "f3eb91d6538187f259a3103d214f0fcc",
+      "lastModificationDate": 1698410203329,
+      "contentHash": "114e70859fe5eeca1cf7d13ae026e82b",
       "sourceName": "test/unit/peripherals/PositionRouterReaderTest.t.sol",
       "solcConfig": {
         "settings": {
@@ -8090,6 +8504,7 @@
         "src/core/interfaces/IBasePositionManager.sol",
         "src/core/interfaces/IBrrrManager.sol",
         "src/core/interfaces/IOrderBook.sol",
+        "src/core/interfaces/IPositionManager.sol",
         "src/core/interfaces/IPositionRouter.sol",
         "src/core/interfaces/IPositionRouterCallbackReceiver.sol",
         "src/core/interfaces/IRouter.sol",
@@ -8130,7 +8545,6 @@
         "src/staking/RewardTracker.sol",
         "src/staking/TransferStakedBrrr.sol",
         "src/staking/interfaces/IBrrrRewardRouter.sol",
-        "src/staking/interfaces/IBrrrXpAmplifier.sol",
         "src/staking/interfaces/IRewardDistributor.sol",
         "src/staking/interfaces/IRewardTracker.sol",
         "src/tokens/BaseToken.sol",
@@ -8156,8 +8570,8 @@
       }
     },
     "test/unit/peripherals/ReaderTest.t.sol": {
-      "lastModificationDate": 1698074538903,
-      "contentHash": "e22f414d0c36ddff33920fd1b9ec94df",
+      "lastModificationDate": 1698410203334,
+      "contentHash": "58863016df96a8214f0bbfcfe9f38b07",
       "sourceName": "test/unit/peripherals/ReaderTest.t.sol",
       "solcConfig": {
         "settings": {
@@ -8228,6 +8642,7 @@
         "src/core/interfaces/IBasePositionManager.sol",
         "src/core/interfaces/IBrrrManager.sol",
         "src/core/interfaces/IOrderBook.sol",
+        "src/core/interfaces/IPositionManager.sol",
         "src/core/interfaces/IPositionRouter.sol",
         "src/core/interfaces/IPositionRouterCallbackReceiver.sol",
         "src/core/interfaces/IRouter.sol",
@@ -8268,7 +8683,6 @@
         "src/staking/RewardTracker.sol",
         "src/staking/TransferStakedBrrr.sol",
         "src/staking/interfaces/IBrrrRewardRouter.sol",
-        "src/staking/interfaces/IBrrrXpAmplifier.sol",
         "src/staking/interfaces/IRewardDistributor.sol",
         "src/staking/interfaces/IRewardTracker.sol",
         "src/tokens/BaseToken.sol",
@@ -8294,8 +8708,8 @@
       }
     },
     "test/unit/peripherals/RewardReaderTest.t.sol": {
-      "lastModificationDate": 1698074538903,
-      "contentHash": "aec5f85f2cdb49e03b37a68ac6537c63",
+      "lastModificationDate": 1698410203338,
+      "contentHash": "fdbcc3c9f9a416ed4c1dea89c63c62f2",
       "sourceName": "test/unit/peripherals/RewardReaderTest.t.sol",
       "solcConfig": {
         "settings": {
@@ -8366,6 +8780,7 @@
         "src/core/interfaces/IBasePositionManager.sol",
         "src/core/interfaces/IBrrrManager.sol",
         "src/core/interfaces/IOrderBook.sol",
+        "src/core/interfaces/IPositionManager.sol",
         "src/core/interfaces/IPositionRouter.sol",
         "src/core/interfaces/IPositionRouterCallbackReceiver.sol",
         "src/core/interfaces/IRouter.sol",
@@ -8406,7 +8821,6 @@
         "src/staking/RewardTracker.sol",
         "src/staking/TransferStakedBrrr.sol",
         "src/staking/interfaces/IBrrrRewardRouter.sol",
-        "src/staking/interfaces/IBrrrXpAmplifier.sol",
         "src/staking/interfaces/IRewardDistributor.sol",
         "src/staking/interfaces/IRewardTracker.sol",
         "src/tokens/BaseToken.sol",
@@ -8431,9 +8845,153 @@
         }
       }
     },
+    "test/unit/peripherals/RewardTimelockTest.t.sol": {
+      "lastModificationDate": 1698423260595,
+      "contentHash": "1d7aab9cc35522d5d577ea5c4b42f288",
+      "sourceName": "test/unit/peripherals/RewardTimelockTest.t.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "ipfs",
+            "appendCBOR": true
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "lib/forge-std/lib/ds-test/src/test.sol",
+        "lib/forge-std/src/Base.sol",
+        "lib/forge-std/src/Script.sol",
+        "lib/forge-std/src/StdAssertions.sol",
+        "lib/forge-std/src/StdChains.sol",
+        "lib/forge-std/src/StdCheats.sol",
+        "lib/forge-std/src/StdError.sol",
+        "lib/forge-std/src/StdInvariant.sol",
+        "lib/forge-std/src/StdJson.sol",
+        "lib/forge-std/src/StdMath.sol",
+        "lib/forge-std/src/StdStorage.sol",
+        "lib/forge-std/src/StdStyle.sol",
+        "lib/forge-std/src/StdUtils.sol",
+        "lib/forge-std/src/Test.sol",
+        "lib/forge-std/src/Vm.sol",
+        "lib/forge-std/src/console.sol",
+        "lib/forge-std/src/console2.sol",
+        "lib/forge-std/src/interfaces/IMulticall3.sol",
+        "script/HelperConfig.s.sol",
+        "src/access/Governable.sol",
+        "src/access/interfaces/IAdmin.sol",
+        "src/amm/interfaces/IPancakeFactory.sol",
+        "src/amm/interfaces/IPancakePair.sol",
+        "src/core/BRRR.sol",
+        "src/core/BasePositionManager.sol",
+        "src/core/BrrrManager.sol",
+        "src/core/OrderBook.sol",
+        "src/core/PositionManager.sol",
+        "src/core/PositionRouter.sol",
+        "src/core/PositionUtils.sol",
+        "src/core/Router.sol",
+        "src/core/ShortsTracker.sol",
+        "src/core/Vault.sol",
+        "src/core/VaultErrorController.sol",
+        "src/core/VaultPriceFeed.sol",
+        "src/core/VaultUtils.sol",
+        "src/core/interfaces/IBasePositionManager.sol",
+        "src/core/interfaces/IBrrrManager.sol",
+        "src/core/interfaces/IOrderBook.sol",
+        "src/core/interfaces/IPositionManager.sol",
+        "src/core/interfaces/IPositionRouter.sol",
+        "src/core/interfaces/IPositionRouterCallbackReceiver.sol",
+        "src/core/interfaces/IRouter.sol",
+        "src/core/interfaces/IShortsTracker.sol",
+        "src/core/interfaces/IVault.sol",
+        "src/core/interfaces/IVaultPriceFeed.sol",
+        "src/core/interfaces/IVaultUtils.sol",
+        "src/libraries/GSN/Context.sol",
+        "src/libraries/token/ERC20.sol",
+        "src/libraries/token/IERC20.sol",
+        "src/libraries/token/IERC20Metadata.sol",
+        "src/libraries/token/IERC20Permit.sol",
+        "src/libraries/token/SafeERC20.sol",
+        "src/libraries/token/draft-IERC6093.sol",
+        "src/libraries/utils/Address.sol",
+        "src/libraries/utils/ReentrancyGuard.sol",
+        "src/oracle/FastPriceEvents.sol",
+        "src/oracle/FastPriceFeed.sol",
+        "src/oracle/interfaces/IFastPriceEvents.sol",
+        "src/oracle/interfaces/IFastPriceFeed.sol",
+        "src/oracle/interfaces/IPriceFeed.sol",
+        "src/oracle/interfaces/ISecondaryPriceFeed.sol",
+        "src/peripherals/OrderBookReader.sol",
+        "src/peripherals/PriceFeedTimelock.sol",
+        "src/peripherals/Reader.sol",
+        "src/peripherals/RewardReader.sol",
+        "src/peripherals/RewardTimelock.sol",
+        "src/peripherals/ShortsTrackerTimelock.sol",
+        "src/peripherals/Timelock.sol",
+        "src/peripherals/VaultReader.sol",
+        "src/peripherals/interfaces/IHandlerTarget.sol",
+        "src/peripherals/interfaces/ITimelock.sol",
+        "src/peripherals/interfaces/ITimelockTarget.sol",
+        "src/referrals/ReferralReader.sol",
+        "src/referrals/ReferralStorage.sol",
+        "src/referrals/interfaces/IReferralStorage.sol",
+        "src/staking/BrrrBalance.sol",
+        "src/staking/BrrrRewardRouter.sol",
+        "src/staking/BrrrXpAmplifier.sol",
+        "src/staking/RewardClaimer.sol",
+        "src/staking/RewardDistributor.sol",
+        "src/staking/RewardTracker.sol",
+        "src/staking/TransferStakedBrrr.sol",
+        "src/staking/interfaces/IBrrrRewardRouter.sol",
+        "src/staking/interfaces/IBrrrXpAmplifier.sol",
+        "src/staking/interfaces/IRewardDistributor.sol",
+        "src/staking/interfaces/IRewardTracker.sol",
+        "src/staking/interfaces/IWithdrawalTarget.sol",
+        "src/tokens/BaseToken.sol",
+        "src/tokens/MintableBaseToken.sol",
+        "src/tokens/Token.sol",
+        "src/tokens/USDP.sol",
+        "src/tokens/WBTC.sol",
+        "src/tokens/WETH.sol",
+        "src/tokens/YieldToken.sol",
+        "src/tokens/interfaces/IBaseToken.sol",
+        "src/tokens/interfaces/IMintable.sol",
+        "src/tokens/interfaces/IUSDP.sol",
+        "src/tokens/interfaces/IWETH.sol",
+        "src/tokens/interfaces/IYieldToken.sol",
+        "src/tokens/interfaces/IYieldTracker.sol",
+        "test/mocks/MockV3Aggregator.sol"
+      ],
+      "versionRequirement": "=0.8.18",
+      "artifacts": {
+        "RewardTimelockTest": {
+          "0.8.18+commit.87f61d96.Darwin.appleclang": "RewardTimelockTest.t.sol/RewardTimelockTest.json"
+        }
+      }
+    },
     "test/unit/peripherals/TimelockTest.t.sol": {
-      "lastModificationDate": 1698074538903,
-      "contentHash": "8adf9735864f82ecd96d50c231587d50",
+      "lastModificationDate": 1698410203351,
+      "contentHash": "e4dba20a1f484a31b1ba328944e652d4",
       "sourceName": "test/unit/peripherals/TimelockTest.t.sol",
       "solcConfig": {
         "settings": {
@@ -8504,6 +9062,7 @@
         "src/core/interfaces/IBasePositionManager.sol",
         "src/core/interfaces/IBrrrManager.sol",
         "src/core/interfaces/IOrderBook.sol",
+        "src/core/interfaces/IPositionManager.sol",
         "src/core/interfaces/IPositionRouter.sol",
         "src/core/interfaces/IPositionRouterCallbackReceiver.sol",
         "src/core/interfaces/IRouter.sol",
@@ -8545,7 +9104,6 @@
         "src/staking/RewardTracker.sol",
         "src/staking/TransferStakedBrrr.sol",
         "src/staking/interfaces/IBrrrRewardRouter.sol",
-        "src/staking/interfaces/IBrrrXpAmplifier.sol",
         "src/staking/interfaces/IRewardDistributor.sol",
         "src/staking/interfaces/IRewardTracker.sol",
         "src/tokens/BaseToken.sol",
@@ -8571,8 +9129,8 @@
       }
     },
     "test/unit/peripherals/VaultReaderTest.t.sol": {
-      "lastModificationDate": 1698074538903,
-      "contentHash": "b0edbd9446fd3ce023f041bc2a7a9496",
+      "lastModificationDate": 1698410203335,
+      "contentHash": "493b1cbe83c8687f1ce0486732daa26c",
       "sourceName": "test/unit/peripherals/VaultReaderTest.t.sol",
       "solcConfig": {
         "settings": {
@@ -8643,6 +9201,7 @@
         "src/core/interfaces/IBasePositionManager.sol",
         "src/core/interfaces/IBrrrManager.sol",
         "src/core/interfaces/IOrderBook.sol",
+        "src/core/interfaces/IPositionManager.sol",
         "src/core/interfaces/IPositionRouter.sol",
         "src/core/interfaces/IPositionRouterCallbackReceiver.sol",
         "src/core/interfaces/IRouter.sol",
@@ -8683,7 +9242,6 @@
         "src/staking/RewardTracker.sol",
         "src/staking/TransferStakedBrrr.sol",
         "src/staking/interfaces/IBrrrRewardRouter.sol",
-        "src/staking/interfaces/IBrrrXpAmplifier.sol",
         "src/staking/interfaces/IRewardDistributor.sol",
         "src/staking/interfaces/IRewardTracker.sol",
         "src/tokens/BaseToken.sol",
@@ -8709,8 +9267,8 @@
       }
     },
     "test/unit/referrals/ReferralReaderTest.t.sol": {
-      "lastModificationDate": 1698074538903,
-      "contentHash": "66fdf7d993be050c0750b8f6eb6f89f0",
+      "lastModificationDate": 1698410203303,
+      "contentHash": "666b2af858f6cb4f5e88e016b790c6e4",
       "sourceName": "test/unit/referrals/ReferralReaderTest.t.sol",
       "solcConfig": {
         "settings": {
@@ -8781,6 +9339,7 @@
         "src/core/interfaces/IBasePositionManager.sol",
         "src/core/interfaces/IBrrrManager.sol",
         "src/core/interfaces/IOrderBook.sol",
+        "src/core/interfaces/IPositionManager.sol",
         "src/core/interfaces/IPositionRouter.sol",
         "src/core/interfaces/IPositionRouterCallbackReceiver.sol",
         "src/core/interfaces/IRouter.sol",
@@ -8821,7 +9380,6 @@
         "src/staking/RewardTracker.sol",
         "src/staking/TransferStakedBrrr.sol",
         "src/staking/interfaces/IBrrrRewardRouter.sol",
-        "src/staking/interfaces/IBrrrXpAmplifier.sol",
         "src/staking/interfaces/IRewardDistributor.sol",
         "src/staking/interfaces/IRewardTracker.sol",
         "src/tokens/BaseToken.sol",
@@ -8847,8 +9405,8 @@
       }
     },
     "test/unit/referrals/ReferralStorageTest.t.sol": {
-      "lastModificationDate": 1698074538903,
-      "contentHash": "c780c29eb98d03fe00a8035bb3279581",
+      "lastModificationDate": 1698410203330,
+      "contentHash": "4e86b573e4e2f0bae666a50318fcd5d4",
       "sourceName": "test/unit/referrals/ReferralStorageTest.t.sol",
       "solcConfig": {
         "settings": {
@@ -8919,6 +9477,7 @@
         "src/core/interfaces/IBasePositionManager.sol",
         "src/core/interfaces/IBrrrManager.sol",
         "src/core/interfaces/IOrderBook.sol",
+        "src/core/interfaces/IPositionManager.sol",
         "src/core/interfaces/IPositionRouter.sol",
         "src/core/interfaces/IPositionRouterCallbackReceiver.sol",
         "src/core/interfaces/IRouter.sol",
@@ -8959,7 +9518,6 @@
         "src/staking/RewardTracker.sol",
         "src/staking/TransferStakedBrrr.sol",
         "src/staking/interfaces/IBrrrRewardRouter.sol",
-        "src/staking/interfaces/IBrrrXpAmplifier.sol",
         "src/staking/interfaces/IRewardDistributor.sol",
         "src/staking/interfaces/IRewardTracker.sol",
         "src/tokens/BaseToken.sol",
@@ -8985,8 +9543,8 @@
       }
     },
     "test/unit/staking/BrrrRewardRouterTest.t.sol": {
-      "lastModificationDate": 1698320907572,
-      "contentHash": "93c3e6d64453808a3ef34985726f263e",
+      "lastModificationDate": 1698410203353,
+      "contentHash": "40bd11e88e3167c33f93758e6194232f",
       "sourceName": "test/unit/staking/BrrrRewardRouterTest.t.sol",
       "solcConfig": {
         "settings": {
@@ -9057,6 +9615,7 @@
         "src/core/interfaces/IBasePositionManager.sol",
         "src/core/interfaces/IBrrrManager.sol",
         "src/core/interfaces/IOrderBook.sol",
+        "src/core/interfaces/IPositionManager.sol",
         "src/core/interfaces/IPositionRouter.sol",
         "src/core/interfaces/IPositionRouterCallbackReceiver.sol",
         "src/core/interfaces/IRouter.sol",
@@ -9096,7 +9655,6 @@
         "src/staking/RewardTracker.sol",
         "src/staking/TransferStakedBrrr.sol",
         "src/staking/interfaces/IBrrrRewardRouter.sol",
-        "src/staking/interfaces/IBrrrXpAmplifier.sol",
         "src/staking/interfaces/IRewardDistributor.sol",
         "src/staking/interfaces/IRewardTracker.sol",
         "src/tokens/BaseToken.sol",
@@ -9122,8 +9680,8 @@
       }
     },
     "test/unit/staking/BrrrXPAmplifierTest.t.sol": {
-      "lastModificationDate": 1698308593466,
-      "contentHash": "736fe4fe091262bb7c18b9f43c686202",
+      "lastModificationDate": 1698410203351,
+      "contentHash": "4967c22b92993edb20a9962c460cb1dd",
       "sourceName": "test/unit/staking/BrrrXPAmplifierTest.t.sol",
       "solcConfig": {
         "settings": {
@@ -9194,6 +9752,7 @@
         "src/core/interfaces/IBasePositionManager.sol",
         "src/core/interfaces/IBrrrManager.sol",
         "src/core/interfaces/IOrderBook.sol",
+        "src/core/interfaces/IPositionManager.sol",
         "src/core/interfaces/IPositionRouter.sol",
         "src/core/interfaces/IPositionRouterCallbackReceiver.sol",
         "src/core/interfaces/IRouter.sol",
@@ -9261,9 +9820,150 @@
         }
       }
     },
+    "test/unit/staking/RewardClaimerTest.t.sol": {
+      "lastModificationDate": 1698410203339,
+      "contentHash": "682225de2f64b6836710cdd59b6f1d52",
+      "sourceName": "test/unit/staking/RewardClaimerTest.t.sol",
+      "solcConfig": {
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "metadata": {
+            "useLiteralContent": false,
+            "bytecodeHash": "ipfs",
+            "appendCBOR": true
+          },
+          "outputSelection": {
+            "*": {
+              "": [
+                "ast"
+              ],
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ]
+            }
+          },
+          "evmVersion": "paris",
+          "libraries": {}
+        }
+      },
+      "imports": [
+        "lib/forge-std/lib/ds-test/src/test.sol",
+        "lib/forge-std/src/Base.sol",
+        "lib/forge-std/src/Script.sol",
+        "lib/forge-std/src/StdAssertions.sol",
+        "lib/forge-std/src/StdChains.sol",
+        "lib/forge-std/src/StdCheats.sol",
+        "lib/forge-std/src/StdError.sol",
+        "lib/forge-std/src/StdInvariant.sol",
+        "lib/forge-std/src/StdJson.sol",
+        "lib/forge-std/src/StdMath.sol",
+        "lib/forge-std/src/StdStorage.sol",
+        "lib/forge-std/src/StdStyle.sol",
+        "lib/forge-std/src/StdUtils.sol",
+        "lib/forge-std/src/Test.sol",
+        "lib/forge-std/src/Vm.sol",
+        "lib/forge-std/src/console.sol",
+        "lib/forge-std/src/console2.sol",
+        "lib/forge-std/src/interfaces/IMulticall3.sol",
+        "script/HelperConfig.s.sol",
+        "src/access/Governable.sol",
+        "src/access/interfaces/IAdmin.sol",
+        "src/amm/interfaces/IPancakeFactory.sol",
+        "src/amm/interfaces/IPancakePair.sol",
+        "src/core/BRRR.sol",
+        "src/core/BasePositionManager.sol",
+        "src/core/BrrrManager.sol",
+        "src/core/OrderBook.sol",
+        "src/core/PositionManager.sol",
+        "src/core/PositionRouter.sol",
+        "src/core/PositionUtils.sol",
+        "src/core/Router.sol",
+        "src/core/ShortsTracker.sol",
+        "src/core/Vault.sol",
+        "src/core/VaultErrorController.sol",
+        "src/core/VaultPriceFeed.sol",
+        "src/core/VaultUtils.sol",
+        "src/core/interfaces/IBasePositionManager.sol",
+        "src/core/interfaces/IBrrrManager.sol",
+        "src/core/interfaces/IOrderBook.sol",
+        "src/core/interfaces/IPositionManager.sol",
+        "src/core/interfaces/IPositionRouter.sol",
+        "src/core/interfaces/IPositionRouterCallbackReceiver.sol",
+        "src/core/interfaces/IRouter.sol",
+        "src/core/interfaces/IShortsTracker.sol",
+        "src/core/interfaces/IVault.sol",
+        "src/core/interfaces/IVaultPriceFeed.sol",
+        "src/core/interfaces/IVaultUtils.sol",
+        "src/libraries/GSN/Context.sol",
+        "src/libraries/token/ERC20.sol",
+        "src/libraries/token/IERC20.sol",
+        "src/libraries/token/IERC20Metadata.sol",
+        "src/libraries/token/IERC20Permit.sol",
+        "src/libraries/token/SafeERC20.sol",
+        "src/libraries/token/draft-IERC6093.sol",
+        "src/libraries/utils/Address.sol",
+        "src/libraries/utils/ReentrancyGuard.sol",
+        "src/oracle/FastPriceEvents.sol",
+        "src/oracle/FastPriceFeed.sol",
+        "src/oracle/interfaces/IFastPriceEvents.sol",
+        "src/oracle/interfaces/IFastPriceFeed.sol",
+        "src/oracle/interfaces/IPriceFeed.sol",
+        "src/oracle/interfaces/ISecondaryPriceFeed.sol",
+        "src/peripherals/OrderBookReader.sol",
+        "src/peripherals/Reader.sol",
+        "src/peripherals/RewardReader.sol",
+        "src/peripherals/ShortsTrackerTimelock.sol",
+        "src/peripherals/Timelock.sol",
+        "src/peripherals/VaultReader.sol",
+        "src/peripherals/interfaces/IHandlerTarget.sol",
+        "src/peripherals/interfaces/ITimelock.sol",
+        "src/peripherals/interfaces/ITimelockTarget.sol",
+        "src/referrals/ReferralReader.sol",
+        "src/referrals/ReferralStorage.sol",
+        "src/referrals/interfaces/IReferralStorage.sol",
+        "src/staking/BrrrBalance.sol",
+        "src/staking/BrrrRewardRouter.sol",
+        "src/staking/BrrrXpAmplifier.sol",
+        "src/staking/RewardClaimer.sol",
+        "src/staking/RewardDistributor.sol",
+        "src/staking/RewardTracker.sol",
+        "src/staking/TransferStakedBrrr.sol",
+        "src/staking/interfaces/IBrrrRewardRouter.sol",
+        "src/staking/interfaces/IBrrrXpAmplifier.sol",
+        "src/staking/interfaces/IRewardDistributor.sol",
+        "src/staking/interfaces/IRewardTracker.sol",
+        "src/tokens/BaseToken.sol",
+        "src/tokens/MintableBaseToken.sol",
+        "src/tokens/Token.sol",
+        "src/tokens/USDP.sol",
+        "src/tokens/WBTC.sol",
+        "src/tokens/WETH.sol",
+        "src/tokens/YieldToken.sol",
+        "src/tokens/interfaces/IBaseToken.sol",
+        "src/tokens/interfaces/IMintable.sol",
+        "src/tokens/interfaces/IUSDP.sol",
+        "src/tokens/interfaces/IWETH.sol",
+        "src/tokens/interfaces/IYieldToken.sol",
+        "src/tokens/interfaces/IYieldTracker.sol",
+        "test/mocks/MockV3Aggregator.sol"
+      ],
+      "versionRequirement": "=0.8.18",
+      "artifacts": {
+        "RewardClaimerTest": {
+          "0.8.18+commit.87f61d96.Darwin.appleclang": "RewardClaimerTest.t.sol/RewardClaimerTest.json"
+        }
+      }
+    },
     "test/unit/staking/RewardDistributorTest.t.sol": {
-      "lastModificationDate": 1698074538903,
-      "contentHash": "7fe23bc2cdb40547ee532f4d4483353d",
+      "lastModificationDate": 1698410203341,
+      "contentHash": "9c4a94cc1f9e6eab17b6a1f42e4138e4",
       "sourceName": "test/unit/staking/RewardDistributorTest.t.sol",
       "solcConfig": {
         "settings": {
@@ -9334,6 +10034,7 @@
         "src/core/interfaces/IBasePositionManager.sol",
         "src/core/interfaces/IBrrrManager.sol",
         "src/core/interfaces/IOrderBook.sol",
+        "src/core/interfaces/IPositionManager.sol",
         "src/core/interfaces/IPositionRouter.sol",
         "src/core/interfaces/IPositionRouterCallbackReceiver.sol",
         "src/core/interfaces/IRouter.sol",
@@ -9373,7 +10074,6 @@
         "src/staking/RewardTracker.sol",
         "src/staking/TransferStakedBrrr.sol",
         "src/staking/interfaces/IBrrrRewardRouter.sol",
-        "src/staking/interfaces/IBrrrXpAmplifier.sol",
         "src/staking/interfaces/IRewardDistributor.sol",
         "src/staking/interfaces/IRewardTracker.sol",
         "src/tokens/BaseToken.sol",
@@ -9399,8 +10099,8 @@
       }
     },
     "test/unit/staking/RewardTrackerTest.t.sol": {
-      "lastModificationDate": 1698074538904,
-      "contentHash": "f108285bfdea8fa02363fdada6d0d101",
+      "lastModificationDate": 1698410203343,
+      "contentHash": "1cdf7a99a40fc7532866b9c6ad6303f4",
       "sourceName": "test/unit/staking/RewardTrackerTest.t.sol",
       "solcConfig": {
         "settings": {
@@ -9471,6 +10171,7 @@
         "src/core/interfaces/IBasePositionManager.sol",
         "src/core/interfaces/IBrrrManager.sol",
         "src/core/interfaces/IOrderBook.sol",
+        "src/core/interfaces/IPositionManager.sol",
         "src/core/interfaces/IPositionRouter.sol",
         "src/core/interfaces/IPositionRouterCallbackReceiver.sol",
         "src/core/interfaces/IRouter.sol",
@@ -9510,7 +10211,6 @@
         "src/staking/RewardTracker.sol",
         "src/staking/TransferStakedBrrr.sol",
         "src/staking/interfaces/IBrrrRewardRouter.sol",
-        "src/staking/interfaces/IBrrrXpAmplifier.sol",
         "src/staking/interfaces/IRewardDistributor.sol",
         "src/staking/interfaces/IRewardTracker.sol",
         "src/tokens/BaseToken.sol",
@@ -9536,8 +10236,8 @@
       }
     },
     "test/unit/tokens/TokenManagerTest.t.sol": {
-      "lastModificationDate": 1698074538904,
-      "contentHash": "1b2d88863a1920d7964c7a3ae7f43c4d",
+      "lastModificationDate": 1698410203335,
+      "contentHash": "211a09b324722a3ba295df927ba840d2",
       "sourceName": "test/unit/tokens/TokenManagerTest.t.sol",
       "solcConfig": {
         "settings": {
@@ -9609,6 +10309,7 @@
         "src/core/interfaces/IBasePositionManager.sol",
         "src/core/interfaces/IBrrrManager.sol",
         "src/core/interfaces/IOrderBook.sol",
+        "src/core/interfaces/IPositionManager.sol",
         "src/core/interfaces/IPositionRouter.sol",
         "src/core/interfaces/IPositionRouterCallbackReceiver.sol",
         "src/core/interfaces/IRouter.sol",
@@ -9650,7 +10351,6 @@
         "src/staking/RewardTracker.sol",
         "src/staking/TransferStakedBrrr.sol",
         "src/staking/interfaces/IBrrrRewardRouter.sol",
-        "src/staking/interfaces/IBrrrXpAmplifier.sol",
         "src/staking/interfaces/IRewardDistributor.sol",
         "src/staking/interfaces/IRewardTracker.sol",
         "src/tokens/BaseToken.sol",

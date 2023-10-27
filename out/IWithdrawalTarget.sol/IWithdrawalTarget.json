@@ -1,0 +1,272 @@
+{
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_token",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "_account",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "withdrawToken",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "bytecode": {
+    "object": "0x",
+    "sourceMap": "",
+    "linkReferences": {}
+  },
+  "deployedBytecode": {
+    "object": "0x",
+    "sourceMap": "",
+    "linkReferences": {}
+  },
+  "methodIdentifiers": {
+    "withdrawToken(address,address,uint256)": "01e33667"
+  },
+  "rawMetadata": "{\"compiler\":{\"version\":\"0.8.18+commit.87f61d96\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_token\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_account\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"_amount\",\"type\":\"uint256\"}],\"name\":\"withdrawToken\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"src/staking/interfaces/IWithdrawalTarget.sol\":\"IWithdrawalTarget\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[\":@chainlink/contracts/=lib/chainlink/contracts/src/v0.6/\",\":chainlink/=lib/chainlink/\",\":ds-test/=lib/forge-std/lib/ds-test/src/\",\":erc4626-tests/=lib/chainlink/contracts/foundry-lib/openzeppelin-contracts/lib/erc4626-tests/\",\":forge-std/=lib/forge-std/src/\"]},\"sources\":{\"src/staking/interfaces/IWithdrawalTarget.sol\":{\"keccak256\":\"0xf531d04dfe9c097d46f08275ce1602d6f2467c6d492e1f4c8a037450f3e67496\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://e88b65455664ca2e24bb608268e4fa9e2bb8a5c3bd8a1b18eec26d780c6cecb5\",\"dweb:/ipfs/QmaniRfqv7iHXSYgHD62SMBemMuinbDXs15zghGU9ebPFy\"]}},\"version\":1}",
+  "metadata": {
+    "compiler": {
+      "version": "0.8.18+commit.87f61d96"
+    },
+    "language": "Solidity",
+    "output": {
+      "abi": [
+        {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "_token",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "_account",
+              "type": "address"
+            },
+            {
+              "internalType": "uint256",
+              "name": "_amount",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "nonpayable",
+          "type": "function",
+          "name": "withdrawToken"
+        }
+      ],
+      "devdoc": {
+        "kind": "dev",
+        "methods": {},
+        "version": 1
+      },
+      "userdoc": {
+        "kind": "user",
+        "methods": {},
+        "version": 1
+      }
+    },
+    "settings": {
+      "remappings": [
+        "@chainlink/contracts/=lib/chainlink/contracts/src/v0.6/",
+        "chainlink/=lib/chainlink/",
+        "ds-test/=lib/forge-std/lib/ds-test/src/",
+        "erc4626-tests/=lib/chainlink/contracts/foundry-lib/openzeppelin-contracts/lib/erc4626-tests/",
+        "forge-std/=lib/forge-std/src/"
+      ],
+      "optimizer": {
+        "enabled": true,
+        "runs": 200
+      },
+      "metadata": {
+        "bytecodeHash": "ipfs"
+      },
+      "compilationTarget": {
+        "src/staking/interfaces/IWithdrawalTarget.sol": "IWithdrawalTarget"
+      },
+      "libraries": {}
+    },
+    "sources": {
+      "src/staking/interfaces/IWithdrawalTarget.sol": {
+        "keccak256": "0xf531d04dfe9c097d46f08275ce1602d6f2467c6d492e1f4c8a037450f3e67496",
+        "urls": [
+          "bzz-raw://e88b65455664ca2e24bb608268e4fa9e2bb8a5c3bd8a1b18eec26d780c6cecb5",
+          "dweb:/ipfs/QmaniRfqv7iHXSYgHD62SMBemMuinbDXs15zghGU9ebPFy"
+        ],
+        "license": "MIT"
+      }
+    },
+    "version": 1
+  },
+  "ast": {
+    "absolutePath": "src/staking/interfaces/IWithdrawalTarget.sol",
+    "id": 70535,
+    "exportedSymbols": {
+      "IWithdrawalTarget": [
+        70534
+      ]
+    },
+    "nodeType": "SourceUnit",
+    "src": "32:145:99",
+    "nodes": [
+      {
+        "id": 70524,
+        "nodeType": "PragmaDirective",
+        "src": "32:23:99",
+        "nodes": [],
+        "literals": [
+          "solidity",
+          "0.8",
+          ".18"
+        ]
+      },
+      {
+        "id": 70534,
+        "nodeType": "ContractDefinition",
+        "src": "57:119:99",
+        "nodes": [
+          {
+            "id": 70533,
+            "nodeType": "FunctionDefinition",
+            "src": "91:83:99",
+            "nodes": [],
+            "functionSelector": "01e33667",
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "withdrawToken",
+            "nameLocation": "100:13:99",
+            "parameters": {
+              "id": 70531,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 70526,
+                  "mutability": "mutable",
+                  "name": "_token",
+                  "nameLocation": "122:6:99",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 70533,
+                  "src": "114:14:99",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 70525,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "114:7:99",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 70528,
+                  "mutability": "mutable",
+                  "name": "_account",
+                  "nameLocation": "138:8:99",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 70533,
+                  "src": "130:16:99",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 70527,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "130:7:99",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 70530,
+                  "mutability": "mutable",
+                  "name": "_amount",
+                  "nameLocation": "156:7:99",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 70533,
+                  "src": "148:15:99",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 70529,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "148:7:99",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "113:51:99"
+            },
+            "returnParameters": {
+              "id": 70532,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "173:0:99"
+            },
+            "scope": 70534,
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "IWithdrawalTarget",
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "fullyImplemented": false,
+        "linearizedBaseContracts": [
+          70534
+        ],
+        "name": "IWithdrawalTarget",
+        "nameLocation": "67:17:99",
+        "scope": 70535,
+        "usedErrors": []
+      }
+    ],
+    "license": "MIT"
+  },
+  "id": 99
+}
