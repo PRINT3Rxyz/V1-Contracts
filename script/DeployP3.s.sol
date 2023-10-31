@@ -219,6 +219,9 @@ contract DeployP3 is Script {
         brrrManager.setHandler(address(rewardRouter), true);
 
         referralStorage.setHandler(address(positionRouter), true);
+        referralStorage.setTier(0, 1000, 5000);
+        referralStorage.setTier(1, 2000, 5000);
+        referralStorage.setTier(2, 3000, 5000);
 
         router.addPlugin(address(positionRouter));
         router.addPlugin(address(orderBook));

@@ -35,6 +35,7 @@ contract SetKeeper is Script {
             ITimelock(_timelock).govSetKeeper(_positionRouter, _positionManager, _keeper, _isActive);
             IPriceFeedTimelock(_priceFeedTimelock).setPriceFeedUpdater(_fastPriceFeed, _keeper, _isActive);
             IShortsTrackerTimelock(_shortsTrackerTimelock).setHandler(_shortsTracker, _keeper, _isActive);
+            IShortsTrackerTimelock(_shortsTrackerTimelock).setContractHandler(_keeper, _isActive);
         } else {
             IPositionRouter(_positionRouter).setPositionKeeper(_keeper, _isActive);
             IPositionManager(_positionManager).setOrderKeeper(_keeper, _isActive);

@@ -69,8 +69,8 @@ contract DeployP3 is Script {
         vm.startBroadcast(deployerKey);
         OWNER = msg.sender;
 
-        // 2-3 = Mainnet
-        tokenManager = new TokenManager(3);
+        uint256 minSignatures = _signers.length > 2 ? _signers.length - 2 : 1;
+        tokenManager = new TokenManager(minSignatures);
 
         shortsTrackerTimelock = new ShortsTrackerTimelock(OWNER, 1, 300, 20);
 

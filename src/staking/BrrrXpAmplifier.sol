@@ -286,8 +286,8 @@ contract BrrrXpAmplifier is Governable, ReentrancyGuard {
             }
 
             uint256 pendingXp = _calculatePendingXpRewards(_account);
+            lastXpUpdate[_account] = block.timestamp;
             if (pendingXp != 0) {
-                lastXpUpdate[_account] = block.timestamp;
                 totalXpEarned[_account] = totalXpEarned[_account] + pendingXp;
             }
             return pendingXp;

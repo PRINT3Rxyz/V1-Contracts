@@ -1039,7 +1039,7 @@ contract Vault is ReentrancyGuard, IVault {
         uint256 delta = (size * priceDelta) / averagePrice;
         bool hasProfit = averagePrice > _nextPrice;
 
-        uint256 nextSize = size * _sizeDelta;
+        uint256 nextSize = size + _sizeDelta;
         uint256 divisor = hasProfit ? nextSize - delta : nextSize + delta;
 
         return (_nextPrice * nextSize) / divisor;

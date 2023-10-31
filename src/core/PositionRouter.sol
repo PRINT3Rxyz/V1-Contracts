@@ -850,7 +850,7 @@ contract PositionRouter is BasePositionManager, IPositionRouter {
         }
 
         bool success;
-        try IPositionRouterCallbackReceiver(_callbackTarget).gmxPositionCallback{gas: _gasLimit}(
+        try IPositionRouterCallbackReceiver(_callbackTarget).printerPositionCallback{gas: _gasLimit}(
             _key, _wasExecuted, _isIncrease
         ) {
             success = true;
