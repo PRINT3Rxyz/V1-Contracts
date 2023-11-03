@@ -72,7 +72,7 @@ contract DeployP3 is Script {
         uint256 minSignatures = _signers.length > 2 ? _signers.length - 2 : 1;
         tokenManager = new TokenManager(minSignatures);
 
-        shortsTrackerTimelock = new ShortsTrackerTimelock(OWNER, 1, 300, 20);
+        shortsTrackerTimelock = new ShortsTrackerTimelock(OWNER, 1, 300, 500);
 
         priceFeedTimelock = new PriceFeedTimelock(OWNER, 1, address(tokenManager));
 

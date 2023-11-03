@@ -38,8 +38,10 @@ contract SetKeeper is Script {
             IShortsTrackerTimelock(_shortsTrackerTimelock).setContractHandler(_keeper, _isActive);
         } else {
             IPositionRouter(_positionRouter).setPositionKeeper(_keeper, _isActive);
+            // IPositionRouter(_positionRouter).setAdmin(_keeper);
             IPositionManager(_positionManager).setOrderKeeper(_keeper, _isActive);
             IPositionManager(_positionManager).setLiquidator(_keeper, _isActive);
+            // IPositionManager(_positionManager).setAdmin(_keeper);
             IFastPriceFeed(_fastPriceFeed).setUpdater(_keeper, _isActive);
             IShortsTracker(_shortsTracker).setHandler(_keeper, _isActive);
         }

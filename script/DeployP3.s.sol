@@ -231,10 +231,10 @@ contract DeployP3 is Script {
         positionRouter.setPositionKeeper(address(fastPriceFeed), true);
         positionRouter.setPositionKeeper(OWNER, true);
         positionRouter.setDelayValues(0, 180, 1800);
-        longSizes.push(40000000000000000000000000000000000000);
-        longSizes.push(45000000000000000000000000000000000000);
-        shortSizes.push(35000000000000000000000000000000000000);
-        shortSizes.push(45000000000000000000000000000000000000);
+        longSizes.push(0);
+        longSizes.push(0);
+        shortSizes.push(0);
+        shortSizes.push(0);
         uint256[] memory _longSizes = longSizes;
         uint256[] memory _shortSizes = shortSizes;
         positionRouter.setMaxGlobalSizes(_tokenArray, _longSizes, _shortSizes);
@@ -310,6 +310,7 @@ contract DeployP3 is Script {
         positionManager.setOrderKeeper(OWNER, true);
         positionManager.setLiquidator(OWNER, true);
         positionManager.setPartner(OWNER, true);
+        positionManager.setAdmin(OWNER);
 
         rewardRouter.initialize(weth, address(brrr), address(rewardTracker), address(brrrManager));
 
@@ -342,7 +343,9 @@ contract DeployP3 is Script {
         /// Next Steps:
         /// 1. Get currency (WETH, WBTC, USDC)
         /// 2. LP Currency calling rewardRouter.mintAndStakeBrr (Never directPoolDeposit first)
-        /// 3. Run the keeper script to give permissions to keepers
-        /// 4. Run the governance script to give permissions to governance
+        /// 3. Distribute some WETH to RewardDistributor to bootstrap rewards
+        /// 4. Run the keeper script to give permissions to keepers
+        /// 5. Run the governance script to give permissions to governance
+        /// 6. Run the keeper script again for governance contracts
     }
 }
