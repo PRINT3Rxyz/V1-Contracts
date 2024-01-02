@@ -21,6 +21,7 @@ contract BrrrXpAmplifier is Governable, ReentrancyGuard {
     error BrrrXpAmplifier_SeasonNotOver();
     error BrrrXpAmplifier_NoPositions();
     error BrrrXpAmplifier_InvalidHandler();
+    error BrrrXpAmplifier_InvalidSeasonEnd();
 
     event BrrrXpAmplifier_LiquidityLocked(
         address indexed user, uint256 index, uint256 indexed amount, uint8 indexed tier
@@ -61,11 +62,13 @@ contract BrrrXpAmplifier is Governable, ReentrancyGuard {
     uint256 public constant TIER3_DURATION = 90 days; // 1.5x XP multiplier
     uint256 public constant TIER4_DURATION = 180 days; // 2x XP multiplier
     uint256 public constant PRECISION = 10e30;
-    // End of Season 1: Sat Jun 01 2024 12:00:00 GMT+0000
-    uint256 public constant SEASON_END = 1717243200;
+    // End of Season 1: Apr 01 2024 12:00:00 GMT+0000
+    uint256 public constant MIN_SEASON_END = 1711929600;
+    uint256 public constant XP_PER_SECOND = 1;
 
-    uint256 public xpPerSecond = 1;
     uint256 public nextPositionId;
+    // Default End of Season 1: Jun 01 2024 12:00:00 GMT+0000
+    uint256 public seasonEnd = 1717200000;
 
     uint256 public cumulativeRewardPerToken;
     uint256 public contractBalance;
@@ -82,20 +85,22 @@ contract BrrrXpAmplifier is Governable, ReentrancyGuard {
     /// Should be subject to timelock.
     function recoverTokens(address token) external onlyGov {
         if (
-            token == weth && block.timestamp < SEASON_END
-                || token == address(rewardTracker) && block.timestamp < SEASON_END
+            token == weth && block.timestamp < seasonEnd
+                || token == address(rewardTracker) && block.timestamp < seasonEnd
         ) revert BrrrXpAmplifier_SeasonNotOver();
         IERC20(token).transfer(msg.sender, IERC20(token).balanceOf(address(this)));
     }
 
-    /// @dev Used to temporarily increase rewards during Bonus XP events.
-    function updateXpPerSecond(uint256 val) external onlyGov {
-        if (val == 0) revert BrrrXpAmplifier_InvalidAmount();
-        xpPerSecond = val;
-    }
-
     function setHandler(address _handler, bool _isActive) external onlyGov {
         isHandler[_handler] = _isActive;
+    }
+
+    /// @dev Sensitive => Should be subject to timelock
+    function updateSeasonEnd(uint256 _newSeasonEnd) external onlyGov {
+        if (_newSeasonEnd < block.timestamp || _newSeasonEnd < MIN_SEASON_END) {
+            revert BrrrXpAmplifier_InvalidSeasonEnd();
+        }
+        seasonEnd = _newSeasonEnd;
     }
 
     /// @notice Used to lock RewardTracker tokens for a set durations.
@@ -107,7 +112,7 @@ contract BrrrXpAmplifier is Governable, ReentrancyGuard {
         if (amount == 0) revert BrrrXpAmplifier_InvalidAmount();
         if (rewardTracker.balanceOf(msg.sender) < amount) revert BrrrXpAmplifier_InsufficientFunds();
         uint256 duration = _getDuration(tier);
-        if (block.timestamp + duration > SEASON_END) revert BrrrXpAmplifier_DurationPastSeasonEnd();
+        if (block.timestamp + duration > seasonEnd) revert BrrrXpAmplifier_DurationPastSeasonEnd();
 
         stakeTransferrer.transferFrom(msg.sender, address(this), amount);
 
@@ -238,8 +243,8 @@ contract BrrrXpAmplifier is Governable, ReentrancyGuard {
         uint256 totalXp;
         uint256[] memory tokens = userPositionIds[_user];
         uint256 accumulationDuration;
-        if (block.timestamp >= SEASON_END) {
-            accumulationDuration = SEASON_END - lastXpUpdate[_user];
+        if (block.timestamp >= seasonEnd) {
+            accumulationDuration = seasonEnd - lastXpUpdate[_user];
         } else {
             accumulationDuration = block.timestamp - lastXpUpdate[_user];
         }
@@ -247,7 +252,7 @@ contract BrrrXpAmplifier is Governable, ReentrancyGuard {
             Position memory position = positions[_user][tokens[i]];
             if (position.tier == _tier) {
                 totalXp =
-                    totalXp + (position.depositAmount * position.multiplier * (accumulationDuration * xpPerSecond));
+                    totalXp + (position.depositAmount * position.multiplier * (accumulationDuration * XP_PER_SECOND));
             }
         }
         return totalXp / 100;
@@ -330,14 +335,14 @@ contract BrrrXpAmplifier is Governable, ReentrancyGuard {
         uint256 totalXp;
         uint256[] memory tokens = userPositionIds[user];
         uint256 accumulationDuration;
-        if (block.timestamp >= SEASON_END) {
-            accumulationDuration = SEASON_END - lastXpUpdate[user];
+        if (block.timestamp >= seasonEnd) {
+            accumulationDuration = seasonEnd - lastXpUpdate[user];
         } else {
             accumulationDuration = block.timestamp - lastXpUpdate[user];
         }
         for (uint256 i = 0; i < tokens.length; ++i) {
             Position memory position = positions[user][tokens[i]];
-            totalXp = totalXp + (position.depositAmount * position.multiplier * (accumulationDuration * xpPerSecond));
+            totalXp = totalXp + (position.depositAmount * position.multiplier * (accumulationDuration * XP_PER_SECOND));
         }
         return totalXp / 100;
     }

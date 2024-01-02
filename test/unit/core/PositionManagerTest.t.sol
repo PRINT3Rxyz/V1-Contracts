@@ -3,6 +3,8 @@ pragma solidity 0.8.18;
 
 import {Test, console} from "lib/forge-std/src/Test.sol";
 import {HelperConfig} from "../../../script/HelperConfig.s.sol";
+import {DeployP3} from "../../../script/DeployP3.s.sol";
+import {Types} from "../../../script/Types.sol";
 import {VaultPriceFeed} from "../../../src/core/VaultPriceFeed.sol";
 import {FastPriceEvents} from "../../../src/oracle/FastPriceEvents.sol";
 import {FastPriceFeed} from "../../../src/oracle/FastPriceFeed.sol";
@@ -38,6 +40,7 @@ contract PositionManagerTest is Test {
     address public USER = makeAddr("user");
 
     HelperConfig public helperConfig;
+    Types.Contracts contracts;
     VaultPriceFeed priceFeed;
     FastPriceEvents priceEvents;
     FastPriceFeed fastPriceFeed;
@@ -101,249 +104,63 @@ contract PositionManagerTest is Test {
     uint256[] numberArray;
 
     function setUp() public {
-        OWNER = msg.sender;
-        helperConfig = new HelperConfig();
-        (wethUsdPriceFeed, wbtcUsdPriceFeed, usdcPriceFeed, weth, wbtc, usdc, deployerKey) =
-            helperConfig.activeNetworkConfig();
+        DeployP3 deployScript = new DeployP3(); // Create a new instance of the DeployP3 script
+        contracts = deployScript.run(); // Run the script and store the returned contracts
+
+        wethUsdPriceFeed = contracts.networkConfig.wethUsdPriceFeed;
+        wbtcUsdPriceFeed = contracts.networkConfig.wbtcUsdPriceFeed;
+        usdcPriceFeed = contracts.networkConfig.usdcPriceFeed;
+        deployerKey = contracts.networkConfig.deployerKey;
+        OWNER = contracts.networkConfig.deployer;
         vm.deal(OWNER, 1e18 ether);
+
         vm.startPrank(OWNER);
 
-        /// Note Full Deployment Steps To Avoid Stack too Deep Error
+        priceFeed = contracts.core.vaultPriceFeed;
+        priceEvents = contracts.oracle.fastPriceEvents;
+        fastPriceFeed = contracts.oracle.fastPriceFeed;
+        vault = contracts.core.vault;
+        usdp = contracts.tokens.usdp;
+        router = contracts.core.router;
+        vaultUtils = contracts.core.vaultUtils;
+        shortsTracker = contracts.core.shortsTracker;
+        orderBook = contracts.core.orderBook;
+        positionManager = contracts.core.positionManager;
+        positionRouter = contracts.core.positionRouter;
+        brrr = contracts.core.brrr;
+        brrrManager = contracts.core.brrrManager;
+        vaultErrorController = contracts.core.vaultErrorController;
+        referralStorage = contracts.referral.referralStorage;
+        rewardRouter = contracts.staking.brrrRewardRouter;
+        rewardTracker = contracts.staking.rewardTracker;
+        rewardDistributor = contracts.staking.rewardDistributor;
+        timelock = contracts.peripherals.timelock;
+        transferStakedBrrr = contracts.staking.transferStakedBrrr;
+        brrrBalance = contracts.staking.brrrBalance;
+        orderBookReader = contracts.peripherals.orderBookReader;
+        vaultReader = contracts.peripherals.vaultReader;
+        rewardReader = contracts.peripherals.rewardReader;
+        referralReader = contracts.referral.referralReader;
+        reader = contracts.peripherals.reader;
+        weth = contracts.tokens.weth;
+        wbtc = contracts.tokens.wbtc;
+        usdc = contracts.tokens.usdc;
 
-        priceFeed = new VaultPriceFeed();
-
-        priceEvents = new FastPriceEvents();
-
-        fastPriceFeed = new FastPriceFeed(300, 300, 0, 300, address(priceEvents), OWNER);
-
-        vault = new Vault();
-
-        usdp = new USDP(address(vault));
-
-        router = new Router(address(vault), address(usdp), weth);
-
-        vaultUtils = new VaultUtils(vault);
-
-        shortsTracker = new ShortsTracker(address(vault));
-
-        orderBook = new OrderBook();
-
-        positionManager =
-            new PositionManager(address(vault), address(router), address(shortsTracker), weth, 50, address(orderBook));
-
-        positionRouter =
-            new PositionRouter(address(vault), address(router), weth, address(shortsTracker), 30, 300000000000000);
-
-        brrr = new BRRR();
-
-        brrrManager = new BrrrManager(address(vault), address(usdp), address(brrr), address(shortsTracker), 900);
-
-        vaultErrorController = new VaultErrorController();
+        console.log("Deployed contracts");
 
         WBTC(wbtc).mint(OWNER, LARGE_AMOUNT);
         WETH(weth).deposit{value: LARGE_AMOUNT}();
         Token(usdc).mint(OWNER, LARGE_AMOUNT);
 
-        referralStorage = new ReferralStorage();
+        WETH(weth).increaseAllowance(address(brrrManager), type(uint256).max);
+        brrrManager.addLiquidity(weth, DEPOSIT_AMOUNT, 0, 0);
+        WBTC(wbtc).increaseAllowance(address(brrrManager), type(uint256).max);
+        brrrManager.addLiquidity(wbtc, DEPOSIT_AMOUNT, 0, 0);
+        Token(usdc).increaseAllowance(address(brrrManager), type(uint256).max);
+        brrrManager.addLiquidity(usdc, DEPOSIT_AMOUNT, 0, 0);
 
-        rewardRouter = new BrrrRewardRouter();
-
-        rewardTracker = new RewardTracker("Staked BRRR", "sBRRR");
-
-        rewardDistributor = new RewardDistributor(weth, address(rewardTracker));
-
-        timelock = new Timelock(OWNER, 1, OWNER, OWNER, address(brrrManager), 1e60, 10, 500);
-
-        transferStakedBrrr = new TransferStakedBrrr(address(brrr), brrrManager, address(rewardTracker));
-
-        brrrBalance = new BrrrBalance(brrrManager, address(rewardTracker));
-
-        orderBookReader = new OrderBookReader();
-
-        vaultReader = new VaultReader();
-
-        rewardReader = new RewardReader();
-
-        referralReader = new ReferralReader();
-
-        reader = new Reader();
-
-        console.log("Deployed contracts");
-
-        usdp.addVault(address(vault));
-        usdp.addVault(address(brrrManager));
-
-        brrr.setMinter(address(brrrManager), true);
-        brrr.setHandler(address(rewardTracker), true);
-
-        ownerArray.push(OWNER);
         tokenArray.push(weth);
         tokenArray.push(wbtc);
-        address[] memory _ownerArray = ownerArray;
-        address[] memory _tokenArray = tokenArray;
-        fastPriceFeed.initialize(1, _ownerArray, _ownerArray);
-        fastPriceFeed.setVaultPriceFeed(address(priceFeed));
-        fastPriceFeed.setMaxTimeDeviation(3600);
-        fastPriceFeed.setSpreadBasisPointsIfInactive(50);
-        fastPriceFeed.setSpreadBasisPointsIfChainError(500);
-        deltaDiffs.push(200000);
-        deltaDiffs.push(200000);
-        uint256[] memory _deltaDiffs = deltaDiffs;
-        fastPriceFeed.setMaxCumulativeDeltaDiffs(_tokenArray, _deltaDiffs);
-        fastPriceFeed.setPriceDataInterval(60);
-
-        priceEvents.setIsPriceFeed(address(fastPriceFeed), true);
-
-        priceFeed.setMaxStrictPriceDeviation(50000000000000000000000000000);
-        priceFeed.setPriceSampleSpace(1);
-        priceFeed.setSecondaryPriceFeed(address(fastPriceFeed));
-        priceFeed.setIsAmmEnabled(false);
-        priceFeed.setTokenConfig(weth, wethUsdPriceFeed, 8, false);
-        priceFeed.setTokenConfig(wbtc, wbtcUsdPriceFeed, 8, false);
-        priceFeed.setTokenConfig(usdc, usdcPriceFeed, 8, true);
-
-        vault.initialize(address(router), address(usdp), address(priceFeed), 2000000000000000000000000000000, 100, 100);
-        vault.setInManagerMode(true);
-        vault.setManager(address(brrrManager), true);
-        vault.setErrorController(address(vaultErrorController));
-        vault.setTokenConfig(weth, 18, 10000, 150, 0, false, true);
-        vault.setTokenConfig(wbtc, 8, 10000, 150, 0, false, true);
-        vault.setTokenConfig(usdc, 6, 20000, 150, 0, true, false);
-        vault.setFees(15, 5, 15, 15, 1, 10, 2000000000000000000000000000000, 86400, true);
-        vault.setIsLeverageEnabled(false);
-        vault.setFundingRate(3600, 100, 100);
-        vault.setVaultUtils(vaultUtils);
-        vault.setGov(address(timelock));
-
-        shortsTracker.setHandler(address(positionManager), true);
-        shortsTracker.setHandler(address(positionRouter), true);
-
-        brrrManager.setInPrivateMode(false);
-        brrrManager.setHandler(address(rewardRouter), true);
-
-        referralStorage.setHandler(address(positionRouter), true);
-
-        router.addPlugin(address(positionRouter));
-        router.addPlugin(address(orderBook));
-        router.addPlugin(address(positionManager));
-        WBTC(wbtc).approve(address(router), LARGE_AMOUNT);
-        WETH(weth).approve(address(router), LARGE_AMOUNT);
-        Token(usdc).approve(address(router), LARGE_AMOUNT);
-
-        positionRouter.setReferralStorage(address(referralStorage));
-        positionRouter.setPositionKeeper(address(fastPriceFeed), true);
-        positionRouter.setPositionKeeper(OWNER, true);
-        positionRouter.setPositionKeeper(USER, true);
-        positionRouter.setDelayValues(0, 180, 1800);
-        longSizes.push(40000000000000000000000000000000000000);
-        longSizes.push(45000000000000000000000000000000000000);
-        shortSizes.push(35000000000000000000000000000000000000);
-        shortSizes.push(45000000000000000000000000000000000000);
-        uint256[] memory _longSizes = longSizes;
-        uint256[] memory _shortSizes = shortSizes;
-        positionRouter.setMaxGlobalSizes(_tokenArray, _longSizes, _shortSizes);
-        positionRouter.setCallbackGasLimit(800000);
-
-        errors.push("Vault: zero error");
-        errors.push("Vault: already initialized");
-        errors.push("Vault: invalid _maxLeverage");
-        errors.push("Vault: invalid _taxBasisPoints");
-        errors.push("Vault: invalid _stableTaxBasisPoints");
-        errors.push("Vault: invalid _mintBurnFeeBasisPoints");
-        errors.push("Vault: invalid _swapFeeBasisPoints");
-        errors.push("Vault: invalid _stableSwapFeeBasisPoints");
-        errors.push("Vault: invalid _marginFeeBasisPoints");
-        errors.push("Vault: invalid _liquidationFeeUsd");
-        errors.push("Vault: invalid _fundingInterval");
-        errors.push("Vault: invalid _fundingRateFactor");
-        errors.push("Vault: invalid _stableFundingRateFactor");
-        errors.push("Vault: token not whitelisted");
-        errors.push("Vault: _token not whitelisted");
-        errors.push("Vault: invalid tokenAmount");
-        errors.push("Vault: _token not whitelisted");
-        errors.push("Vault: invalid tokenAmount");
-        errors.push("Vault: invalid usdpAmount");
-        errors.push("Vault: _token not whitelisted");
-        errors.push("Vault: invalid usdpAmount");
-        errors.push("Vault: invalid redemptionAmount");
-        errors.push("Vault: invalid amountOut");
-        errors.push("Vault: swaps not enabled");
-        errors.push("Vault: _tokenIn not whitelisted");
-        errors.push("Vault: _tokenOut not whitelisted");
-        errors.push("Vault: invalid tokens");
-        errors.push("Vault: invalid amountIn");
-        errors.push("Vault: leverage not enabled");
-        errors.push("Vault: insufficient collateral for fees");
-        errors.push("Vault: invalid position.size");
-        errors.push("Vault: empty position");
-        errors.push("Vault: position size exceeded");
-        errors.push("Vault: position collateral exceeded");
-        errors.push("Vault: invalid liquidator");
-        errors.push("Vault: empty position");
-        errors.push("Vault: position cannot be liquidated");
-        errors.push("Vault: invalid position");
-        errors.push("Vault: invalid _averagePrice");
-        errors.push("Vault: collateral should be withdrawn");
-        errors.push("Vault: _size must be more than _collateral");
-        errors.push("Vault: invalid msg.sender");
-        errors.push("Vault: mismatched tokens");
-        errors.push("Vault: _collateralToken not whitelisted");
-        errors.push("Vault: _collateralToken must not be a stableToken");
-        errors.push("Vault: _collateralToken not whitelisted");
-        errors.push("Vault: _collateralToken must be a stableToken");
-        errors.push("Vault: _indexToken must not be a stableToken");
-        errors.push("Vault: _indexToken not shortable");
-        errors.push("Vault: invalid increase");
-        errors.push("Vault: reserve exceeds pool");
-        errors.push("Vault: max USDP exceeded");
-        errors.push("Vault: reserve exceeds pool");
-        errors.push("Vault: forbidden");
-        errors.push("Vault: forbidden");
-        errors.push("Vault: maxGasPrice exceeded");
-        string[] memory _errors = errors;
-        vaultErrorController.setErrors(vault, _errors);
-
-        orderBook.initialize(
-            address(router), address(vault), weth, address(usdp), 300000000000000, 10000000000000000000000000000000
-        );
-
-        positionManager.setDepositFee(30);
-        positionManager.setMaxGlobalSizes(_tokenArray, _longSizes, _shortSizes);
-        positionManager.setReferralStorage(address(referralStorage));
-        positionManager.setShouldValidateIncreaseOrder(false);
-        positionManager.setOrderKeeper(OWNER, true);
-        positionManager.setOrderKeeper(USER, true);
-        positionManager.setLiquidator(OWNER, true);
-        positionManager.setLiquidator(USER, true);
-        positionManager.setPartner(OWNER, true);
-
-        rewardRouter.initialize(weth, address(brrr), address(rewardTracker), address(brrrManager));
-
-        brrrArray.push(address(brrr));
-        address[] memory _depositTokens = brrrArray;
-        rewardTracker.initialize(_depositTokens, address(rewardDistributor));
-        rewardTracker.setHandler(address(rewardRouter), true);
-
-        rewardDistributor.updateLastDistributionTime();
-        rewardDistributor.setTokensPerInterval(4670965608460);
-
-        WBTC(wbtc).approve(address(brrrManager), LARGE_AMOUNT);
-        WETH(weth).approve(address(brrrManager), LARGE_AMOUNT);
-        Token(usdc).approve(address(brrrManager), LARGE_AMOUNT);
-        rewardRouter.mintAndStakeBrrr(weth, DEPOSIT_AMOUNT, 1, 1);
-        rewardRouter.mintAndStakeBrrr(wbtc, DEPOSIT_AMOUNT, 1, 1);
-        rewardRouter.mintAndStakeBrrr(usdc, DEPOSIT_AMOUNT, 1, 1);
-
-        // CRUCIAL: MUST MINT BRRR VIA ADDING LIQUIDITY BEFORE DIRECT POOL DEPOSITS
-        router.directPoolDeposit(weth, SMALL_AMOUNT);
-        router.directPoolDeposit(wbtc, SMALL_AMOUNT);
-        router.directPoolDeposit(usdc, SMALL_AMOUNT);
-
-        timelock.setShouldToggleIsLeverageEnabled(true);
-        timelock.setContractHandler(address(positionRouter), true);
-        timelock.setContractHandler(address(positionManager), true);
-        timelock.setContractHandler(OWNER, true);
-        timelock.setContractHandler(USER, true);
 
         vm.stopPrank();
     }

@@ -21,6 +21,7 @@ import {BrrrRewardRouter} from "../src/staking/BrrrRewardRouter.sol";
 import {BrrrXpAmplifier} from "../src/staking/BrrrXpAmplifier.sol";
 import {RewardTracker} from "../src/staking/RewardTracker.sol";
 import {Timelock} from "../src/peripherals/Timelock.sol";
+import {Types} from "./Types.sol";
 
 contract DeployP3 is Script {
     HelperConfig public helperConfig;
@@ -58,13 +59,12 @@ contract DeployP3 is Script {
         address timelock;
     }
 
-    function run(
-        Contracts memory contracts,
-        address[] memory _signers
-    ) external {
+    function run(Contracts memory contracts, address[] memory _signers) external {
         helperConfig = new HelperConfig();
 
-        (,,,,,, deployerKey) = helperConfig.activeNetworkConfig();
+        Types.NetworkConfig memory networkConfig = helperConfig.getActiveNetworkConfig();
+
+        deployerKey = networkConfig.deployerKey;
 
         vm.startBroadcast(deployerKey);
         OWNER = msg.sender;
@@ -76,8 +76,9 @@ contract DeployP3 is Script {
 
         priceFeedTimelock = new PriceFeedTimelock(OWNER, 1, address(tokenManager));
 
-        rewardTimelock =
-            new RewardTimelock(OWNER, 1, address(tokenManager), contracts.rewardRouter, contracts.brrrManager, contracts.rewardDistributor);
+        rewardTimelock = new RewardTimelock(
+            OWNER, 1, address(tokenManager), contracts.brrrManager, contracts.rewardRouter, contracts.rewardDistributor
+        );
 
         // Set Governance
         ShortsTracker(contracts.shortsTracker).setGov(address(shortsTrackerTimelock));

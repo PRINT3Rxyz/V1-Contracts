@@ -38,6 +38,7 @@ import {RewardClaimer} from "../src/staking/RewardClaimer.sol";
 import {PriceFeedTimelock} from "../src/peripherals/PriceFeedTimelock.sol";
 import {RewardTimelock} from "../src/peripherals/RewardTimelock.sol";
 import {TokenManager} from "../src/access/TokenManager.sol";
+import {Types} from "./Types.sol";
 
 contract DeployP3 is Script {
     HelperConfig public helperConfig;
@@ -74,6 +75,7 @@ contract DeployP3 is Script {
     RewardTimelock rewardTimelock;
     TokenManager tokenManager;
 
+    address OWNER;
     address public wbtc;
     address payable weth;
     address public usdc;
@@ -89,15 +91,23 @@ contract DeployP3 is Script {
     uint256[] shortSizes;
     string[] errors;
     address[] brrrArray;
+    address[] allTokens;
+    uint256[] precisions;
 
-    function run() external {
-        helperConfig = new HelperConfig(); // This comes with our mocks!
+    function run() external returns (Types.Contracts memory) {
+        helperConfig = new HelperConfig();
+        Types.NetworkConfig memory networkConfig = helperConfig.getActiveNetworkConfig();
 
-        (wethUsdPriceFeed, wbtcUsdPriceFeed, usdcPriceFeed, weth, wbtc, usdc, deployerKey) =
-            helperConfig.activeNetworkConfig();
+        wethUsdPriceFeed = networkConfig.wethUsdPriceFeed;
+        wbtcUsdPriceFeed = networkConfig.wbtcUsdPriceFeed;
+        usdcPriceFeed = networkConfig.usdcPriceFeed;
+        weth = networkConfig.weth;
+        wbtc = networkConfig.wbtc;
+        usdc = networkConfig.usdc;
+        deployerKey = networkConfig.deployerKey;
+        OWNER = networkConfig.deployer;
 
         vm.startBroadcast(deployerKey);
-        address OWNER = msg.sender;
 
         priceFeed = new VaultPriceFeed();
 
@@ -167,27 +177,25 @@ contract DeployP3 is Script {
         ownerArray.push(OWNER);
         tokenArray.push(weth);
         tokenArray.push(wbtc);
-        address[] memory _ownerArray = ownerArray;
-        address[] memory _tokenArray = tokenArray;
-        fastPriceFeed.initialize(1, _ownerArray, _ownerArray);
+        fastPriceFeed.initialize(1, ownerArray, ownerArray);
         fastPriceFeed.setVaultPriceFeed(address(priceFeed));
         fastPriceFeed.setMaxTimeDeviation(3600);
         fastPriceFeed.setSpreadBasisPointsIfInactive(20);
         fastPriceFeed.setSpreadBasisPointsIfChainError(500);
         deltaDiffs.push(1000000);
         deltaDiffs.push(1000000);
-        uint256[] memory _deltaDiffs = deltaDiffs;
-        fastPriceFeed.setMaxCumulativeDeltaDiffs(_tokenArray, _deltaDiffs);
+        fastPriceFeed.setMaxCumulativeDeltaDiffs(tokenArray, deltaDiffs);
         fastPriceFeed.setPriceDataInterval(60);
-        address[] memory _tokens = new address[](3);
-        _tokens[0] = weth;
-        _tokens[1] = wbtc;
-        _tokens[2] = usdc;
-        uint256[] memory _precisions = new uint256[](3);
-        _precisions[0] = 1000;
-        _precisions[1] = 1000;
-        _precisions[2] = 1000;
-        fastPriceFeed.setTokens(_tokens, _precisions);
+
+        allTokens.push(weth);
+        allTokens.push(wbtc);
+        allTokens.push(usdc);
+
+        precisions.push(1000);
+        precisions.push(1000);
+        precisions.push(1000);
+
+        fastPriceFeed.setTokens(allTokens, precisions);
 
         priceEvents.setIsPriceFeed(address(fastPriceFeed), true);
 
@@ -198,13 +206,20 @@ contract DeployP3 is Script {
         priceFeed.setTokenConfig(weth, wethUsdPriceFeed, 8, false);
         priceFeed.setTokenConfig(wbtc, wbtcUsdPriceFeed, 8, false);
         priceFeed.setTokenConfig(usdc, usdcPriceFeed, 8, true);
+        if (block.chainid == 8453) {
+            priceFeed.setSequencerUptimeFeed(0xBCF85224fc0756B9Fa45aA7892530B47e10b6433);
+        }
 
         vault.initialize(address(router), address(usdp), address(priceFeed), 2000000000000000000000000000000, 100, 100);
         vault.setInManagerMode(true);
         vault.setManager(address(brrrManager), true);
         vault.setErrorController(address(vaultErrorController));
         vault.setTokenConfig(weth, 18, 10000, 150, 0, false, true);
-        vault.setTokenConfig(wbtc, 8, 10000, 150, 0, false, true);
+        if (block.chainid == 8453) {
+            vault.setTokenConfig(wbtc, 18, 10000, 150, 0, false, true); // tBTC = 18 Dec on BASE
+        } else {
+            vault.setTokenConfig(wbtc, 8, 10000, 150, 0, false, true); // wBTC = 8 dec
+        }
         vault.setTokenConfig(usdc, 6, 20000, 150, 0, true, false);
         vault.setFees(60, 5, 15, 25, 1, 40, 5000000000000000000000000000000, 10800, true);
         vault.setIsLeverageEnabled(false);
@@ -235,9 +250,7 @@ contract DeployP3 is Script {
         longSizes.push(0);
         shortSizes.push(0);
         shortSizes.push(0);
-        uint256[] memory _longSizes = longSizes;
-        uint256[] memory _shortSizes = shortSizes;
-        positionRouter.setMaxGlobalSizes(_tokenArray, _longSizes, _shortSizes);
+        positionRouter.setMaxGlobalSizes(tokenArray, longSizes, shortSizes);
         positionRouter.setCallbackGasLimit(800000);
 
         errors.push("Vault: zero error");
@@ -281,7 +294,7 @@ contract DeployP3 is Script {
         errors.push("Vault: invalid _averagePrice");
         errors.push("Vault: collateral should be withdrawn");
         errors.push("Vault: _size must be more than _collateral");
-        errors.push("Vault: invalid msg.sender");
+        errors.push("Vault: invalid OWNER");
         errors.push("Vault: mismatched tokens");
         errors.push("Vault: _collateralToken not whitelisted");
         errors.push("Vault: _collateralToken must not be a stableToken");
@@ -296,15 +309,14 @@ contract DeployP3 is Script {
         errors.push("Vault: forbidden");
         errors.push("Vault: forbidden");
         errors.push("Vault: maxGasPrice exceeded");
-        string[] memory _errors = errors;
-        vaultErrorController.setErrors(vault, _errors);
+        vaultErrorController.setErrors(vault, errors);
 
         orderBook.initialize(
             address(router), address(vault), weth, address(usdp), 100000000000000, 10000000000000000000000000000000
         );
 
         positionManager.setDepositFee(30);
-        positionManager.setMaxGlobalSizes(_tokenArray, _longSizes, _shortSizes);
+        positionManager.setMaxGlobalSizes(tokenArray, longSizes, shortSizes);
         positionManager.setReferralStorage(address(referralStorage));
         positionManager.setShouldValidateIncreaseOrder(false);
         positionManager.setOrderKeeper(OWNER, true);
@@ -315,8 +327,8 @@ contract DeployP3 is Script {
         rewardRouter.initialize(weth, address(brrr), address(rewardTracker), address(brrrManager));
 
         brrrArray.push(address(brrr));
-        address[] memory _depositTokens = brrrArray;
-        rewardTracker.initialize(_depositTokens, address(rewardDistributor));
+
+        rewardTracker.initialize(brrrArray, address(rewardDistributor));
         // IMPORTANT STEP
         rewardTracker.setHandler(address(rewardRouter), true);
         // TransferStakedBrrr must be a handler for BrrrXpAmplifier to function
@@ -340,6 +352,45 @@ contract DeployP3 is Script {
         shortsTracker.setInitData(tokenArray, priceArray);
 
         vm.stopBroadcast();
+
+        return Types.Contracts({
+            core: Types.Core({
+                brrrManager: brrrManager,
+                brrr: brrr,
+                vault: vault,
+                vaultUtils: vaultUtils,
+                vaultPriceFeed: priceFeed,
+                vaultErrorController: vaultErrorController,
+                shortsTracker: shortsTracker,
+                positionManager: positionManager,
+                positionRouter: positionRouter,
+                orderBook: orderBook,
+                router: router
+            }),
+            oracle: Types.Oracle({fastPriceFeed: fastPriceFeed, fastPriceEvents: priceEvents}),
+            referral: Types.Referral({referralStorage: referralStorage, referralReader: referralReader}),
+            staking: Types.Staking({
+                brrrRewardRouter: rewardRouter,
+                rewardTracker: rewardTracker,
+                rewardDistributor: rewardDistributor,
+                transferStakedBrrr: transferStakedBrrr,
+                brrrBalance: brrrBalance,
+                brrrXpAmplifier: amplifier,
+                rewardClaimer: rewardClaimer
+            }),
+            peripherals: Types.Peripherals({
+                timelock: timelock,
+                orderBookReader: orderBookReader,
+                vaultReader: vaultReader,
+                rewardReader: rewardReader,
+                reader: reader,
+                shortsTrackerTimelock: shortsTrackerTimelock,
+                priceFeedTimelock: priceFeedTimelock,
+                rewardTimelock: rewardTimelock
+            }),
+            tokens: Types.Tokens({usdp: usdp, wbtc: wbtc, weth: weth, usdc: usdc}),
+            networkConfig: networkConfig
+        });
         /// Next Steps:
         /// 1. Get currency (WETH, WBTC, USDC)
         /// 2. LP Currency calling rewardRouter.mintAndStakeBrr (Never directPoolDeposit first)

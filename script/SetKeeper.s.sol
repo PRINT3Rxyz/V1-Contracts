@@ -11,9 +11,11 @@ import {IPositionManager} from "../src/core/interfaces/IPositionManager.sol";
 import {IPositionRouter} from "../src/core/interfaces/IPositionRouter.sol";
 import {IFastPriceFeed} from "../src/oracle/interfaces/IFastPriceFeed.sol";
 import {IShortsTracker} from "../src/core/interfaces/IShortsTracker.sol";
+import {Types} from "./Types.sol";
 
 contract SetKeeper is Script {
     HelperConfig public helperConfig;
+    uint256 private deployerKey;
 
     function run(
         address _keeper,
@@ -28,7 +30,10 @@ contract SetKeeper is Script {
         bool _isActive
     ) public {
         helperConfig = new HelperConfig();
-        (,,,,,, uint256 deployerKey) = helperConfig.activeNetworkConfig();
+        Types.NetworkConfig memory networkConfig = helperConfig.getActiveNetworkConfig();
+
+        deployerKey = networkConfig.deployerKey;
+
         vm.startBroadcast(deployerKey);
 
         if (_isGovernanceSet) {

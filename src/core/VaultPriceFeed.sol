@@ -4,6 +4,7 @@ import "./interfaces/IVaultPriceFeed.sol";
 import "../oracle/interfaces/IPriceFeed.sol";
 import "../oracle/interfaces/ISecondaryPriceFeed.sol";
 import "../amm/interfaces/IPancakePair.sol";
+import "lib/chainlink/contracts/src/v0.8/interfaces/AggregatorV2V3Interface.sol";
 
 pragma solidity 0.8.18;
 
@@ -16,6 +17,7 @@ contract VaultPriceFeed is IVaultPriceFeed {
     uint256 public constant MAX_ADJUSTMENT_BASIS_POINTS = 20;
 
     address public gov;
+    address public sequencerUptimeFeed;
 
     bool public isAmmEnabled = true;
     bool public isSecondaryPriceEnabled = true;
@@ -58,6 +60,10 @@ contract VaultPriceFeed is IVaultPriceFeed {
 
     function setGov(address _gov) external onlyGov {
         gov = _gov;
+    }
+
+    function setSequencerUptimeFeed(address _sequencerUptimeFeed) external onlyGov {
+        sequencerUptimeFeed = _sequencerUptimeFeed;
     }
 
     function setAdjustment(address _token, bool _isAdditive, uint256 _adjustmentBps) external override onlyGov {
@@ -280,6 +286,26 @@ contract VaultPriceFeed is IVaultPriceFeed {
     function getPrimaryPrice(address _token, bool _maximise) public view override returns (uint256) {
         address priceFeedAddress = priceFeeds[_token];
         require(priceFeedAddress != address(0), "VaultPriceFeed: invalid price feed");
+
+        if (sequencerUptimeFeed != address(0)) {
+            (
+                /*uint80 roundID*/
+                ,
+                int256 answer,
+                /*uint256 startedAt*/
+                ,
+                /*uint256 updatedAt*/
+                ,
+                /*uint80 answeredInRound*/
+            ) = AggregatorV2V3Interface(sequencerUptimeFeed).latestRoundData();
+
+            // Answer == 0: Sequencer is up
+            // Answer == 1: Sequencer is down
+            bool isSequencerUp = answer == 0;
+            if (!isSequencerUp) {
+                revert("VaultPriceFeed: Sequencer is down");
+            }
+        }
 
         IPriceFeed priceFeed = IPriceFeed(priceFeedAddress);
 
