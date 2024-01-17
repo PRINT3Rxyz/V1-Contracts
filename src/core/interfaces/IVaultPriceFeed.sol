@@ -23,4 +23,5 @@ interface IVaultPriceFeed {
     function getPrimaryPrice(address _token, bool _maximise) external view returns (uint256);
     function setTokenConfig(address _token, address _priceFeed, uint256 _priceDecimals, bool _isStrictStable)
         external;
+    function setSequencerUptimeFeed(address _sequencerUptimeFeed) external;
 }

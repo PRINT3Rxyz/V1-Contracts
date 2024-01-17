@@ -42,6 +42,7 @@ contract PriceFeedTimelock {
     event SignalPriceFeedSetTokenConfig(
         address vaultPriceFeed, address token, address priceFeed, uint256 priceDecimals, bool isStrictStable
     );
+    event SignalSetSequencerUptimeFeed(address vaultPriceFeed, address sequencerUptimeFeed, bytes32 action);
     event ClearAction(bytes32 action);
 
     modifier onlyAdmin() {
@@ -273,6 +274,23 @@ contract PriceFeedTimelock {
         _clearAction(action);
 
         IVaultPriceFeed(_vaultPriceFeed).setTokenConfig(_token, _priceFeed, _priceDecimals, _isStrictStable);
+    }
+
+    function signalSetSequencerUptimeFeed(address _vaultPriceFeed, address _sequencerUptimeFeed) external onlyAdmin {
+        bytes32 action = keccak256(abi.encodePacked("setSequencerUptimeFeed", _vaultPriceFeed, _sequencerUptimeFeed));
+
+        _setPendingAction(action);
+
+        emit SignalSetSequencerUptimeFeed(_vaultPriceFeed, _sequencerUptimeFeed, action);
+    }
+
+    function setSequencerUptimeFeed(address _vaultPriceFeed, address _sequencerUptimeFeed) external onlyAdmin {
+        bytes32 action = keccak256(abi.encodePacked("setSequencerUptimeFeed", _vaultPriceFeed, _sequencerUptimeFeed));
+
+        _validateAction(action);
+        _clearAction(action);
+
+        IVaultPriceFeed(_vaultPriceFeed).setSequencerUptimeFeed(_sequencerUptimeFeed);
     }
 
     function cancelAction(bytes32 _action) external onlyAdmin {

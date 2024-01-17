@@ -230,7 +230,7 @@ contract DeployP3 is Script {
         shortsTracker.setHandler(address(positionManager), true);
         shortsTracker.setHandler(address(positionRouter), true);
 
-        brrrManager.setInPrivateMode(false);
+        brrrManager.setInPrivateMode(true);
         brrrManager.setHandler(address(rewardRouter), true);
 
         referralStorage.setHandler(address(positionRouter), true);

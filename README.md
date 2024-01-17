@@ -1,4 +1,4 @@
-# PRINT3R
+# PRINT3R V1 Contracts
 
 A zero-barrier decentralized crypto perpetual trading platform that focuses on ease of use and encouraging user loyalty through engaging user interactions, and sharing revenue.
 

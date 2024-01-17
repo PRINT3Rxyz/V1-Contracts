@@ -62,13 +62,13 @@ contract BrrrXpAmplifier is Governable, ReentrancyGuard {
     uint256 public constant TIER3_DURATION = 90 days; // 1.5x XP multiplier
     uint256 public constant TIER4_DURATION = 180 days; // 2x XP multiplier
     uint256 public constant PRECISION = 10e30;
-    // End of Season 1: Apr 01 2024 12:00:00 GMT+0000
-    uint256 public constant MIN_SEASON_END = 1711929600;
+    // End of Season 1: July 01 2024 00:00:00 GMT+0000
+    uint256 public constant MIN_SEASON_END = 1719792000;
     uint256 public constant XP_PER_SECOND = 1;
 
     uint256 public nextPositionId;
-    // Default End of Season 1: Jun 01 2024 12:00:00 GMT+0000
-    uint256 public seasonEnd = 1717200000;
+    // Default End of Season 1: AUG 01 2024 00:00:00 GMT+0000
+    uint256 public seasonEnd = 1722470400;
 
     uint256 public cumulativeRewardPerToken;
     uint256 public contractBalance;
