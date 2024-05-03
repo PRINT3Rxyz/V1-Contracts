@@ -107,7 +107,7 @@ contract DeployP3 is Script {
         deployerKey = networkConfig.deployerKey;
         OWNER = networkConfig.deployer;
 
-        vm.startBroadcast(deployerKey);
+        vm.startBroadcast();
 
         priceFeed = new VaultPriceFeed();
 

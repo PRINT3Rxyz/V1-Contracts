@@ -23,13 +23,14 @@ contract HelperConfig is Script {
             networkConfig = getBaseConfig();
         } else if (block.chainid == 84531) {
             networkConfig = getBaseGorliConfig();
+        } else if (block.chainid == 84532) {
+            networkConfig = getBaseSepoliaConfig();
         } else {
             networkConfig = getOrCreateAnvilEthConfig();
         }
     }
 
-    function getBaseConfig() public view returns (Types.NetworkConfig memory baseNetworkConfig) {
-        uint256 privateKey = vm.envUint("PRIVATE_KEY");
+    function getBaseConfig() public pure returns (Types.NetworkConfig memory baseNetworkConfig) {
         baseNetworkConfig = Types.NetworkConfig({
             wethUsdPriceFeed: 0x71041dddad3595F9CEd3DcCFBe3D1F4b0a16Bb70,
             wbtcUsdPriceFeed: 0xCCADC697c55bbB68dc5bCdf8d3CBe83CdD4E071E,
@@ -37,8 +38,8 @@ contract HelperConfig is Script {
             weth: payable(0x4200000000000000000000000000000000000006),
             wbtc: 0x236aa50979D5f3De3Bd1Eeb40E81137F22ab794b,
             usdc: 0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913,
-            deployerKey: privateKey,
-            deployer: vm.addr(privateKey)
+            deployerKey: 0x0,
+            deployer: 0x4F6e437f7E90087f7090AcfE967D77ba0B4c7444
         });
     }
 
@@ -53,6 +54,19 @@ contract HelperConfig is Script {
             usdc: 0x15DC6BB178857fD1ad54934436221211eE5d0180,
             deployerKey: privateKey,
             deployer: vm.addr(privateKey)
+        });
+    }
+
+    function getBaseSepoliaConfig() public pure returns (Types.NetworkConfig memory baseSepoliaConfig) {
+        baseSepoliaConfig = Types.NetworkConfig({
+            wethUsdPriceFeed: 0x4aDC67696bA383F43DD60A9e78F2C97Fbbfc7cb1,
+            wbtcUsdPriceFeed: 0x0FB99723Aee6f420beAD13e6bBB79b7E6F034298,
+            usdcPriceFeed: 0xd30e2101a97dcbAeBCBC04F14C3f624E67A35165,
+            weth: payable(0xb1E4Eca7E7A35bDf2D7627F1816A1a3Bc90213E6),
+            wbtc: 0xb06794107642823DE9e078B37E60e761d7A33bFA,
+            usdc: 0xF3351a1cf99c842aaD7143031643E029276a5da8,
+            deployerKey: 0x0,
+            deployer: 0x4F6e437f7E90087f7090AcfE967D77ba0B4c7444
         });
     }
 

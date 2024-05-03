@@ -4,3 +4,7 @@ broadcast
 node_modules
 out
 script
+updatePoints.js
+wallets.txt
+test
+script
