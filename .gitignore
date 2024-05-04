@@ -6,5 +6,5 @@ out
 script
 updatePoints.js
 wallets.txt
-test
-script
+test/*
+script/*
